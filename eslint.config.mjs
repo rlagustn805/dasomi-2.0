@@ -19,10 +19,6 @@ const eslintConfig = [
       'no-var': 'error',
       'prefer-const': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      'no-use-before-define': [
-        'error',
-        { functions: false, classes: true, variables: true },
-      ],
 
       // 함수
       'func-style': ['error', 'declaration', { allowArrowFunctions: true }],

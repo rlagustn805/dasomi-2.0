@@ -1,5 +1,12 @@
+import Header from '@/components/Header';
+
 const Home = () => {
-  return <div>다솜이 2.0</div>;
+  return (
+    <div>
+      <Header />
+      <main></main>
+    </div>
+  );
 };
 
 export default Home;
