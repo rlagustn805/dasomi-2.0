@@ -1,5 +1,5 @@
-import { buttonSizes, buttonVariants } from './button.style';
-import { ButtonProps } from './button.types';
+import { buttonSizes, buttonVariants } from './button-style';
+import { ButtonProps } from './button-types';
 
 const Button = ({
   variant = 'primary',

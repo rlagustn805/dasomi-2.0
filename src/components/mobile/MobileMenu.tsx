@@ -1,6 +1,6 @@
-import CloseIcon from '@/assets/CloseIcon';
+import CloseIcon from '@/assets/icon/close-icon';
 import Button from '../button/Button';
-import TitleIcon from '@/assets/TitleIcon';
+import TitleIcon from '@/assets/icon/title-icon';
 import Link from 'next/link';
 
 const MobileMenu = ({

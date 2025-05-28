@@ -12,3 +12,7 @@
 @utility animate-fade-in {
   animation: fade-in 0.2s ease-out;
 }
+
+@theme inline {
+  --font-pretendard: var(--font-CSS-pretendard);
+}
