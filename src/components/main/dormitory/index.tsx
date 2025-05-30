@@ -1,4 +1,4 @@
-import DormitoryCard from './DormitoryCard';
+import DormitoryCard from './dormitory-card';
 
 const Dormitory = () => {
   return (

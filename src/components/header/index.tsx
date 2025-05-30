@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import TitleIcon from '@/assets/icon/title-icon';
-import MobileHeader from './MobileHeader';
-import DesktopHeader from './DesktopHeader';
+import MobileHeader from './mobile-header';
+import DesktopHeader from './desktop-header';
 
 const Header = () => {
   return (

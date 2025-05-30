@@ -1,6 +1,8 @@
 import React from 'react';
 import './globals.css';
 import localFont from 'next/font/local';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 
 const pretendard = localFont({
   src: '../../src/assets/fonts/PretendardVariable.woff2',
@@ -16,7 +18,11 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="kr" className={`${pretendard.variable} font-pretendard`}>
-      <body>{children}</body>
+      <body className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-1 mt-16">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 };

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Button from '../button/Button';
+import { Button } from '../ui/button';
 
 const DesktopHeader = () => {
   const hoverStyle =
@@ -18,11 +18,9 @@ const DesktopHeader = () => {
         className={hoverStyle}>
         기숙사 공지사항
       </Link>
-      <Link href="/">
-        <Button variant="outline" size="sm">
-          로그인
-        </Button>
-      </Link>
+      <Button size="sm" variant="outline">
+        <Link href="/">로그인</Link>
+      </Button>
     </div>
   );
 };

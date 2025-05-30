@@ -1,4 +1,4 @@
-import DescriptionCard from './DescriptionCard';
+import DescriptionCard from './description-card';
 
 const Description = () => {
   return (

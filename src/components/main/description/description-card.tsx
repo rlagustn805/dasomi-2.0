@@ -1,6 +1,7 @@
 import CommentIcon from '@/assets/icon/comment-icon';
 import NoticeIcon from '@/assets/icon/notice-icon';
 import People from '@/assets/icon/people-icon';
+import { Card, CardContent } from '@/components/ui/card';
 
 const descriptions = [
   {
@@ -26,13 +27,15 @@ const DescriptionCard = () => {
   return (
     <>
       {descriptions.map(description => (
-        <div key={description.title} className="border border-gray-200 p-3">
-          <div className="text-green-600 rounded-full bg-green-100 inline-block p-3">
-            {description.icon}
-          </div>
-          <p className="my-3 font-semibold">{description.title}</p>
-          <p className="text-sm text-gray-500">{description.description}</p>
-        </div>
+        <Card key={description.title}>
+          <CardContent>
+            <div className="text-green-600 rounded-full bg-green-100 inline-block p-3">
+              {description.icon}
+            </div>
+            <p className="my-3 font-semibold">{description.title}</p>
+            <p className="text-sm text-gray-500">{description.description}</p>
+          </CardContent>
+        </Card>
       ))}
     </>
   );

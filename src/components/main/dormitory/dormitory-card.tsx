@@ -1,7 +1,7 @@
-import Button from '@/components/button/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { dormitorys } from './dormitorys';
+import { Button } from '@/components/ui/button';
 
 const DormitoryCard = () => {
   return (
@@ -9,7 +9,7 @@ const DormitoryCard = () => {
       {dormitorys.map(dormitory => (
         <div
           key={dormitory.id}
-          className="border border-gray-200 rounded overflow-hidden">
+          className="border shadow-xs rounded-xl overflow-hidden">
           <Image
             src={dormitory.src}
             alt={dormitory.id}
@@ -19,11 +19,9 @@ const DormitoryCard = () => {
           />
           <div className="flex flex-col gap-3 px-2 py-3">
             <span className="font-bold ">{dormitory.title}</span>
-            <Link href="/">
-              <Button variant="outline" size="sm" className="w-full">
-                룸메이트 찾기
-              </Button>
-            </Link>
+            <Button size="sm" variant="outline">
+              <Link href="/">이동하기</Link>
+            </Button>
           </div>
         </div>
       ))}

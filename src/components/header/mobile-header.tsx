@@ -1,9 +1,8 @@
 'use client';
-
 import { useState } from 'react';
-import Button from '../button/Button';
-import MobileMenu from '../mobile/MobileMenu';
+import MobileMenu from '../mobile/mobile-menu';
 import MenuIcon from '@/assets/icon/menu-icon';
+import { Button } from '@/components/ui/button';
 
 const MobileHeader = () => {
   const [isMenuOpen, setIsMenuOepn] = useState(false);
@@ -16,7 +15,7 @@ const MobileHeader = () => {
     <div className="z-20">
       <Button
         className="block md:hidden"
-        variant="transparent"
+        variant="ghost"
         size="sm"
         onClick={handleMenuOnClick}>
         <MenuIcon />

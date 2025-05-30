@@ -1,9 +1,8 @@
 'use client';
-
-import Location from '@/assets/icon/location-icon';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { slogans } from './title-slogan';
 import { useEffect, useState } from 'react';
+import { slogans } from './slogans';
+import LocationIcon from '@/assets/icon/location-icon';
 
 const TitleSlogan = () => {
   const [idx, setIdx] = useState(0);
@@ -24,7 +23,7 @@ const TitleSlogan = () => {
               layout
               transition={{ duration: 0.4, ease: 'easeInOut' }}
               className="inline-block mr-1">
-              <Location />
+              <LocationIcon />
             </motion.span>
 
             <AnimatePresence mode="wait" initial={false}>

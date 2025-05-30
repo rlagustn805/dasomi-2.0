@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { footerLinks } from './footer-link';
 import KakaoIcon from '@/assets/icon/kakao-icon';
+import { buttonVariants } from '../ui/button';
 
 const Footer = () => {
   return (
@@ -30,7 +31,9 @@ const Footer = () => {
           <p className="font-semibold mb-3">문의</p>
           <Link
             href="/"
-            className="inline-flex items-center gap-1 bg-yellow-400 rounded-xl px-2 py-1 text-sm">
+            className={`${buttonVariants({
+              variant: 'outline',
+            })} bg-yellow-400 rounded-xl`}>
             <KakaoIcon />
             문의하기
           </Link>

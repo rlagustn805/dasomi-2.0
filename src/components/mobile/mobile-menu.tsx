@@ -1,5 +1,5 @@
 import CloseIcon from '@/assets/icon/close-icon';
-import Button from '../button/Button';
+import { Button } from '@/components/ui/button';
 import TitleIcon from '@/assets/icon/title-icon';
 import Link from 'next/link';
 
@@ -17,10 +17,7 @@ const MobileMenu = ({
           <div className="px-4 py-3 flex flex-col h-full">
             <div className="flex justify-between items-center mb-14">
               <TitleIcon />
-              <Button
-                variant="transparent"
-                size="sm"
-                onClick={handleMenuOnClick}>
+              <Button variant="ghost" size="sm" onClick={handleMenuOnClick}>
                 <CloseIcon />
               </Button>
             </div>

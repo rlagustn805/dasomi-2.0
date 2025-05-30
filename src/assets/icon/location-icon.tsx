@@ -1,4 +1,4 @@
-const Location = () => {
+const LocationIcon = () => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -17,4 +17,4 @@ const Location = () => {
   );
 };
 
-export default Location;
+export default LocationIcon;

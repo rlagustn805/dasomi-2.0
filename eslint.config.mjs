@@ -120,7 +120,7 @@ const eslintConfig = [
       'react/prop-types': 'off', // TypeScript 사용시 불필요
       'react/react-in-jsx-scope': 'off', // Next.js에서는 자동으로 import
       'react/function-component-definition': [
-        'error',
+        'off',
         {
           namedComponents: 'arrow-function',
           unnamedComponents: 'arrow-function',
