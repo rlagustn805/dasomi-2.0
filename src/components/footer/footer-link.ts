@@ -10,7 +10,7 @@ export const footerLinks = [
   {
     title: '계정',
     links: [
-      { name: '로그인', href: '/' },
+      { name: '로그인', href: '/login' },
       { name: '마이 페이지', href: '/' },
     ],
   },

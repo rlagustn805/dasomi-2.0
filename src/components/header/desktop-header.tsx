@@ -19,7 +19,7 @@ const DesktopHeader = () => {
         기숙사 공지사항
       </Link>
       <Button size="sm" variant="outline">
-        <Link href="/">로그인</Link>
+        <Link href="/login">로그인</Link>
       </Button>
     </div>
   );
