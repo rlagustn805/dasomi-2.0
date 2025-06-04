@@ -37,9 +37,9 @@ const MobileMenu = ({
               </Link>
             </nav>
 
-            <div className="mt-auto mb-8 bg-green-600 py-3 px-2 text-white font-semibold text-center rounded">
-              <Link href="/login">로그인</Link>
-            </div>
+            <Button className="mt-auto mb-8">
+              <Link href="/">로그인</Link>
+            </Button>
           </div>
         </div>
       )}

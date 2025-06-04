@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RmFilterField = ({
+const CmFilterField = ({
   children,
   label,
 }: {
@@ -15,4 +15,4 @@ const RmFilterField = ({
   );
 };
 
-export default RmFilterField;
+export default CmFilterField;

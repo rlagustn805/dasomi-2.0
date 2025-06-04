@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-} from '../ui/card';
+} from '@/components/ui/card';
 
 const KakaoLogin = () => {
   return (

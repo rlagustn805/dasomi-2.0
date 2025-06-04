@@ -1,9 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import RmFilterContent from './rm-filter-content';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import RmContent from '../rm-content/rm-filter-content';
 
 const MobileRmFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -26,7 +26,10 @@ const MobileRmFilter = () => {
             exit={{ y: '100%' }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}>
             <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-lg p-4 ">
-              <RmFilterContent handleFilterOpen={handleFilterOpen} />
+              <RmContent
+                label="필터 설정"
+                handleFilterOpen={handleFilterOpen}
+              />
             </div>
           </motion.div>
         )}

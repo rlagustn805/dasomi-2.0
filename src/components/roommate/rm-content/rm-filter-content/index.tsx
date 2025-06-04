@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import RmFilterField from './rm-filter-field';
+import CmFilterField from '../../../common/cm-filter-field';
 import RoomTypeSelect from './room-type-select';
 import TendencySlider from './tendency-slider';
 import CleanlinessSlider from './cleanliness-slider';
@@ -13,35 +13,37 @@ import SleepPatternSelect from './sleep-pattern';
 import SmokingSwitch from './smoking-switch';
 import { Button } from '@/components/ui/button';
 
-const RmFilterContent = ({
+const RmContent = ({
+  label,
   handleFilterOpen,
 }: {
+  label: string;
   handleFilterOpen?: () => void;
 }) => {
   return (
     <>
       <CardHeader>
-        <CardTitle className="text-lg">필터 설정</CardTitle>
+        <CardTitle className="text-lg">{label}</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-5 text-sm">
-        <RmFilterField label="인실 선택">
+        <CmFilterField label="인실 선택">
           <RoomTypeSelect />
-        </RmFilterField>
+        </CmFilterField>
 
-        <RmFilterField label="성향">
+        <CmFilterField label="성향">
           <TendencySlider />
-        </RmFilterField>
+        </CmFilterField>
 
-        <RmFilterField label="깔끔">
+        <CmFilterField label="깔끔">
           <CleanlinessSlider />
-        </RmFilterField>
+        </CmFilterField>
 
         <EatingSwitch />
         <SmokingSwitch />
 
-        <RmFilterField label="수면패턴">
+        <CmFilterField label="수면패턴">
           <SleepPatternSelect />
-        </RmFilterField>
+        </CmFilterField>
       </CardContent>
       <CardFooter className="flex gap-3 mt-5">
         <Button
@@ -59,4 +61,4 @@ const RmFilterContent = ({
   );
 };
 
-export default RmFilterContent;
+export default RmContent;
