@@ -7,7 +7,7 @@ import DesktopHeader from './desktop-header';
 
 const Header = () => {
   return (
-    <header className="px-4 md:px-10 lg:px-20 py-3 fixed w-full z-50 bg-white border-b border-gray-200 flex justify-between items-center">
+    <header className="px-4 md:px-36 lg:px-44 py-3 fixed w-full z-50 bg-white border-b border-gray-200 flex justify-between items-center">
       <Link href="/">
         <TitleIcon />
       </Link>

@@ -3,7 +3,7 @@ import CommDetailHeader from '@/components/community/comm-detail/comm-detail-hea
 
 const CommunityDetailPage = () => {
   return (
-    <div className="px-4 md:px-10 lg:px-20 mt-15">
+    <div className="px-4 md:px-36 lg:px-44 mt-15">
       <CommDetailHeader />
       <CommDetail />
     </div>

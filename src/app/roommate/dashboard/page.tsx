@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const RoomMateDashBoardPage = () => {
   return (
-    <div className="px-4 md:px-10 lg:px-20 mt-15">
+    <div className="px-4 md:px-36 lg:px-44 mt-15">
       <h2 className="text-lg font-semibold">룸메이트 대시보드</h2>
       <p className="text-sm text-gray-400">
         룸메이트를 등록, 관리하고 찜한 룸메이트를 확인할 수 있어요.
