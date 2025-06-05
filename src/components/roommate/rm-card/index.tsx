@@ -8,7 +8,7 @@ import RmCardContact from './rm-card-contact';
 
 const RmCard = ({
   nickname,
-  gender,
+  // gender,
   mbti,
   department,
   year,
