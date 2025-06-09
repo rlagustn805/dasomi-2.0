@@ -6,24 +6,24 @@ import {
   SelectValue,
   SelectTrigger,
 } from '../../ui/select';
-import { cmMbtiArr } from './cm-mbti';
+import { studentIdArr } from './cm-student-id';
 
 interface Props {
   value: string;
   onChange: (value: string) => void;
 }
 
-const CmMbti = ({ value, onChange }: Props) => {
+const CmStudentId = ({ value, onChange }: Props) => {
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="MBTI 선택" />
+        <SelectValue placeholder="학번 선택" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {cmMbtiArr.map(mbti => (
-            <SelectItem key={mbti} value={mbti}>
-              {mbti}
+          {studentIdArr.map(id => (
+            <SelectItem key={id} value={id}>
+              {id}
             </SelectItem>
           ))}
         </SelectGroup>
@@ -32,4 +32,4 @@ const CmMbti = ({ value, onChange }: Props) => {
   );
 };
 
-export default CmMbti;
+export default CmStudentId;

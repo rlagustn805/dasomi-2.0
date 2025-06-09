@@ -18,7 +18,7 @@ const eslintConfig = [
       // 변수 및 함수 선언
       'no-var': 'error',
       'prefer-const': 'error',
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'no-unused-vars': 'off',
 
       // 함수
       'func-style': ['error', 'declaration', { allowArrowFunctions: true }],

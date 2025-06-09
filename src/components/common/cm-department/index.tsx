@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -11,21 +11,30 @@ import {
 } from '../../ui/select';
 import { cmDepartmentArr } from './cm-department-arr';
 
-const CmDepartment = () => {
+interface Props {
+  value: string; // 최종 학과 이름
+  onChange: (value: string) => void;
+}
+
+const CmDepartment = ({ value, onChange }: Props) => {
   const [selectedCollege, setSelectedCollege] = useState('');
-  const [selectedDepartment, setSelectedDepartment] = useState('');
 
   const colleges = Object.keys(cmDepartmentArr);
-  const departments = selectedCollege ? cmDepartmentArr[selectedCollege] : [];
+  const majors = selectedCollege ? cmDepartmentArr[selectedCollege] : [];
+
+  const handleCollegeChange = (college: string) => {
+    setSelectedCollege(college);
+    onChange('');
+  };
+
+  const handleMajorChange = (major: string) => {
+    onChange(major);
+  };
 
   return (
     <div className="flex flex-col gap-3">
-      <Select
-        onValueChange={value => {
-          setSelectedCollege(value);
-          setSelectedDepartment('');
-        }}>
-        <SelectTrigger className="w-[200px]">
+      <Select value={selectedCollege} onValueChange={handleCollegeChange}>
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="단과대학 선택" />
         </SelectTrigger>
         <SelectContent>
@@ -40,17 +49,17 @@ const CmDepartment = () => {
       </Select>
 
       <Select
-        value={selectedDepartment}
-        onValueChange={setSelectedDepartment}
+        value={value}
+        onValueChange={handleMajorChange}
         disabled={!selectedCollege}>
-        <SelectTrigger className="w-[200px]">
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="학과 선택" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {departments.map(dept => (
-              <SelectItem key={dept} value={dept}>
-                {dept}
+            {majors.map(major => (
+              <SelectItem key={major} value={major}>
+                {major}
               </SelectItem>
             ))}
           </SelectGroup>

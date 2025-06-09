@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import {
   Card,
@@ -7,8 +9,19 @@ import {
   CardTitle,
   CardDescription,
 } from '@/components/ui/card';
+import { createClient } from '@/lib/supabase/client';
 
 const KakaoLogin = () => {
+  const handleLogin = async () => {
+    const supabase = createClient();
+    await supabase.auth.signInWithOAuth({
+      provider: 'kakao',
+      options: {
+        redirectTo: `${location.origin}/auth/callback`,
+      },
+    });
+  };
+
   return (
     <Card className="text-center">
       <CardHeader>
@@ -21,6 +34,7 @@ const KakaoLogin = () => {
           alt="카카오 로그인"
           width={300}
           height={45}
+          onClick={handleLogin}
         />
       </CardContent>
       <CardFooter className="text-xs text-gray-400">

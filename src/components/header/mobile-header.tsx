@@ -4,7 +4,7 @@ import MobileMenu from '../mobile/mobile-menu';
 import MenuIcon from '@/assets/icon/menu-icon';
 import { Button } from '@/components/ui/button';
 
-const MobileHeader = () => {
+const MobileHeader = ({ nickname }: { nickname: string }) => {
   const [isMenuOpen, setIsMenuOepn] = useState(false);
 
   const handleMenuOnClick = () => {
