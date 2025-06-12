@@ -23,6 +23,7 @@ const MobileHeader = ({ nickname }: { nickname: string }) => {
       <MobileMenu
         isMenuOpen={isMenuOpen}
         handleMenuOnClick={handleMenuOnClick}
+        nickname={nickname}
       />
     </div>
   );

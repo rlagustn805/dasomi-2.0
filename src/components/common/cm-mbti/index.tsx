@@ -7,10 +7,13 @@ import {
   SelectTrigger,
 } from '../../ui/select';
 import { cmMbtiArr } from './cm-mbti';
+import { Enums } from '@/types/supabase';
+
+type MbtiType = Enums<'mbti_enum'>;
 
 interface Props {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: MbtiType) => void;
 }
 
 const CmMbti = ({ value, onChange }: Props) => {
