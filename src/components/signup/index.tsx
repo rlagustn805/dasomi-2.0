@@ -17,17 +17,19 @@ import SignUpDepartment from './signup-department';
 import SignUpStudentId from './signup-studentId';
 import SignUpMbti from './signup-mbti';
 import SignUpGender from './signup-gender';
+import { SignUpForm } from './signup-type';
+import { insertUserProfile } from '@/services/api-users/api-users-client';
 
 const SignUp = () => {
   const supabase = createClient();
   const router = useRouter();
 
-  const [signUp, setSignUp] = useState({
+  const [signUp, setSignUp] = useState<SignUpForm>({
     nickname: '',
     department: '',
     gender: 'male',
-    studentId: '',
-    mbti: '',
+    student_id: '',
+    mbti: null,
   });
 
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(false);
@@ -52,23 +54,28 @@ const SignUp = () => {
       data: { user },
     } = await supabase.auth.getUser();
 
-    if (!user) return alert('인증되지 않은 사용자 입니다.');
+    if (!user) {
+      alert('인증되지 않은 사용자입니다.');
+      return;
+    }
+    const kakaoId = user.user_metadata?.provider_id;
+    if (!kakaoId) {
+      alert('Kakao ID가 존재하지 않습니다.');
+      return;
+    }
 
-    const { error } = await supabase.from('users').insert({
-      id: user.id,
-      kakao_id: user.user_metadata.provider_id,
+    const { success, message } = await insertUserProfile(user.id, kakaoId, {
       nickname: signUp.nickname,
       department: signUp.department,
       gender: signUp.gender,
-      student_id: signUp.studentId,
+      student_id: signUp.student_id,
       mbti: signUp.mbti,
     });
 
-    if (error) {
-      alert(error.message);
-    } else {
-      alert('회원가입 성공');
+    alert(message);
+    if (success) {
       router.push('/');
+      router.refresh();
     }
   };
 
@@ -89,19 +96,19 @@ const SignUp = () => {
             onChange={value => handleChange('nickname', value)}
           />
           <SignUpDepartment
-            value={signUp.department}
+            value={signUp.department ?? ''}
             onChange={value => handleChange('department', value)}
           />
           <SignUpStudentId
-            value={signUp.studentId}
-            onChange={value => handleChange('studentId', value)}
+            value={signUp.student_id ?? ''}
+            onChange={value => handleChange('student_id', value)}
           />
           <SignUpMbti
-            value={signUp.mbti}
+            value={signUp.mbti ?? ''}
             onChange={value => handleChange('mbti', value)}
           />
           <SignUpGender
-            value={signUp.gender}
+            value={signUp.gender ?? ''}
             onChange={value => handleChange('gender', value)}
           />
           <Button
@@ -110,9 +117,9 @@ const SignUp = () => {
             disabled={
               signUp.nickname === '' ||
               signUp.department === '' ||
-              signUp.gender === '' ||
-              signUp.mbti === '' ||
-              signUp.studentId === '' ||
+              signUp.gender === null ||
+              signUp.mbti === null ||
+              signUp.student_id === '' ||
               !isNicknameAvailable
             }
             onClick={handleSignUp}>

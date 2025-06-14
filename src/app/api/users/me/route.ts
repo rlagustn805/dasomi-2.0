@@ -48,6 +48,49 @@ export async function GET() {
   }
 }
 
+export async function POST(req: Request) {
+  try {
+    const supabase = await createServerSupabaseClient();
+    const body = await req.json();
+
+    const { nickname, department, gender, student_id, mbti } = body;
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: '인증되지 않은 사용자입니다.' },
+        { status: 401 }
+      );
+    }
+
+    const { error: insertError } = await supabase.from('users').insert({
+      id: user.id,
+      kakao_id: user.user_metadata.provider_id,
+      nickname,
+      department,
+      gender,
+      student_id,
+      mbti,
+    });
+
+    if (insertError) {
+      return NextResponse.json({ error: insertError.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: '회원가입 성공' }, { status: 200 });
+  } catch (e) {
+    console.error('회원가입 API 오류:', e);
+    return NextResponse.json(
+      { error: '서버 오류가 발생했습니다. 관리자에게 문의해주세요.' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function PATCH(req: NextRequest) {
   try {
     const supabase = await createServerSupabaseClient();

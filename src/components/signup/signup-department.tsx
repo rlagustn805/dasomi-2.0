@@ -1,12 +1,8 @@
 import CmDepartment from '../common/cm-department';
 import CmFilterField from '../common/cm-filter-field';
+import { SignUpFieldProps } from './signup-type';
 
-interface Props {
-  value: string;
-  onChange: (value: string) => void;
-}
-
-const SignUpDepartment = ({ value, onChange }: Props) => {
+const SignUpDepartment = ({ value, onChange }: SignUpFieldProps) => {
   return (
     <div className="w-full">
       <CmFilterField label="학과">

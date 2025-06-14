@@ -17,14 +17,12 @@ const Header = async () => {
       .from('users')
       .select('nickname')
       .eq('id', user.id)
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error(error.message);
-    } else {
-      const { nickname: userNickname } = userProfile;
-      nickname = userNickname;
     }
+    nickname = userProfile?.nickname ?? null;
   }
 
   return (

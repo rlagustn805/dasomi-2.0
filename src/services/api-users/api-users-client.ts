@@ -1,4 +1,5 @@
 import { TablesUpdate } from '@/types/supabase';
+import { TablesInsert } from '@/types/supabase';
 
 export const updateUserProfile = async (fieldName: TablesUpdate<'users'>) => {
   try {
@@ -56,6 +57,47 @@ export const deleteUserProfile = async () => {
     return {
       success: false,
       message: '서버 오류가 발생하였습니다. 관리자에게 문의주세요.',
+    };
+  }
+};
+
+export const insertUserProfile = async (
+  userId: string,
+  kakaoId: string,
+  profile: Omit<TablesInsert<'users'>, 'id' | 'kakao_id'>
+) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/users/me`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: userId,
+        kakao_id: kakaoId,
+        ...profile,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      return {
+        success: false,
+        message: data.error ?? '회원가입에 실패하였습니다.',
+      };
+    }
+
+    return {
+      success: true,
+      message: data.message ?? '회원가입에 성공하였습니다.',
+    };
+  } catch (e) {
+    console.error('회원가입 오류:', e);
+    return {
+      success: false,
+      message: '서버 오류가 발생하였습니다. 관리자에게 문의해주세요',
+      e,
     };
   }
 };

@@ -5,20 +5,14 @@ import CmFilterField from '../common/cm-filter-field';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { useState } from 'react';
-
-interface Props {
-  value: string;
-  isNicknameAvailable: boolean;
-  onChange: (value: string) => void;
-  handleIsNicknameAvailable: (value: boolean) => void;
-}
+import { SignUpNicknameProps } from './signup-type';
 
 const SignUpNickname = ({
   value,
   isNicknameAvailable,
   handleIsNicknameAvailable,
   onChange,
-}: Props) => {
+}: SignUpNicknameProps) => {
   const supabase = createClient();
   const isValid = /^[가-힣a-zA-Z0-9]{2,8}$/.test(value);
 

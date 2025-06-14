@@ -1,9 +1,6 @@
-interface Props {
-  value: string;
-  onChange: (value: string) => void;
-}
+import { SignUpFieldProps } from './signup-type';
 
-const SignUpGender = ({ value, onChange }: Props) => {
+const SignUpGender = ({ value, onChange }: SignUpFieldProps) => {
   return (
     <div className="flex gap-4 text-xs font-semibold">
       <div className="flex-1">

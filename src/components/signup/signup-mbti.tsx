@@ -1,12 +1,8 @@
 import CmFilterField from '../common/cm-filter-field';
 import CmMbti from '../common/cm-mbti';
+import { SignUpFieldProps } from './signup-type';
 
-interface Props {
-  value: string;
-  onChange: (value: string) => void;
-}
-
-const SignUpMbti = ({ value, onChange }: Props) => {
+const SignUpMbti = ({ value, onChange }: SignUpFieldProps) => {
   return (
     <CmFilterField label="MBTI">
       <CmMbti value={value} onChange={onChange} />
