@@ -11,7 +11,8 @@ export const roommates = [
     cleanliness: 5,
     smoking: false,
     indoorEating: true,
-    sleepHabit: '일찍 자고 일찍 일어나요',
+    sleepHabit: '일찍 자요 (22시 ~ 00시)',
+    sleepPattern: '잠버릇 없어요',
     matchingStatus: '매칭 대기중',
     message:
       '안녕하세요! 깔끔하고 활발한 성격입니다. 함께 즐겁게 생활할 룸메이트를 찾고 있어요 😊',
@@ -28,7 +29,10 @@ export const roommates = [
     cleanliness: 4,
     smoking: false,
     indoorEating: false,
-    sleepHabit: '늦게 자고 늦게 일어나요',
+    sleepHabit: '일찍 자요 (22시 ~ 00시)',
+    sleepPattern: '잠꼬대 해요',
+    noise: '조용한걸 원해요',
+
     matchingStatus: '매칭 대기중',
     message:
       '조용한 환경을 선호하며 서로의 사생활을 존중하는 룸메이트를 원합니다.',
@@ -45,7 +49,9 @@ export const roommates = [
     cleanliness: 3,
     smoking: false,
     indoorEating: true,
-    sleepHabit: '일찍 자고 늦게 일어나요',
+    sleepHabit: '늦게 자요 (00시 ~ 03시)',
+    sleepPattern: '이갈이 해요',
+    noise: '짧은 통화 정도만 원해요',
     matchingStatus: '매칭 대기중',
     message:
       '물리학과 1학년입니다. 공부에 집중할 수 있는 환경을 만들어가고 싶어요!',
@@ -63,6 +69,8 @@ export const roommates = [
     smoking: true,
     indoorEating: true,
     sleepHabit: '불규칙해요',
+    sleepPattern: '잠꼬대 해요',
+    noise: '소음 상관 없어요',
     matchingStatus: '매칭 대기중',
     message:
       '친목을 중시하고 함께 시간을 보내는 것을 좋아합니다. 서로 도움이 되는 관계였으면 좋겠어요.',
@@ -79,7 +87,10 @@ export const roommates = [
     cleanliness: 5,
     smoking: false,
     indoorEating: false,
-    sleepHabit: '일찍 자고 일찍 일어나요',
+    sleepHabit: '늦게 자요 (00시 ~ 03시)',
+    sleepPattern: '잠버릇 없어요',
+    noise: '소음 상관 없어요',
+
     matchingStatus: '매칭 대기중',
     message:
       '깔끔한 환경을 중요하게 생각하며, 서로 배려하는 마음으로 생활하고 싶습니다.',

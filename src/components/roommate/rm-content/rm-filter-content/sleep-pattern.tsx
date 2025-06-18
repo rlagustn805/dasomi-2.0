@@ -7,18 +7,26 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const SleepPatternSelect = () => {
+interface SleepPatternSelectProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const SleepPatternSelect = ({ value, onChange }: SleepPatternSelectProps) => {
   return (
-    <Select>
+    <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="수면패턴 선택" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="apple">일찍 자고 일찍 일어나요</SelectItem>
-          <SelectItem value="banana">늦게 자고 늦게 일어나요</SelectItem>
-          <SelectItem value="banana2">늦게 자고 일찍 일어나요</SelectItem>
-          <SelectItem value="banana3">불규칙해요</SelectItem>
+          <SelectItem value="sleep_early">
+            일찍 자요 &#40;22시 ~ 00시&#41;
+          </SelectItem>
+          <SelectItem value="sleep_late">
+            늦게 자요 &#40;00시 ~ 03시&#41;
+          </SelectItem>
+          <SelectItem value="sleep_irregular">불규칙해요</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

@@ -7,25 +7,26 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-interface RoomTypeSelectProps {
+interface NoiseSelectProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-const RoomTypeSelect = ({ value, onChange }: RoomTypeSelectProps) => {
+const NoiseSelect = ({ value, onChange }: NoiseSelectProps) => {
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="인실 선택" />
+        <SelectValue placeholder="소음 선호도 선택" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="2room">2인실</SelectItem>
-          <SelectItem value="4room">4인실</SelectItem>
+          <SelectItem value="noise_ok">소음 상관 없어요</SelectItem>
+          <SelectItem value="noise_little">짧은 통화 정도만 원해요</SelectItem>
+          <SelectItem value="noise_quiet">조용한걸 원해요</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
   );
 };
 
-export default RoomTypeSelect;
+export default NoiseSelect;

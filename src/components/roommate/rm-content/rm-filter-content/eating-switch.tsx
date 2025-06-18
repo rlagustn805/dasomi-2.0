@@ -1,10 +1,15 @@
 import { Switch } from '@/components/ui/switch';
 
-const EatingSwitch = () => {
+interface EatingSwitchProps {
+  value: boolean;
+  onChange: (value: boolean) => void;
+}
+
+const EatingSwitch = ({ value, onChange }: EatingSwitchProps) => {
   return (
     <div className="flex justify-between items-center">
       <p>실내 취식</p>
-      <Switch />
+      <Switch checked={value} onCheckedChange={onChange} />
     </div>
   );
 };

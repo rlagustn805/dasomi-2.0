@@ -1,9 +1,19 @@
 import { Slider } from '@/components/ui/slider';
 
-const CleanlinessSlider = () => {
+interface CleanlinessSliderProps {
+  value: number;
+  onChange: (value: number) => void;
+}
+
+const CleanlinessSlider = ({ value, onChange }: CleanlinessSliderProps) => {
   return (
     <>
-      <Slider defaultValue={[3]} max={5} step={1} />
+      <Slider
+        value={[value]}
+        max={5}
+        step={1}
+        onValueChange={([val]) => onChange(val)}
+      />
       <div className="text-xs flex justify-between items-center">
         <span>자유로워요</span>
         <span>신경쓰는 편이에요</span>

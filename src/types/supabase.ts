@@ -34,6 +34,65 @@ export type Database = {
   };
   public: {
     Tables: {
+      roommates: {
+        Row: {
+          cleanliness: number | null;
+          created_at: string | null;
+          dormitory: string | null;
+          id: number;
+          indoor_eating: boolean | null;
+          matching_status: string | null;
+          message: string | null;
+          noise: string | null;
+          room_type: string | null;
+          sleep_habit: string | null;
+          sleep_pattern: string | null;
+          smoking: boolean | null;
+          sociability: number | null;
+          user_id: string;
+        };
+        Insert: {
+          cleanliness?: number | null;
+          created_at?: string | null;
+          dormitory?: string | null;
+          id?: number;
+          indoor_eating?: boolean | null;
+          matching_status?: string | null;
+          message?: string | null;
+          noise?: string | null;
+          room_type?: string | null;
+          sleep_habit?: string | null;
+          sleep_pattern?: string | null;
+          smoking?: boolean | null;
+          sociability?: number | null;
+          user_id: string;
+        };
+        Update: {
+          cleanliness?: number | null;
+          created_at?: string | null;
+          dormitory?: string | null;
+          id?: number;
+          indoor_eating?: boolean | null;
+          matching_status?: string | null;
+          message?: string | null;
+          noise?: string | null;
+          room_type?: string | null;
+          sleep_habit?: string | null;
+          sleep_pattern?: string | null;
+          smoking?: boolean | null;
+          sociability?: number | null;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'roommates_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
       users: {
         Row: {
           created_at: string;
