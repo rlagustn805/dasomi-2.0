@@ -1,37 +1,40 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
-const RmPagination = () => {
+const RmPagination = ({ total, pageSize, currentPage, basePath }: any) => {
+  const totalPages = Math.ceil(total / pageSize);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
     <Pagination>
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive>
-            1
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">2</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
+        {currentPage > 1 && (
+          <PaginationItem>
+            <PaginationPrevious href={`${basePath}?page=${currentPage - 1}`} />
+          </PaginationItem>
+        )}
+
+        {pages.map(page => (
+          <PaginationItem key={page}>
+            <PaginationLink
+              href={`${basePath}?page=${page}`}
+              isActive={page === currentPage}>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+
+        {currentPage < totalPages && (
+          <PaginationItem>
+            <PaginationNext href={`${basePath}?page=${currentPage + 1}`} />
+          </PaginationItem>
+        )}
       </PaginationContent>
     </Pagination>
   );

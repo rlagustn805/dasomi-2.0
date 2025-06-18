@@ -1,5 +1,11 @@
 import { RoomMatesType } from '../type';
 
+const sleepHabitLabels: Record<string, string> = {
+  available: '매칭 가능',
+  matching: '매칭중',
+  matched: '매칭 완료',
+};
+
 const RmCardInfo = ({
   department,
   year,
@@ -24,13 +30,13 @@ const RmCardInfo = ({
       </div>
 
       <div>
-        <p className="text-gray-500 text-xs">학년</p>
-        <span>{year}</span>
+        <p className="text-gray-500 text-xs">학번</p>
+        <span>{year}학번</span>
       </div>
 
       <div>
         <p className="text-gray-500 text-xs">인실</p>
-        <span>{roomType}</span>
+        <span>{roomType === '2room' ? '2인실' : '4인실'}</span>
       </div>
 
       <div>
@@ -63,7 +69,9 @@ const RmCardInfo = ({
 
       <div>
         <p className="text-gray-500 text-xs">매칭 상태</p>
-        <span className="text-green-600">{matchingStatus}</span>
+        <span className="text-green-600">
+          {sleepHabitLabels[matchingStatus]}
+        </span>
       </div>
     </div>
   );

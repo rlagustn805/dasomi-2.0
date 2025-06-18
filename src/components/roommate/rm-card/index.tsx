@@ -7,37 +7,36 @@ import RmCardMsg from './rm-card-msg';
 import RmCardContact from './rm-card-contact';
 
 const RmCard = ({
-  nickname,
-  // gender,
-  mbti,
-  department,
-  year,
-  roomType,
+  room_type,
   sociability,
   cleanliness,
   smoking,
-  indoorEating,
-  sleepHabit,
-  matchingStatus,
+  indoor_eating,
+  sleep_habit,
+  sleep_pattern,
+  noise,
+  matching_status,
   message,
+  users,
 }: RoomMatesType) => {
   return (
     <Card className="p-4">
-      <RmCardHeader nickname={nickname} mbti={mbti} />
-
+      <RmCardHeader nickname={users.nickname} mbti={users.mbti} />
       <RmCardInfo
-        department={department}
-        year={year}
-        roomType={roomType}
+        department={users.department}
+        year={users.student_id}
+        roomType={room_type}
         sociability={sociability}
         cleanliness={cleanliness}
-        matchingStatus={matchingStatus}
+        matchingStatus={matching_status}
       />
 
       <RmCardCondition
         smoking={smoking}
-        indoorEating={indoorEating}
-        sleepHabit={sleepHabit}
+        indoorEating={indoor_eating}
+        sleepHabit={sleep_habit}
+        sleepPattern={sleep_pattern}
+        noise={noise}
       />
 
       <RmCardMsg message={message} />
