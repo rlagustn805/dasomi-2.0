@@ -1,7 +1,7 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
-import CmFilterField from '../common/cm-filter-field';
+import Cmfield from '../common/cm-field';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { useState } from 'react';
@@ -65,7 +65,7 @@ const SignUpNickname = ({
   };
 
   return (
-    <CmFilterField label="닉네임">
+    <Cmfield label="닉네임">
       <Input
         placeholder="특수문자 제외 2~8자"
         value={value}
@@ -84,7 +84,7 @@ const SignUpNickname = ({
         } text-xs`}>
         {res.msg}
       </p>
-    </CmFilterField>
+    </Cmfield>
   );
 };
 

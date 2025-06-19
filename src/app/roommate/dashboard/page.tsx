@@ -20,7 +20,7 @@ const RoomMateDashBoardPage = () => {
           <TabsTrigger
             value="profile-roommate"
             className="py-2 md:py-1.5 cursor-pointer">
-            지원 프로필
+            등록한 프로필
           </TabsTrigger>
           <TabsTrigger
             value="bookmark-roommate"

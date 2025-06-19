@@ -63,15 +63,17 @@ export async function POST(req: Request) {
       sleep_pattern,
       sleep_habit,
       noise,
+      kakao_open_link,
       message,
     } = body;
 
     if (
-      dormitory === '' ||
-      room_type === '' ||
-      sleep_habit === '' ||
-      sleep_pattern === '' ||
-      noise === ''
+      !dormitory ||
+      !room_type ||
+      !sleep_habit ||
+      !sleep_pattern ||
+      !noise ||
+      !kakao_open_link
     ) {
       return NextResponse.json(
         { error: '프로필 등록을 위한 내용들을 필수로 입력해주세요.' },
@@ -102,6 +104,7 @@ export async function POST(req: Request) {
       sleep_pattern,
       sleep_habit,
       noise,
+      kakao_open_link,
       message,
     });
 

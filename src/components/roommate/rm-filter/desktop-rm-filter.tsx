@@ -1,4 +1,4 @@
-import RmContent from '../rm-content/rm-filter-content';
+import RmContent from '../rm-content';
 import { Card } from '@/components/ui/card';
 
 const DesktopRmFilter = () => {

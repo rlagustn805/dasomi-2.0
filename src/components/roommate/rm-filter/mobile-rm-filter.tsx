@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import RmContent from '../rm-content/rm-filter-content';
+import RmContent from '../rm-content';
 
 const MobileRmFilter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);

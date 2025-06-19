@@ -12,7 +12,7 @@ import {
 import { cmDepartmentArr } from './cm-department-arr';
 
 interface Props {
-  value: string; // 초기 학과
+  value: string;
   onChange: (value: string) => void;
 }
 
@@ -21,7 +21,6 @@ const CmDepartment = ({ value, onChange }: Props) => {
   const colleges = Object.keys(cmDepartmentArr);
   const majors = selectedCollege ? cmDepartmentArr[selectedCollege] : [];
 
-  // ✅ value로부터 단과대학 유추
   useEffect(() => {
     if (!value) return;
     for (const college of colleges) {
@@ -34,7 +33,7 @@ const CmDepartment = ({ value, onChange }: Props) => {
 
   const handleCollegeChange = (college: string) => {
     setSelectedCollege(college);
-    onChange(''); // 학과 초기화
+    onChange('');
   };
 
   const handleMajorChange = (major: string) => {

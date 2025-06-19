@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import CmDepartment from '../common/cm-department';
-import CmFilterField from '../common/cm-filter-field';
+import Cmfield from '../common/cm-field';
 import { Button } from '../ui/button';
 import { updateUserProfile } from '@/services/api-users/api-users-client';
 
@@ -46,7 +46,7 @@ const ProfileDepartment = ({ value }: Props) => {
 
   return (
     <>
-      <CmFilterField label="학과">
+      <Cmfield label="학과">
         <div className="flex flex-col gap-3 md:flex-row md:items-end">
           <CmDepartment value={department} onChange={handleDepartmentChange} />
           <Button disabled={isDisabled} onClick={updateDepartment}>
@@ -62,7 +62,7 @@ const ProfileDepartment = ({ value }: Props) => {
             {res.msg}
           </p>
         )}
-      </CmFilterField>
+      </Cmfield>
     </>
   );
 };

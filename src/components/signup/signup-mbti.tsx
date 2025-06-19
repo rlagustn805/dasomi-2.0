@@ -1,12 +1,12 @@
-import CmFilterField from '../common/cm-filter-field';
+import Cmfield from '../common/cm-field';
 import CmMbti from '../common/cm-mbti';
 import { SignUpFieldProps } from './signup-type';
 
 const SignUpMbti = ({ value, onChange }: SignUpFieldProps) => {
   return (
-    <CmFilterField label="MBTI">
+    <Cmfield label="MBTI">
       <CmMbti value={value} onChange={onChange} />
-    </CmFilterField>
+    </Cmfield>
   );
 };
 

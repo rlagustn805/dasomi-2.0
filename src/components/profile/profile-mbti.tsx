@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import CmFilterField from '../common/cm-filter-field';
+import Cmfield from '../common/cm-field';
 import CmMbti from '../common/cm-mbti';
 import { Button } from '../ui/button';
 import { updateUserProfile } from '@/services/api-users/api-users-client';
@@ -43,9 +43,9 @@ const ProfileMbti = ({ value }: { value: MbtiType }) => {
   return (
     <>
       <div className="flex flex-col gap-3 md:flex-row md:items-end ">
-        <CmFilterField label="MBTI">
+        <Cmfield label="MBTI">
           <CmMbti value={mbti} onChange={handleMbtiChange} />
-        </CmFilterField>
+        </Cmfield>
         <Button disabled={isDisabled} onClick={updateMbti}>
           {isUpdating ? '변경 중...' : '변경하기'}
         </Button>

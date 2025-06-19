@@ -85,7 +85,7 @@ const SignUp = () => {
         <CardHeader>
           <CardTitle>회원가입</CardTitle>
           <CardDescription>
-            간단히 가입 후 회원가입이 진행됩니다.
+            간단한 입력 후 회원가입이 진행됩니다.
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-5">

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import CmFilterField from '../common/cm-filter-field';
+import Cmfield from '../common/cm-field';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { updateUserProfile } from '@/services/api-users/api-users-client';
@@ -44,7 +44,7 @@ const ProfileNickname = ({
   };
 
   return (
-    <CmFilterField label="닉네임">
+    <Cmfield label="닉네임">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:max-w-[300px]">
         <Input value={nickname} onChange={handleNicknameChange} />
         <Button
@@ -60,7 +60,7 @@ const ProfileNickname = ({
         } text-xs mt-1`}>
         {res.msg}
       </p>
-    </CmFilterField>
+    </Cmfield>
   );
 };
 

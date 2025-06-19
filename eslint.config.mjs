@@ -25,7 +25,7 @@ const eslintConfig = [
       'prefer-arrow-callback': 'error',
       'arrow-spacing': ['error', { before: true, after: true }],
       'arrow-parens': ['error', 'as-needed'],
-      'no-confusing-arrow': 'error',
+      'no-confusing-arrow': '',
 
       // 객체 및 배열
       'object-shorthand': ['error', 'always'],

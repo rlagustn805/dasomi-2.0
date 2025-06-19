@@ -21,9 +21,17 @@ export async function PUT(
       sleep_pattern,
       noise,
       message,
+      kakao_open_link,
     } = body;
 
-    if (!dormitory || !room_type || !sleep_habit || !sleep_pattern || !noise) {
+    if (
+      !dormitory ||
+      !room_type ||
+      !sleep_habit ||
+      !sleep_pattern ||
+      !noise ||
+      !kakao_open_link
+    ) {
       return NextResponse.json(
         { error: '프로필 수정에 필요한 항목이 누락되었습니다.' },
         { status: 400 }
