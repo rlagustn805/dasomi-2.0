@@ -5,8 +5,10 @@ import { Card } from '@/components/ui/card';
 import RmCardCondition from './rm-card-condition';
 import RmCardMsg from './rm-card-msg';
 import RmCardContact from './rm-card-contact';
+import { RoomMateItem } from '@/types/roommates';
 
 const RmCard = ({
+  dormitory,
   room_type,
   sociability,
   cleanliness,
@@ -17,11 +19,17 @@ const RmCard = ({
   noise,
   matching_status,
   message,
+  kakao_open_link,
   users,
-}: RoomMatesType) => {
+}: RoomMateItem) => {
   return (
     <Card className="p-4">
-      <RmCardHeader nickname={users.nickname} mbti={users.mbti} />
+      <RmCardHeader
+        nickname={users.nickname}
+        mbti={users.mbti}
+        gender={users.gender}
+        dormitory={dormitory}
+      />
       <RmCardInfo
         department={users.department}
         year={users.student_id}
@@ -41,7 +49,7 @@ const RmCard = ({
 
       <RmCardMsg message={message} />
 
-      <RmCardContact />
+      <RmCardContact kakaoOpenLink={kakao_open_link} />
     </Card>
   );
 };

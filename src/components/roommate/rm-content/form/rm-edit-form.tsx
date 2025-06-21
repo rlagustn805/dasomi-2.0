@@ -1,6 +1,6 @@
 'use client';
 
-import { RoomMateProfileType } from '@/types/roommates';
+import { RoomMateProfileType, RoomMateProfileFilter } from '@/types/roommates';
 import { useEffect, useState } from 'react';
 import {
   deleteRoomMateProfile,
@@ -38,7 +38,7 @@ const RmEditForm = () => {
 
   const handleChange = (
     index: number,
-    key: keyof RoomMateProfileType,
+    key: keyof RoomMateProfileFilter,
     value: any
   ) => {
     setProfiles(prev =>

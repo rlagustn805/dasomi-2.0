@@ -1,7 +1,7 @@
 import { Switch } from '@/components/ui/switch';
 
 interface SmokingSwitchProps {
-  value: boolean;
+  value: boolean | undefined;
   onChange: (value: boolean) => void;
 }
 

@@ -1,7 +1,7 @@
 import { Switch } from '@/components/ui/switch';
 
 interface EatingSwitchProps {
-  value: boolean;
+  value: boolean | undefined;
   onChange: (value: boolean) => void;
 }
 

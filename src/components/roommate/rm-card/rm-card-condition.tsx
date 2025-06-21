@@ -1,5 +1,5 @@
+import { RoomMateProfileType } from '@/types/roommates';
 import BadgeItem from './badge-item';
-import { RoomMatesType } from '../type';
 
 const sleepHabitLabels: Record<string, string> = {
   sleep_no_habit: '잠버릇 없어요',
@@ -20,13 +20,21 @@ const noiseLabels: Record<string, string> = {
   noise_quiet: '조용한걸 원해요',
 };
 
+type RmCardConditionProps = {
+  smoking: RoomMateProfileType['smoking'];
+  indoorEating: RoomMateProfileType['indoor_eating'];
+  sleepHabit: RoomMateProfileType['sleep_habit'];
+  sleepPattern: RoomMateProfileType['sleep_pattern'];
+  noise: RoomMateProfileType['noise'];
+};
+
 const RmCardCondition = ({
   smoking,
   indoorEating,
   sleepHabit,
   sleepPattern,
   noise,
-}: Pick<RoomMatesType, 'smoking' | 'indoorEating' | 'sleepHabit'>) => {
+}: RmCardConditionProps) => {
   return (
     <div className="flex gap-3">
       <BadgeItem condition={!smoking} trueLabel="비흡연" falseLabel="흡연" />
@@ -38,7 +46,8 @@ const RmCardCondition = ({
 
       <div className="text-xs">
         <span className="text-xs px-2 py-1 rounded-full bg-gray-100">
-          {sleepHabitLabels[sleepHabit]}
+          {sleepHabitLabels[sleepHabit as keyof typeof sleepHabitLabels] ??
+            '알 수 없음'}
         </span>
       </div>
 

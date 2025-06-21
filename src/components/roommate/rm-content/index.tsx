@@ -1,5 +1,6 @@
 import {
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -15,11 +16,16 @@ import SleepHabitSelect from './rm-content-item/sleep-habit';
 import NoiseSelect from './rm-content-item/noise';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { RoommateProfile, RoommateProfileWithId } from './rm-type';
 import { RoomMateProfileType } from '@/types/roommates';
 import DormitorySelect from './rm-content-item/dormitory';
 import CmField from '../../common/cm-field';
 import { Input } from '@/components/ui/input';
+import CleanlinessSliderRange from './rm-content-item/cleanliness-slider-range';
+import TendencySliderRange from './rm-content-item/tendency-slider-range';
+import GenderSelect from './rm-content-item/gender-select';
+import MatchingStatusSwitch from './rm-content-item/matching-status-switch';
+import SleepHabitSwitch from './rm-content-item/sleep-habit-switch';
+import { RoomMateProfileFilter } from '@/types/roommates';
 
 const RmContent = ({
   label,
@@ -30,10 +36,10 @@ const RmContent = ({
   handleFilterOpen,
 }: {
   label: string;
-  profile: RoomMateProfileType;
-  handleChange: <K extends keyof RoomMateProfileType>(
+  profile: RoomMateProfileFilter;
+  handleChange: <K extends keyof RoomMateProfileFilter>(
     key: K,
-    value: RoomMateProfileType[K]
+    value: RoomMateProfileFilter[K]
   ) => void;
   showMessageField?: boolean;
   isFilter?: boolean;
@@ -43,9 +49,30 @@ const RmContent = ({
     <>
       <CardHeader>
         <CardTitle className="text-lg">{label}</CardTitle>
+        {isFilter && (
+          <CardDescription className="text-xs mb-2">
+            필요한 부분만 적용할 수 있어요!
+          </CardDescription>
+        )}
       </CardHeader>
 
       <CardContent className="flex flex-col gap-5 text-sm">
+        {isFilter && (
+          <MatchingStatusSwitch
+            value={profile.matching_status}
+            onChange={value => handleChange('matching_status', value)}
+          />
+        )}
+
+        {isFilter && (
+          <Cmfield label="성별 선택">
+            <GenderSelect
+              value={profile.gender as string}
+              onChange={value => handleChange('gender', value)}
+            />
+          </Cmfield>
+        )}
+
         <Cmfield label="기숙사 선택">
           <DormitorySelect
             value={profile.dormitory}
@@ -61,17 +88,41 @@ const RmContent = ({
         </Cmfield>
 
         <Cmfield label="성향">
-          <TendencySlider
-            value={profile.sociability}
-            onChange={value => handleChange('sociability', value)}
-          />
+          {isFilter ? (
+            <TendencySliderRange
+              value={[
+                profile.sociabilityRange!.min,
+                profile.sociabilityRange!.max,
+              ]}
+              onChange={([min, max]) =>
+                handleChange('sociabilityRange', { min, max })
+              }
+            />
+          ) : (
+            <TendencySlider
+              value={profile.sociability}
+              onChange={value => handleChange('sociability', value)}
+            />
+          )}
         </Cmfield>
 
         <Cmfield label="깔끔">
-          <CleanlinessSlider
-            value={profile.cleanliness}
-            onChange={value => handleChange('cleanliness', value)}
-          />
+          {isFilter ? (
+            <CleanlinessSliderRange
+              value={[
+                profile.cleanlinessRange!.min,
+                profile.cleanlinessRange!.max,
+              ]}
+              onChange={([min, max]) =>
+                handleChange('cleanlinessRange', { min, max })
+              }
+            />
+          ) : (
+            <CleanlinessSlider
+              value={profile.cleanliness}
+              onChange={value => handleChange('cleanliness', value)}
+            />
+          )}
         </Cmfield>
 
         <EatingSwitch
@@ -83,6 +134,20 @@ const RmContent = ({
           onChange={value => handleChange('smoking', value)}
         />
 
+        {isFilter ? (
+          <SleepHabitSwitch
+            value={profile.sleep_habit}
+            onChange={value => handleChange('sleep_habit', value)}
+          />
+        ) : (
+          <Cmfield label="잠버릇">
+            <SleepHabitSelect
+              value={profile.sleep_habit as string}
+              onChange={value => handleChange('sleep_habit', value)}
+            />
+          </Cmfield>
+        )}
+
         <Cmfield label="수면패턴">
           <SleepPatternSelect
             value={profile.sleep_pattern}
@@ -90,16 +155,9 @@ const RmContent = ({
           />
         </Cmfield>
 
-        <Cmfield label="잠버릇">
-          <SleepHabitSelect
-            value={profile.sleep_habit}
-            onChange={value => handleChange('sleep_habit', value)}
-          />
-        </Cmfield>
-
         <Cmfield label="소음">
           <NoiseSelect
-            value={profile.noise}
+            value={profile.noise as string}
             onChange={value => handleChange('noise', value)}
           />
         </Cmfield>

@@ -1,9 +1,18 @@
-import { RoomMatesType } from '../type';
+import { RoomMateProfileType, RoomMateUserInfo } from '@/types/roommates';
 
-const sleepHabitLabels: Record<string, string> = {
+const MatchingLabels: Record<string, string> = {
   available: '매칭 가능',
   matching: '매칭중',
   matched: '매칭 완료',
+};
+
+type RmCardInfoProps = {
+  department: RoomMateUserInfo['department'];
+  year: RoomMateUserInfo['student_id'];
+  roomType: RoomMateProfileType['room_type'];
+  sociability: RoomMateProfileType['sociability'];
+  cleanliness: RoomMateProfileType['cleanliness'];
+  matchingStatus: RoomMateProfileType['matching_status'];
 };
 
 const RmCardInfo = ({
@@ -13,15 +22,7 @@ const RmCardInfo = ({
   sociability,
   cleanliness,
   matchingStatus,
-}: Pick<
-  RoomMatesType,
-  | 'department'
-  | 'year'
-  | 'roomType'
-  | 'sociability'
-  | 'cleanliness'
-  | 'matchingStatus'
->) => {
+}: RmCardInfoProps) => {
   return (
     <div className="text-sm grid grid-cols-3 gap-3 items-center">
       <div>
@@ -70,7 +71,8 @@ const RmCardInfo = ({
       <div>
         <p className="text-gray-500 text-xs">매칭 상태</p>
         <span className="text-green-600">
-          {sleepHabitLabels[matchingStatus]}
+          {MatchingLabels[matchingStatus as keyof typeof MatchingLabels] ??
+            '알수없음'}
         </span>
       </div>
     </div>

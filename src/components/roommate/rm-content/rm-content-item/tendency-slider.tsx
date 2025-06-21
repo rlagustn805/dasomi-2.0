@@ -1,7 +1,7 @@
 import { Slider } from '@/components/ui/slider';
 
 interface TendencySliderProps {
-  value: number;
+  value: number | undefined;
   onChange: (value: number) => void;
 }
 
@@ -9,7 +9,7 @@ const TendencySlider = ({ value, onChange }: TendencySliderProps) => {
   return (
     <>
       <Slider
-        value={[value]}
+        value={[value!]}
         max={5}
         step={1}
         onValueChange={([val]) => onChange(val)}

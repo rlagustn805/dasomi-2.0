@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/select';
 
 interface SleepPatternSelectProps {
-  value: string;
+  value: string | undefined;
   onChange: (value: string) => void;
 }
 

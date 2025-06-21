@@ -1,10 +1,11 @@
 import DesktopRmFilter from './desktop-rm-filter';
 import MobileRmFilter from './mobile-rm-filter';
+import { RoommateFilterProps } from '@/types/roommates';
 
-const RmFilter = () => (
+const RmFilter = ({ filters }: RoommateFilterProps) => (
   <>
-    <DesktopRmFilter />
-    <MobileRmFilter />
+    <DesktopRmFilter filters={filters} />
+    <MobileRmFilter filters={filters} />
   </>
 );
 

@@ -3,12 +3,12 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createServerSupabaseClient();
     const body = await req.json();
-    const roommateId = params.id;
+    const roommateId = (await params).id;
 
     const {
       dormitory,
@@ -90,10 +90,11 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const supabase = await createServerSupabaseClient();
+    const roommateId = (await params).id;
 
     const {
       data: { user },
@@ -114,7 +115,7 @@ export async function DELETE(
     const { data: profile, error: fetchError } = await supabase
       .from('roommates')
       .select('user_id')
-      .eq('id', params.id)
+      .eq('id', roommateId)
       .single();
 
     if (fetchError || !profile) {
@@ -136,7 +137,7 @@ export async function DELETE(
     const { error: deleteError } = await supabase
       .from('roommates')
       .delete()
-      .eq('id', params.id);
+      .eq('id', roommateId);
 
     if (deleteError) {
       return NextResponse.json({ error: '삭제 중 오류 발생' }, { status: 500 });

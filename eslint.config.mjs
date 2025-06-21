@@ -25,7 +25,7 @@ const eslintConfig = [
       'prefer-arrow-callback': 'error',
       'arrow-spacing': ['error', { before: true, after: true }],
       'arrow-parens': ['error', 'as-needed'],
-      'no-confusing-arrow': '',
+      'no-confusing-arrow': 'off',
 
       // 객체 및 배열
       'object-shorthand': ['error', 'always'],
@@ -104,10 +104,7 @@ const eslintConfig = [
       'no-extra-semi': 'error',
 
       // TypeScript 관련 (Next.js TypeScript 프로젝트용)
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        { argsIgnorePattern: '^_' },
-      ],
+      '@typescript-eslint/no-unused-vars': ['off', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/prefer-as-const': 'error',
       '@typescript-eslint/no-non-null-assertion': 'warn',

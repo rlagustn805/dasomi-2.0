@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { RoomMateProfileType } from '@/types/roommates';
+import { RoomMateProfileType, RoomMateProfileFilter } from '@/types/roommates';
 import { registerRoomMateProfile } from '@/services/api-roommates/api-roommates-client';
 import { Button } from '@/components/ui/button';
 import RmContent from '..';
@@ -26,7 +26,7 @@ const RmRegisterForm = () => {
     return kakaoRegex.test(url);
   };
 
-  const handleChange = (key: keyof RoomMateProfileType, value: any) => {
+  const handleChange = (key: keyof RoomMateProfileFilter, value: any) => {
     setProfile(prev => ({
       ...prev,
       [key]: value,

@@ -7,25 +7,25 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-interface RoomTypeSelectProps {
-  value: string | undefined;
+interface GenderSelectProps {
+  value: string;
   onChange: (value: string) => void;
 }
 
-const RoomTypeSelect = ({ value, onChange }: RoomTypeSelectProps) => {
+const GenderSelect = ({ value, onChange }: GenderSelectProps) => {
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="인실 선택" />
+        <SelectValue placeholder="성별 선택" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="2room">2인실</SelectItem>
-          <SelectItem value="4room">4인실</SelectItem>
+          <SelectItem value="male">남자</SelectItem>
+          <SelectItem value="female">여자</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
   );
 };
 
-export default RoomTypeSelect;
+export default GenderSelect;
