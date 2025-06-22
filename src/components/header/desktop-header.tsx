@@ -25,10 +25,7 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
     'hover:text-green-700 font-semibold text-sm transition-colors duration-100';
   return (
     <div className="hidden md:flex items-center gap-3">
-      <Link href="/community" className={hoverStyle}>
-        대나무숲
-      </Link>
-      <Link href="/" className={hoverStyle}>
+      <Link href="/roommates" className={hoverStyle}>
         룸메이트
       </Link>
       <Link

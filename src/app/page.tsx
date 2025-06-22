@@ -1,5 +1,4 @@
 import Title from '@/components/main/title';
-import Description from '@/components/main/description';
 import Dormitory from '@/components/main/dormitory';
 
 const Home = () => {
@@ -7,7 +6,6 @@ const Home = () => {
     <div>
       <Title />
       <Dormitory />
-      <Description />
     </div>
   );
 };

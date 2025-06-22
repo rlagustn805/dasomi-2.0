@@ -10,10 +10,6 @@ const Title = () => {
         <Button size="sm">
           <Link href="/roommates/">룸메이트 찾기</Link>
         </Button>
-
-        <Button size="sm" variant="outline">
-          <Link href="/">대나무숲 가기</Link>
-        </Button>
       </div>
     </section>
   );

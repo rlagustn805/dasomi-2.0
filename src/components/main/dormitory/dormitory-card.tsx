@@ -20,7 +20,9 @@ const DormitoryCard = () => {
           <div className="flex flex-col gap-3 px-2 py-3">
             <span className="font-bold ">{dormitory.title}</span>
             <Button size="sm" variant="outline">
-              <Link href="/">이동하기</Link>
+              <Link href={`/roommates?dormitory=${dormitory.id}`}>
+                이동하기
+              </Link>
             </Button>
           </div>
         </div>

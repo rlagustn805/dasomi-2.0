@@ -34,7 +34,11 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // 인증이 필요한 페이지 보호 (옵션)
-  if (!user && request.nextUrl.pathname.startsWith('/profile')) {
+  if (
+    !user &&
+    (request.nextUrl.pathname.startsWith('/profile') ||
+      request.nextUrl.pathname.startsWith('/roommates/dashboard'))
+  ) {
     // 로그인되지 않은 사용자를 로그인 페이지로 리다이렉트
     const url = request.nextUrl.clone();
     url.pathname = '/login';

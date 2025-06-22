@@ -55,12 +55,7 @@ const MobileMenu = ({
                 onClick={handleMenuOnClick}>
                 룸메이트 정보
               </Link>
-              <Link
-                href="/community"
-                className="py-2 border-b border-gray-200"
-                onClick={handleMenuOnClick}>
-                대나무숲
-              </Link>
+
               <Link
                 href="/roommate"
                 className="py-2 border-b border-gray-200"

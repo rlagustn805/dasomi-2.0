@@ -2,7 +2,6 @@ export const footerLinks = [
   {
     title: '바로가기',
     links: [
-      { name: '대나무숲', href: '/' },
       { name: '기숙사 공지사항', href: '/' },
       { name: '룸메이트', href: '/' },
     ],

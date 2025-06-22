@@ -7,7 +7,7 @@ const RmHeader = () => {
     <CmHeader
       label="룸메이트 찾기"
       description="나와 맞는 룸메이트를 찾아보세요.">
-      <Link href="/">
+      <Link href="/roommates/dashboard">
         <Button size="sm">내 룸메이트 정보 등록하기</Button>
       </Link>
     </CmHeader>
