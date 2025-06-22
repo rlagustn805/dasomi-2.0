@@ -5,6 +5,7 @@ import RmContent from '../rm-content';
 import { Card } from '@/components/ui/card';
 import { useRouter } from 'next/navigation';
 import { RoomMateProfileFilter, RoommateFilterProps } from '@/types/roommates';
+import RmFilterContent from '../rm-content/rm-filter-content/rm-filter-content';
 
 const DesktopRmFilter = ({ filters }: RoommateFilterProps) => {
   const [profile, setProfile] = useState<RoomMateProfileFilter>({
@@ -12,6 +13,7 @@ const DesktopRmFilter = ({ filters }: RoommateFilterProps) => {
     dormitory: filters.dormitory || '',
     gender: filters.gender || '',
     mbti: filters.mbti || '',
+    noise: filters.noise || '',
     room_type: filters.roomType || '',
     smoking: filters.smoking === 'true' || false,
     indoor_eating: filters.indoorEating === 'true' || false,

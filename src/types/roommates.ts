@@ -1,6 +1,6 @@
 export interface RoomMateProfileType {
-  id?: number;
-  user_id?: string;
+  id: number;
+  user_id: string;
   dormitory: string;
   room_type: string;
   sociability: number;
@@ -8,64 +8,54 @@ export interface RoomMateProfileType {
   smoking: boolean;
   indoor_eating: boolean;
   sleep_pattern: string;
-  sleep_habit: string | boolean;
+  sleep_habit: string;
   noise: string;
   kakao_open_link: string;
   message: string;
-  created_at?: string;
-  matching_status?: string | boolean;
+  matching_status: 'available' | 'matching' | 'matched';
+  created_at: string;
 }
 
 export interface RoomMateUserInfo {
+  nickname: string;
+  mbti: string;
   department: string;
   gender: string;
-  mbti: string;
-  nickname: string;
   student_id: string;
 }
 
-export interface RoomMateItem extends RoomMateProfileType {
+export interface RoomMateWithUser extends RoomMateProfileType {
   users: RoomMateUserInfo;
 }
 
-export interface RoomMateListType {
-  page: number;
-  total: number;
-  searchParams: { [key: string]: string | undefined };
-  data: RoomMateItem[];
-}
-
-export interface RoomMateProfileFilter extends Partial<RoomMateProfileType> {
+export interface RoomMateFilterParams {
+  page?: number;
+  pageSize?: number;
+  dormitory?: string;
   gender?: string;
   mbti?: string;
-  sociabilityRange?: {
-    min: number;
-    max: number;
-  };
-  cleanlinessRange?: {
-    min: number;
-    max: number;
-  };
+  room_type?: string;
+  smoking?: boolean;
+  indoor_eating?: boolean;
+  sleep_habit?: boolean;
+  sleep_pattern?: string;
+  matching_status?: boolean;
+  sociabilityMin?: number;
+  sociabilityMax?: number;
+  cleanlinessMin?: number;
+  cleanlinessMax?: number;
 }
 
-export interface RoommateFilterProps {
-  filters: {
-    dormitory: string | null;
-    gender: string | null;
-    mbti: string | null;
-    roomType: string | null;
-    smoking: string | null;
-    indoorEating: string | null;
-    sleepHabit: string | null;
-    sleepPattern: string | null;
-    matchingStatus: string | null;
-    sociabilityRange: {
-      min: string;
-      max: string;
-    } | null;
-    cleanlinessRange: {
-      min: string;
-      max: string;
-    } | null;
-  };
+export interface RoomMateProfileInsert {
+  dormitory: string;
+  room_type: string;
+  sociability: number;
+  cleanliness: number;
+  smoking: boolean;
+  indoor_eating: boolean;
+  sleep_pattern: string;
+  sleep_habit: string;
+  noise: string;
+  kakao_open_link: string;
+  message: string;
 }

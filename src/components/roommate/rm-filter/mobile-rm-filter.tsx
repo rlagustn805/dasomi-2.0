@@ -14,6 +14,7 @@ const MobileRmFilter = ({ filters }: RoommateFilterProps) => {
     dormitory: filters.dormitory || '',
     gender: filters.gender || '',
     mbti: filters.mbti || '',
+    noise: filters.noise || '',
     room_type: filters.roomType || '',
     smoking: filters.smoking === 'true' || false,
     indoor_eating: filters.indoorEating === 'true' || false,
@@ -28,7 +29,6 @@ const MobileRmFilter = ({ filters }: RoommateFilterProps) => {
       max: parseInt(filters.cleanlinessRange?.max || '5', 10) || 5,
     },
   });
-
   const router = useRouter();
 
   const handleChange = <T extends keyof typeof profile>(

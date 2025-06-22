@@ -26,6 +26,7 @@ import GenderSelect from './rm-content-item/gender-select';
 import MatchingStatusSwitch from './rm-content-item/matching-status-switch';
 import SleepHabitSwitch from './rm-content-item/sleep-habit-switch';
 import { RoomMateProfileFilter } from '@/types/roommates';
+import CmMbti from '@/components/common/cm-mbti';
 
 const RmContent = ({
   label,
@@ -71,6 +72,15 @@ const RmContent = ({
               onChange={value => handleChange('gender', value)}
             />
           </Cmfield>
+        )}
+
+        {isFilter && (
+          <CmField label="MBTI 선택">
+            <CmMbti
+              value={profile.mbti as string}
+              onChange={value => handleChange('mbti', value)}
+            />
+          </CmField>
         )}
 
         <Cmfield label="기숙사 선택">

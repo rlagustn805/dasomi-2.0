@@ -10,6 +10,7 @@ export const fetchRoommateList = async (filters: any = {}) => {
       dormitory,
       gender,
       mbti,
+      noise,
       room_type,
       smoking,
       indoor_eating,
@@ -27,6 +28,8 @@ export const fetchRoommateList = async (filters: any = {}) => {
 
     if (dormitory) searchParams.append('dormitory', dormitory);
     if (gender) searchParams.append('gender', gender);
+    if (noise) searchParams.append('noise', noise);
+
     if (mbti) searchParams.append('mbti', mbti);
     if (room_type) searchParams.append('room_type', room_type);
     if (smoking !== undefined) {

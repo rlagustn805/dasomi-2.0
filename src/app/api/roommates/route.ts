@@ -13,6 +13,7 @@ export async function GET(req: NextRequest) {
     const gender = searchParams.get('gender');
     const mbti = searchParams.get('mbti');
     const roomType = searchParams.get('room_type');
+    const noise = searchParams.get('noise');
     const smoking = searchParams.get('smoking');
     const indoorEating = searchParams.get('indoor_eating');
     const sleepHabit = searchParams.get('sleep_habit');
@@ -29,9 +30,12 @@ export async function GET(req: NextRequest) {
 
     let query = supabase
       .from('roommates')
-      .select('*, users(nickname, mbti, department, gender, student_id)', {
-        count: 'exact',
-      })
+      .select(
+        '*, users!inner(nickname, mbti, department, gender, student_id)',
+        {
+          count: 'exact',
+        }
+      )
       .order('created_at', { ascending: false })
       .range(from, to);
 
@@ -57,6 +61,10 @@ export async function GET(req: NextRequest) {
 
     if (indoorEating) {
       query = query.eq('indoor_eating', indoorEating === 'true');
+    }
+
+    if (noise) {
+      query = query.eq('noise', noise);
     }
 
     if (sleepHabit === 'true') {
@@ -106,6 +114,7 @@ export async function GET(req: NextRequest) {
         dormitory,
         gender,
         mbti,
+        noise,
         roomType,
         smoking,
         indoorEating,
