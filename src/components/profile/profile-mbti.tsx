@@ -1,15 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import Cmfield from '../common/cm-field';
+import CmField from '../common/cm-field';
 import CmMbti from '../common/cm-mbti';
 import { Button } from '../ui/button';
 import { updateUserProfile } from '@/services/api-users/api-users-client';
-import { Enums } from '@/types/supabase';
+import { Users } from '@/types/users';
 
-type MbtiType = Enums<'mbti_enum'>;
-
-const ProfileMbti = ({ value }: { value: MbtiType }) => {
+const ProfileMbti = ({ value }: { value: Users['mbti'] }) => {
   const [mbti, setMbti] = useState(value);
   const [originalMbti, setOriginalMbti] = useState(value);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -36,16 +34,16 @@ const ProfileMbti = ({ value }: { value: MbtiType }) => {
     setIsUpdating(false);
   };
 
-  const handleMbtiChange = (newValue: MbtiType) => {
+  const handleMbtiChange = (newValue: Users['mbti']) => {
     setMbti(newValue);
   };
 
   return (
     <>
       <div className="flex flex-col gap-3 md:flex-row md:items-end ">
-        <Cmfield label="MBTI">
+        <CmField label="MBTI">
           <CmMbti value={mbti} onChange={handleMbtiChange} />
-        </Cmfield>
+        </CmField>
         <Button disabled={isDisabled} onClick={updateMbti}>
           {isUpdating ? '변경 중...' : '변경하기'}
         </Button>

@@ -3,33 +3,29 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectValue,
   SelectTrigger,
-} from '../../ui/select';
-import { cmMbtiArr } from './cm-mbti';
+  SelectValue,
+} from '@/components/ui/select';
 
-interface Props {
+interface RoomTypeSelectProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-const CmMbti = ({ value, onChange }: Props) => {
+const RoomTypeSelect = ({ value, onChange }: RoomTypeSelectProps) => {
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder="MBTI 선택" />
+        <SelectValue placeholder="인실 선택" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {cmMbtiArr.map(mbti => (
-            <SelectItem key={mbti} value={mbti}>
-              {mbti}
-            </SelectItem>
-          ))}
+          <SelectItem value="2room">2인실</SelectItem>
+          <SelectItem value="4room">4인실</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
   );
 };
 
-export default CmMbti;
+export default RoomTypeSelect;

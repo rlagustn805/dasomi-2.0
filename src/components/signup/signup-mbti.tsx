@@ -1,12 +1,12 @@
-import Cmfield from '../common/cm-field';
+import CmField from '../common/cm-field';
 import CmMbti from '../common/cm-mbti';
-import { SignUpFieldProps } from './signup-type';
+import { SignUpFieldProps } from '@/types/sign-up';
 
 const SignUpMbti = ({ value, onChange }: SignUpFieldProps) => {
   return (
-    <Cmfield label="MBTI">
+    <CmField label="MBTI">
       <CmMbti value={value} onChange={onChange} />
-    </Cmfield>
+    </CmField>
   );
 };
 

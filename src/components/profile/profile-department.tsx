@@ -2,15 +2,12 @@
 
 import { useState } from 'react';
 import CmDepartment from '../common/cm-department';
-import Cmfield from '../common/cm-field';
+import CmField from '../common/cm-field';
 import { Button } from '../ui/button';
 import { updateUserProfile } from '@/services/api-users/api-users-client';
+import { Users } from '@/types/users';
 
-interface Props {
-  value: string;
-}
-
-const ProfileDepartment = ({ value }: Props) => {
+const ProfileDepartment = ({ value }: { value: Users['department'] }) => {
   const [department, setDepartment] = useState(value);
   const [originalDepartment, setOriginalDepartment] = useState(value);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -46,7 +43,7 @@ const ProfileDepartment = ({ value }: Props) => {
 
   return (
     <>
-      <Cmfield label="학과">
+      <CmField label="학과">
         <div className="flex flex-col gap-3 md:flex-row md:items-end">
           <CmDepartment value={department} onChange={handleDepartmentChange} />
           <Button disabled={isDisabled} onClick={updateDepartment}>
@@ -62,7 +59,7 @@ const ProfileDepartment = ({ value }: Props) => {
             {res.msg}
           </p>
         )}
-      </Cmfield>
+      </CmField>
     </>
   );
 };

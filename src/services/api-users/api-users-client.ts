@@ -1,7 +1,7 @@
-import { TablesUpdate } from '@/types/supabase';
-import { TablesInsert } from '@/types/supabase';
+import { SignUpForm } from '@/types/sign-up';
+import { Users } from '@/types/users';
 
-export const updateUserProfile = async (fieldName: TablesUpdate<'users'>) => {
+export const updateUserProfile = async (fieldName: Partial<Users>) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/users/me`, {
       method: 'PATCH',
@@ -64,7 +64,7 @@ export const deleteUserProfile = async () => {
 export const insertUserProfile = async (
   userId: string,
   kakaoId: string,
-  profile: Omit<TablesInsert<'users'>, 'id' | 'kakao_id'>
+  profile: SignUpForm
 ) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/users/me`, {

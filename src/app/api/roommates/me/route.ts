@@ -1,4 +1,6 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { toCamelCase } from '@/utils/to-camel-case';
+import { toSnakeCase } from '@/utils/to-snake-case';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -34,7 +36,9 @@ export async function GET() {
       );
     }
 
-    return NextResponse.json(roommateProfile);
+    const roommateProfileData = toCamelCase(roommateProfile);
+
+    return NextResponse.json(roommateProfileData);
   } catch (e) {
     console.error('룸메이트 프로필 조회 서버 오류 : ', e);
     return NextResponse.json(
@@ -55,25 +59,25 @@ export async function POST(req: Request) {
 
     const {
       dormitory,
-      room_type,
+      roomType,
       sociability,
       cleanliness,
       smoking,
-      indoor_eating,
-      sleep_pattern,
-      sleep_habit,
+      indoorEating,
+      sleepPattern,
+      sleepHabit,
       noise,
-      kakao_open_link,
+      kakaoOpenLink,
       message,
     } = body;
 
     if (
       !dormitory ||
-      !room_type ||
-      !sleep_habit ||
-      !sleep_pattern ||
+      !roomType ||
+      !sleepHabit ||
+      !sleepPattern ||
       !noise ||
-      !kakao_open_link
+      !kakaoOpenLink
     ) {
       return NextResponse.json(
         { error: '프로필 등록을 위한 내용들을 필수로 입력해주세요.' },
@@ -93,20 +97,24 @@ export async function POST(req: Request) {
       );
     }
 
-    const { error: insertError } = await supabase.from('roommates').insert({
-      user_id: user.id,
+    const insertData = toSnakeCase({
+      userId: user.id,
       dormitory,
-      room_type,
+      roomType,
       sociability,
       cleanliness,
       smoking,
-      indoor_eating,
-      sleep_pattern,
-      sleep_habit,
+      indoorEating,
+      sleepPattern,
+      sleepHabit,
       noise,
-      kakao_open_link,
+      kakaoOpenLink,
       message,
     });
+
+    const { error: insertError } = await supabase
+      .from('roommates')
+      .insert(insertData);
 
     if (insertError) {
       return NextResponse.json({ error: insertError.message }, { status: 500 });

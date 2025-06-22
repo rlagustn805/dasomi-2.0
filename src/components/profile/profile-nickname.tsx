@@ -1,17 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import Cmfield from '../common/cm-field';
+import CmField from '../common/cm-field';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { updateUserProfile } from '@/services/api-users/api-users-client';
-import { TablesUpdate } from '@/types/supabase';
+import { Users } from '@/types/users';
 
-const ProfileNickname = ({
-  value,
-}: {
-  value: TablesUpdate<'users'>['nickname'];
-}) => {
+const ProfileNickname = ({ value }: { value: Users['nickname'] }) => {
   const [nickname, setNickname] = useState(value ?? '');
   const [isUpdating, setIsUpdating] = useState(false);
   const [originalNickname, setOriginalNickname] = useState(value);
@@ -44,7 +40,7 @@ const ProfileNickname = ({
   };
 
   return (
-    <Cmfield label="닉네임">
+    <CmField label="닉네임">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:max-w-[300px]">
         <Input value={nickname} onChange={handleNicknameChange} />
         <Button
@@ -60,7 +56,7 @@ const ProfileNickname = ({
         } text-xs mt-1`}>
         {res.msg}
       </p>
-    </Cmfield>
+    </CmField>
   );
 };
 

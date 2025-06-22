@@ -1,7 +1,9 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
-import { TablesUpdate } from '@/types/supabase';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { toSnakeCase } from '@/utils/to-snake-case';
+import { toCamelCase } from '@/utils/to-camel-case';
+import { Users } from '@/types/users';
 
 export async function GET() {
   try {
@@ -34,7 +36,9 @@ export async function GET() {
       );
     }
 
-    return NextResponse.json({ profile });
+    const fetchUserProfileData = toCamelCase(profile);
+
+    return NextResponse.json(fetchUserProfileData);
   } catch (e) {
     console.log(`프로필 조회 서버 오류 : ${e}`);
     return NextResponse.json(
@@ -54,6 +58,7 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const { nickname, department, gender, student_id, mbti } = body;
+    const insertUserProfileData = toSnakeCase(body);
 
     const {
       data: { user },
@@ -70,11 +75,7 @@ export async function POST(req: Request) {
     const { error: insertError } = await supabase.from('users').insert({
       id: user.id,
       kakao_id: user.user_metadata.provider_id,
-      nickname,
-      department,
-      gender,
-      student_id,
-      mbti,
+      ...insertUserProfileData,
     });
 
     if (insertError) {
@@ -133,7 +134,7 @@ export async function PATCH(req: NextRequest) {
       }
     }
 
-    const updates: TablesUpdate<'users'> = {};
+    const updates: Partial<Users> = {};
     if (nickname) updates.nickname = nickname;
     if (department) updates.department = department;
     if (mbti) updates.mbti = mbti;

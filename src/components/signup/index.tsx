@@ -17,8 +17,8 @@ import SignUpDepartment from './signup-department';
 import SignUpStudentId from './signup-studentId';
 import SignUpMbti from './signup-mbti';
 import SignUpGender from './signup-gender';
-import { SignUpForm } from './signup-type';
 import { insertUserProfile } from '@/services/api-users/api-users-client';
+import { SignUpForm } from '@/types/sign-up';
 
 const SignUp = () => {
   const supabase = createClient();
@@ -28,8 +28,8 @@ const SignUp = () => {
     nickname: '',
     department: '',
     gender: 'male',
-    student_id: '',
-    mbti: null,
+    studentId: '',
+    mbti: '',
   });
 
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(false);
@@ -68,7 +68,7 @@ const SignUp = () => {
       nickname: signUp.nickname,
       department: signUp.department,
       gender: signUp.gender,
-      student_id: signUp.student_id,
+      studentId: signUp.studentId,
       mbti: signUp.mbti,
     });
 
@@ -100,8 +100,8 @@ const SignUp = () => {
             onChange={value => handleChange('department', value)}
           />
           <SignUpStudentId
-            value={signUp.student_id ?? ''}
-            onChange={value => handleChange('student_id', value)}
+            value={signUp.studentId ?? ''}
+            onChange={value => handleChange('studentId', value)}
           />
           <SignUpMbti
             value={signUp.mbti ?? ''}
@@ -117,9 +117,9 @@ const SignUp = () => {
             disabled={
               signUp.nickname === '' ||
               signUp.department === '' ||
-              signUp.gender === null ||
-              signUp.mbti === null ||
-              signUp.student_id === '' ||
+              signUp.gender === '' ||
+              signUp.mbti === '' ||
+              signUp.studentId === '' ||
               !isNicknameAvailable
             }
             onClick={handleSignUp}>

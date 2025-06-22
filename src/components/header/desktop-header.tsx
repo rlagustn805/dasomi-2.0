@@ -14,7 +14,7 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push('/');
-    router.refresh(); // 새로고침하여 상태 반영
+    router.refresh();
   };
 
   const handleIsMenuOpen = () => {
@@ -51,7 +51,7 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
                 내 정보
               </Link>
               <Link
-                href="/roommate/dashboard"
+                href="/roommates/dashboard"
                 className="border-b border-gray-200 cursor-pointer hover:bg-gray-300/30 p-1">
                 룸메이트 정보
               </Link>

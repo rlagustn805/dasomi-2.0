@@ -1,6 +1,6 @@
-import { RoomMateProfileType } from '@/types/roommates';
+import { RoommateFilterProps, RoommateInfo } from '@/types/roommates';
 
-export const fetchRoommateList = async (filters: any = {}) => {
+export const fetchRoommateList = async (filters: RoommateFilterProps = {}) => {
   try {
     const searchParams = new URLSearchParams();
 
@@ -11,17 +11,19 @@ export const fetchRoommateList = async (filters: any = {}) => {
       gender,
       mbti,
       noise,
-      room_type,
+      roomType,
       smoking,
-      indoor_eating,
-      sleep_habit,
-      sleep_pattern,
-      matching_status,
+      indoorEating,
+      sleepHabit,
+      sleepPattern,
+      matchingStatus,
       sociabilityMin,
       sociabilityMax,
       cleanlinessMin,
       cleanlinessMax,
     } = filters;
+
+    console.log(typeof sociabilityMin);
 
     searchParams.append('page', page.toString());
     searchParams.append('pageSize', pageSize.toString());
@@ -31,30 +33,30 @@ export const fetchRoommateList = async (filters: any = {}) => {
     if (noise) searchParams.append('noise', noise);
 
     if (mbti) searchParams.append('mbti', mbti);
-    if (room_type) searchParams.append('room_type', room_type);
-    if (smoking !== undefined) {
+    if (roomType) searchParams.append('room_type', roomType);
+    if (smoking) {
       searchParams.append('smoking', smoking.toString());
     }
-    if (indoor_eating !== undefined) {
-      searchParams.append('indoor_eating', indoor_eating.toString());
+    if (indoorEating) {
+      searchParams.append('indoor_eating', indoorEating.toString());
     }
-    if (sleep_habit) searchParams.append('sleep_habit', sleep_habit.toString());
-    if (sleep_pattern) searchParams.append('sleep_pattern', sleep_pattern);
-    if (matching_status) {
-      searchParams.append('matching_status', matching_status.toString());
+    if (sleepHabit) searchParams.append('sleep_habit', sleepHabit.toString());
+    if (sleepPattern) searchParams.append('sleep_pattern', sleepPattern);
+    if (matchingStatus) {
+      searchParams.append('matching_status', matchingStatus.toString());
     }
 
     // 범위 필터 파라미터
-    if (sociabilityMin !== undefined) {
+    if (sociabilityMin) {
       searchParams.append('sociabilityMin', sociabilityMin.toString());
     }
-    if (sociabilityMax !== undefined) {
+    if (sociabilityMax) {
       searchParams.append('sociabilityMax', sociabilityMax.toString());
     }
-    if (cleanlinessMin !== undefined) {
+    if (cleanlinessMin) {
       searchParams.append('cleanlinessMin', cleanlinessMin.toString());
     }
-    if (cleanlinessMax !== undefined) {
+    if (cleanlinessMax) {
       searchParams.append('cleanlinessMax', cleanlinessMax.toString());
     }
 
@@ -81,7 +83,7 @@ export const fetchRoommateList = async (filters: any = {}) => {
   }
 };
 
-export const registerRoomMateProfile = async (profile: RoomMateProfileType) => {
+export const registerRoommateProfile = async (profile: RoommateInfo) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_KEY}/api/roommates/me`,
@@ -106,7 +108,7 @@ export const registerRoomMateProfile = async (profile: RoomMateProfileType) => {
   }
 };
 
-export const fetchRoomMateProfile = async () => {
+export const fetchRoommateProfile = async () => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_KEY}/api/roommates/me`,
@@ -126,7 +128,7 @@ export const fetchRoomMateProfile = async () => {
   }
 };
 
-export const updateRoomMateProfile = async (profile: RoomMateProfileType) => {
+export const updateRoommateProfile = async (profile: RoommateInfo) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_KEY}/api/roommates/${profile.id}`,
@@ -145,14 +147,12 @@ export const updateRoomMateProfile = async (profile: RoomMateProfileType) => {
     if (!res.ok) {
       throw new Error(data.error || '업데이트에 실패했습니다.');
     }
-
-    console.log(data);
   } catch (e) {
     console.error('룸메이트 업데이트 에러 : ', e);
   }
 };
 
-export const deleteRoomMateProfile = async (profile: RoomMateProfileType) => {
+export const deleteRoommateProfile = async (profile: RoommateInfo) => {
   const confirmed = window.confirm(
     '정말로 이 룸메이트 프로필을 삭제하시겠습니까?'
   );

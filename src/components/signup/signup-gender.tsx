@@ -1,4 +1,4 @@
-import { SignUpFieldProps } from './signup-type';
+import { SignUpFieldProps } from '@/types/sign-up';
 
 const SignUpGender = ({ value, onChange }: SignUpFieldProps) => {
   return (

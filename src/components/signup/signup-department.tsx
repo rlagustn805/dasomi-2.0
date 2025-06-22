@@ -1,13 +1,13 @@
 import CmDepartment from '../common/cm-department';
-import Cmfield from '../common/cm-field';
-import { SignUpFieldProps } from './signup-type';
+import CmField from '../common/cm-field';
+import { SignUpFieldProps } from '@/types/sign-up';
 
 const SignUpDepartment = ({ value, onChange }: SignUpFieldProps) => {
   return (
     <div className="w-full">
-      <Cmfield label="학과">
+      <CmField label="학과">
         <CmDepartment value={value} onChange={onChange} />
-      </Cmfield>
+      </CmField>
     </div>
   );
 };

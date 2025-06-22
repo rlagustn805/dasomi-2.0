@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { toSnakeCase } from '@/utils/to-snake-case';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(
@@ -12,25 +13,27 @@ export async function PUT(
 
     const {
       dormitory,
-      room_type,
+      roomType,
       sociability,
       cleanliness,
       smoking,
-      indoor_eating,
-      sleep_habit,
-      sleep_pattern,
+      indoorEating,
+      sleepHabit,
+      sleepPattern,
       noise,
       message,
-      kakao_open_link,
+      kakaoOpenLink,
     } = body;
+
+    const updaetRoommateProfileData = toSnakeCase(body);
 
     if (
       !dormitory ||
-      !room_type ||
-      !sleep_habit ||
-      !sleep_pattern ||
+      !roomType ||
+      !sleepHabit ||
+      !sleepPattern ||
       !noise ||
-      !kakao_open_link
+      !kakaoOpenLink
     ) {
       return NextResponse.json(
         { error: '프로필 수정에 필요한 항목이 누락되었습니다.' },
@@ -66,9 +69,7 @@ export async function PUT(
 
     const { error: updateError } = await supabase
       .from('roommates')
-      .update({
-        ...body,
-      })
+      .update(updaetRoommateProfileData)
       .eq('id', roommateId);
 
     if (updateError) {

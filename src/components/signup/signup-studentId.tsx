@@ -1,12 +1,12 @@
-import Cmfield from '../common/cm-field';
+import CmField from '../common/cm-field';
 import CmStudentId from '../common/cm-student-id';
-import { SignUpFieldProps } from './signup-type';
+import { SignUpFieldProps } from '@/types/sign-up';
 
 const SignUpStudentId = ({ value, onChange }: SignUpFieldProps) => {
   return (
-    <Cmfield label="학번">
+    <CmField label="학번">
       <CmStudentId value={value} onChange={onChange} />
-    </Cmfield>
+    </CmField>
   );
 };
 

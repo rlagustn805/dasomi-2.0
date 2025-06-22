@@ -50,7 +50,7 @@ const MobileMenu = ({
                 내 정보
               </Link>
               <Link
-                href="/roommate/dashboard"
+                href="/roommates/dashboard"
                 className="py-2 border-b border-gray-200"
                 onClick={handleMenuOnClick}>
                 룸메이트 정보

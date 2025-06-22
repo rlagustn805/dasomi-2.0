@@ -8,7 +8,7 @@ const Title = () => {
       <TitleSlogan />
       <div className="flex flex-col gap-5 md:flex-row md:justify-center">
         <Button size="sm">
-          <Link href="/roommate/all">룸메이트 찾기</Link>
+          <Link href="/roommates/">룸메이트 찾기</Link>
         </Button>
 
         <Button size="sm" variant="outline">

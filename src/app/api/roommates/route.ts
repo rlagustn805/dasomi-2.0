@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { toCamelCase } from '@/utils/to-camel-case';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
@@ -105,8 +106,10 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
+    const camelData = toCamelCase(data);
+
     return NextResponse.json({
-      data,
+      data: camelData,
       total: count,
       page,
       pageSize,

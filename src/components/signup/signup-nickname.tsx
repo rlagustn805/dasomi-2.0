@@ -1,18 +1,18 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
-import Cmfield from '../common/cm-field';
+import CmField from '../common/cm-field';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { useState } from 'react';
-import { SignUpNicknameProps } from './signup-type';
+import { SignUpNicknameFieldProps } from '@/types/sign-up';
 
 const SignUpNickname = ({
   value,
   isNicknameAvailable,
   handleIsNicknameAvailable,
   onChange,
-}: SignUpNicknameProps) => {
+}: SignUpNicknameFieldProps) => {
   const supabase = createClient();
   const isValid = /^[가-힣a-zA-Z0-9]{2,8}$/.test(value);
 
@@ -65,7 +65,7 @@ const SignUpNickname = ({
   };
 
   return (
-    <Cmfield label="닉네임">
+    <CmField label="닉네임">
       <Input
         placeholder="특수문자 제외 2~8자"
         value={value}
@@ -84,7 +84,7 @@ const SignUpNickname = ({
         } text-xs`}>
         {res.msg}
       </p>
-    </Cmfield>
+    </CmField>
   );
 };
 
