@@ -81,7 +81,7 @@ const MobileRmFilter = ({
   };
 
   return (
-    <div className="block lg:hidden mt-5 w-full">
+    <div className="block lg:hidden mt-2 w-full">
       <Button variant="outline" className="w-full" onClick={handleFilterOpen}>
         맞춤 룸메이트 찾기
       </Button>
@@ -95,18 +95,12 @@ const MobileRmFilter = ({
             transition={{ duration: 0.2, ease: 'easeInOut' }}>
             <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-lg p-4 max-h-[80vh] overflow-y-auto">
               <RmFilterContent
-                label="필터 설정"
+                label="맞춤 룸메이트 찾기"
                 {...filterItem}
                 handleChange={handleChange}
                 handleFilterOpen={handleFilterOpen}
+                handleApply={handleApply}
               />
-              <Button
-                onClick={() => {
-                  handleApply();
-                  handleFilterOpen();
-                }}>
-                적용
-              </Button>
             </div>
           </motion.div>
         )}

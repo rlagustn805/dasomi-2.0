@@ -60,7 +60,7 @@ const RmEditForm = () => {
   if (!profiles) return <div>등록된 룸메이트가 없어요</div>;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 px-2">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 px-2">
       {profiles.map((profile, index) => (
         <Card key={profile.id}>
           <RmContent
@@ -68,6 +68,7 @@ const RmEditForm = () => {
             profile={profile}
             showMessageField
             handleChange={(key, value) => handleChange(index, key, value)}
+            isEdit
           />
           <div className="flex gap-3 px-2">
             <Button

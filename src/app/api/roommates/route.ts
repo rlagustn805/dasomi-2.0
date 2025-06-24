@@ -32,7 +32,7 @@ export async function GET(req: NextRequest) {
     let query = supabase
       .from('roommates')
       .select(
-        '*, users!inner(nickname, mbti, department, gender, student_id)',
+        '*, users!inner(id, nickname, mbti, department, gender, student_id)',
         {
           count: 'exact',
         }

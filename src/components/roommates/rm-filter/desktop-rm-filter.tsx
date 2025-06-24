@@ -76,13 +76,13 @@ const DesktopRmFilter = ({
   };
 
   return (
-    <Card className="col-span-1 lg:mt-15 sticky top-[10px] h-fit hidden lg:block">
+    <Card className="col-span-1  h-fit hidden lg:block">
       <RmFilterContent
-        label="필터 설정"
+        label="맞춤 룸메이트 찾기"
         {...filterItem}
         handleChange={handleChange}
+        handleApply={handleApply}
       />
-      <button onClick={handleApply}>적용</button>
     </Card>
   );
 };

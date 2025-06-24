@@ -55,7 +55,7 @@ const RmCardInfo = ({
       </div>
 
       <div>
-        <p className="text-gray-500 text-xs">청결도</p>
+        <p className="text-gray-500 text-xs">깔끔도</p>
         <div className="flex gap-1 mt-1">
           {Array.from({ length: 5 }).map((_, i) => (
             <div
@@ -70,7 +70,10 @@ const RmCardInfo = ({
 
       <div>
         <p className="text-gray-500 text-xs">매칭 상태</p>
-        <span className="text-green-600">
+        <span
+          className={`${
+            matchingStatus === 'available' ? 'text-green-600' : 'text-red-500'
+          }`}>
           {MatchingLabels[matchingStatus as string]}
         </span>
       </div>

@@ -33,7 +33,7 @@ const RmCardCondition = ({
   noise,
 }: RmCardConditionProps) => {
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-wrap gap-3">
       <BadgeItem condition={!smoking} trueLabel="비흡연" falseLabel="흡연" />
       <BadgeItem
         condition={indoorEating}

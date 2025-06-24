@@ -28,6 +28,7 @@ interface RmFilterContentProps extends RoommateFilterState {
     value: RoommateFilterState[K]
   ) => void;
   handleFilterOpen?: () => void;
+  handleApply: () => void;
 }
 
 const RmFilterContent = ({
@@ -46,6 +47,7 @@ const RmFilterContent = ({
   cleanlinessRange,
   handleChange,
   handleFilterOpen,
+  handleApply,
 }: RmFilterContentProps) => {
   return (
     <>
@@ -89,7 +91,7 @@ const RmFilterContent = ({
             onChange={value => handleChange('roomType', value)}
           />
         </CmField>
-        <CmField label="성향">
+        <CmField label="친목">
           <TendencySliderRange
             value={[sociabilityRange.min, sociabilityRange.max]}
             onChange={([min, max]) =>
@@ -143,6 +145,18 @@ const RmFilterContent = ({
           className="flex-1 block lg:hidden"
           onClick={handleFilterOpen}>
           취소
+        </Button>
+
+        <Button
+          size="sm"
+          className="flex-1 block"
+          onClick={() => {
+            if (handleFilterOpen && window.innerWidth < 1024) {
+              handleFilterOpen();
+            }
+            handleApply();
+          }}>
+          찾기
         </Button>
       </CardFooter>
     </>

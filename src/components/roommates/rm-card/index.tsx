@@ -6,6 +6,11 @@ import RmCardMsg from './rm-card-msg';
 import RmCardContact from './rm-card-contact';
 import { RoommateCardData } from '@/types/roommates';
 
+type isUser = {
+  currentUserId: string | null;
+  currentUserGender: string | null;
+};
+
 const RmCard = ({
   dormitory,
   roomType,
@@ -20,14 +25,17 @@ const RmCard = ({
   message,
   kakaoOpenLink,
   users,
-}: RoommateCardData) => {
+  currentUserId,
+  currentUserGender,
+}: RoommateCardData & isUser) => {
   return (
     <Card className="p-4">
       <RmCardHeader
         nickname={users.nickname}
         mbti={users.mbti}
         gender={users.gender}
-        dormitory={dormitory}
+        id={users.id}
+        currentUserId={currentUserId}
       />
       <RmCardInfo
         department={users.department}
@@ -37,7 +45,6 @@ const RmCard = ({
         cleanliness={cleanliness}
         matchingStatus={matchingStatus}
       />
-
       <RmCardCondition
         smoking={smoking}
         indoorEating={indoorEating}
@@ -45,10 +52,16 @@ const RmCard = ({
         sleepPattern={sleepPattern}
         noise={noise}
       />
-
       <RmCardMsg message={message} />
-
-      <RmCardContact kakaoOpenLink={kakaoOpenLink} />
+      <RmCardContact
+        kakaoOpenLink={kakaoOpenLink}
+        dormitory={dormitory}
+        id={users.id}
+        gender={users.gender}
+        currentUserId={currentUserId}
+        currentUserGender={currentUserGender}
+        matchingStatus={matchingStatus}
+      />
     </Card>
   );
 };

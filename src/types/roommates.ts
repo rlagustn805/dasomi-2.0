@@ -17,6 +17,7 @@ export interface RoommateInfo {
 }
 
 export interface RoommateUserInfo {
+  id: string;
   department: string;
   gender: string;
   mbti: string;

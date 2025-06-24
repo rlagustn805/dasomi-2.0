@@ -23,8 +23,6 @@ export const fetchRoommateList = async (filters: RoommateFilterProps = {}) => {
       cleanlinessMax,
     } = filters;
 
-    console.log(typeof sociabilityMin);
-
     searchParams.append('page', page.toString());
     searchParams.append('pageSize', pageSize.toString());
 

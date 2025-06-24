@@ -13,7 +13,7 @@ const CmHeader = ({
     <div className="flex flex-col gap-3">
       <h2 className="text-xl font-semibold">{label}</h2>
       <p className="text-sm text-gray-400">{description}</p>
-      {children}
+      <div>{children}</div>
     </div>
   );
 };

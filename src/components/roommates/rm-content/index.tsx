@@ -12,11 +12,13 @@ import { Textarea } from '@/components/ui/textarea';
 import DormitorySelect from './rm-content-item/dormitory';
 import { Input } from '@/components/ui/input';
 import { RoommateInfo } from '@/types/roommates';
+import MatchingStatusSelect from './rm-content-item/matching-status-select';
 
 const RmContent = ({
   label,
   profile,
   handleChange,
+  isEdit = false,
 }: {
   label: string;
   profile: RoommateInfo;
@@ -25,7 +27,7 @@ const RmContent = ({
     value: RoommateInfo[K]
   ) => void;
   showMessageField?: boolean;
-  isFilter?: boolean;
+  isEdit?: boolean;
   handleFilterOpen?: () => void;
 }) => {
   return (
@@ -35,6 +37,15 @@ const RmContent = ({
       </CardHeader>
 
       <CardContent className="flex flex-col gap-5 text-sm">
+        {isEdit && (
+          <CmField label="매칭 상태 변경">
+            <MatchingStatusSelect
+              value={profile.matchingStatus as string}
+              onChange={value => handleChange('matchingStatus', value)}
+            />
+          </CmField>
+        )}
+
         <CmField label="기숙사 선택">
           <DormitorySelect
             value={profile.dormitory}
@@ -47,7 +58,7 @@ const RmContent = ({
             onChange={value => handleChange('roomType', value)}
           />
         </CmField>
-        <CmField label="성향">
+        <CmField label="친목">
           <TendencySlider
             value={profile.sociability}
             onChange={value => handleChange('sociability', value)}
