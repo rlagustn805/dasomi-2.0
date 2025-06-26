@@ -34,10 +34,10 @@ const RmList = async ({
     <div className="flex flex-col gap-5 col-span-1 lg:col-span-3 justify-between">
       {roommates.map(roommate => (
         <RmCard
-          key={roommate.id}
+          key={roommate.roommateId}
           {...roommate}
           currentUserId={currentUserId}
-          currentUserGender={currentUserId}
+          currentUserGender={currentUserGender}
         />
       ))}
       <RmPagination

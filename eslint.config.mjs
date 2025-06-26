@@ -105,7 +105,7 @@ const eslintConfig = [
 
       // TypeScript 관련 (Next.js TypeScript 프로젝트용)
       '@typescript-eslint/no-unused-vars': ['off', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/prefer-as-const': 'error',
       '@typescript-eslint/no-non-null-assertion': 'warn',
 

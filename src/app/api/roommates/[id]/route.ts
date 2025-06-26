@@ -25,7 +25,8 @@ export async function PUT(
       kakaoOpenLink,
     } = body;
 
-    const updaetRoommateProfileData = toSnakeCase(body);
+    const { roommateId: _, ...rest } = body;
+    const updateRoommateProfileData = toSnakeCase(rest);
 
     if (
       !dormitory ||
@@ -69,7 +70,7 @@ export async function PUT(
 
     const { error: updateError } = await supabase
       .from('roommates')
-      .update(updaetRoommateProfileData)
+      .update(updateRoommateProfileData)
       .eq('id', roommateId);
 
     if (updateError) {
@@ -95,7 +96,7 @@ export async function DELETE(
 ) {
   try {
     const supabase = await createServerSupabaseClient();
-    const roommateId = (await params).id;
+    const { id: roommateId } = await params;
 
     const {
       data: { user },

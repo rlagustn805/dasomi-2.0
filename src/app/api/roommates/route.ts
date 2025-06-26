@@ -106,7 +106,33 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    const camelData = toCamelCase(data);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const currentUserId = user?.id ?? null;
+
+    let likedIds: number[] = [];
+
+    if (currentUserId) {
+      const { data: likedRows, error: likedError } = await supabase
+        .from('roommate_likes')
+        .select('liked_roommate_id')
+        .eq('liker_id', currentUserId);
+
+      if (!likedError && likedRows) {
+        likedIds = likedRows.map(r => r.liked_roommate_id);
+      }
+    }
+
+    const camelData = toCamelCase(data).map((item: any) => {
+      const { id, ...rest } = item;
+      return {
+        roommateId: id,
+        ...rest,
+        isLiked: currentUserId ? likedIds.includes(id) : false,
+      };
+    });
 
     return NextResponse.json({
       data: camelData,

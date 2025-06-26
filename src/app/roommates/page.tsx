@@ -1,7 +1,7 @@
 import RmFilter from '@/components/roommates/rm-filter';
 import RmHeader from '@/components/roommates/rm-header';
 import RmList from '@/components/roommates/rm-list';
-import { fetchRoommateList } from '@/services/api-roommates/api-roommates-client';
+import { fetchRoommateList } from '@/services/api-roommates/api-roommates-server';
 import { fetchUserProfile } from '@/services/api-users/api-users-server';
 
 type SearchParamsProps = {
@@ -22,7 +22,6 @@ const RoommatePage = async ({ searchParams }: SearchParamsProps) => {
     currentUserId = user.id;
     currentUserGender = user.gender;
   }
-
   return (
     <div className="mt-8 px-4 md:px-36 lg:px-44">
       <RmHeader />

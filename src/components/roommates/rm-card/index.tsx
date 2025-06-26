@@ -24,9 +24,11 @@ const RmCard = ({
   matchingStatus,
   message,
   kakaoOpenLink,
+  isLiked,
   users,
   currentUserId,
   currentUserGender,
+  roommateId,
 }: RoommateCardData & isUser) => {
   return (
     <Card className="p-4">
@@ -36,6 +38,8 @@ const RmCard = ({
         gender={users.gender}
         id={users.id}
         currentUserId={currentUserId}
+        isLiked={isLiked}
+        roommateId={roommateId}
       />
       <RmCardInfo
         department={users.department}

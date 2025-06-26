@@ -54,7 +54,7 @@ const RmFilterContent = ({
       <CardHeader>
         <CardTitle className="text-lg">{label}</CardTitle>
 
-        <CardDescription className="text-xs mb-2">
+        <CardDescription className="text-sm mb-2 ">
           필요한 부분만 적용할 수 있어요!
         </CardDescription>
       </CardHeader>

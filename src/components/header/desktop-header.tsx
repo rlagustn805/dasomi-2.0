@@ -53,7 +53,10 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
                 룸메이트 정보
               </Link>
 
-              <Button className="cursor-pointer" onClick={handleLogout}>
+              <Button
+                className="cursor-pointer"
+                onClick={handleLogout}
+                size="sm">
                 로그아웃
               </Button>
             </div>

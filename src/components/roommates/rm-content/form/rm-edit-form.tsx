@@ -1,98 +1,161 @@
 'use client';
 
 import { RoommateInfo } from '@/types/roommates';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   deleteRoommateProfile,
-  fetchRoommateProfile,
   updateRoommateProfile,
 } from '@/services/api-roommates/api-roommates-client';
 import RmContent from '..';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetFooter,
+  SheetDescription,
+} from '@/components/ui/sheet';
+import { dormitorys } from '@/components/main/dormitory/dormitorys';
 
-const RmEditForm = () => {
-  const [profiles, setProfiles] = useState<RoommateInfo[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+const MatchingLabels: Record<string, string> = {
+  available: '매칭 가능',
+  matching: '매칭중',
+  matched: '매칭 완료',
+};
 
-  useEffect(() => {
-    const loadProfile = async () => {
-      try {
-        const data = await fetchRoommateProfile();
-        setProfiles(data);
-      } catch (e) {
-        console.error('룸메이트 프로필 불러오기 실패 : ', e);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadProfile();
-  }, []);
+const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
+  const [localProfiles, setLocalProfiles] = useState(profiles);
+  const [editingProfile, setEditingProfile] = useState<RoommateInfo | null>(
+    null
+  );
+  const [tempProfile, setTempProfile] = useState<RoommateInfo | null>(null);
 
   const isValidKakaoLink = (url: string): boolean => {
     const kakaoRegex = /^https:\/\/open\.kakao\.com\/o\/[A-Za-z0-9]+$/;
     return kakaoRegex.test(url);
   };
 
-  const handleChange = (index: number, key: keyof RoommateInfo, value: any) => {
-    setProfiles(prev =>
-      prev.map((profile, i) =>
-        i === index ? { ...profile, [key]: value } : profile
-      )
-    );
+  const openEditDialog = (profile: RoommateInfo) => {
+    setEditingProfile(profile);
+    setTempProfile({ ...profile });
   };
 
-  const handleUpdate = async (profile: RoommateInfo) => {
-    if (!isValidKakaoLink(profile.kakaoOpenLink)) {
+  const closeEditDialog = () => {
+    setEditingProfile(null);
+    setTempProfile(null);
+  };
+
+  const handleTempChange = (key: keyof RoommateInfo, value: any) => {
+    if (!tempProfile) return;
+    setTempProfile(prev => prev && { ...prev, [key]: value });
+  };
+
+  const handleUpdate = async () => {
+    if (!tempProfile) return;
+
+    if (!isValidKakaoLink(tempProfile.kakaoOpenLink)) {
       alert('올바른 카카오 오픈채팅 링크를 입력해주세요.');
       return;
     }
 
-    await updateRoommateProfile(profile);
+    await updateRoommateProfile(tempProfile);
+
+    setLocalProfiles(prev =>
+      prev.map(p => (p.roommateId === tempProfile.roommateId ? tempProfile : p))
+    );
+
+    closeEditDialog();
   };
 
   const handleDelete = async (profile: RoommateInfo) => {
+    const confirm = window.confirm(
+      '정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.'
+    );
+    if (!confirm) return;
+
     await deleteRoommateProfile(profile);
+
+    setLocalProfiles(prev =>
+      prev.filter(p => p.roommateId !== profile.roommateId)
+    );
   };
 
-  if (isLoading) return <div>로딩중..</div>;
-  if (!profiles) return <div>등록된 룸메이트가 없어요</div>;
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 px-2">
-      {profiles.map((profile, index) => (
-        <Card key={profile.id}>
-          <RmContent
-            label={`${profile.createdAt?.split('T')[0]}에 등록한 프로필`}
-            profile={profile}
-            showMessageField
-            handleChange={(key, value) => handleChange(index, key, value)}
-            isEdit
-          />
-          <div className="flex gap-3 px-2">
-            <Button
-              variant="destructive"
-              onClick={() => handleDelete(profile)}
-              className="flex-1">
-              삭제
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 px-2">
+      {localProfiles.map(profile => {
+        const dorm = dormitorys.find(dorm => dorm.id === profile.dormitory);
+        const dormTitle = dorm ? dorm.title : '';
+
+        return (
+          <Card key={profile.roommateId}>
+            <CardContent className="flex justify-between items-center">
+              <p className="text-sm">
+                {dormTitle} {profile.roomType === '2room' ? '2인실' : '4인실'}{' '}
+                {MatchingLabels[profile.matchingStatus as string]}
+              </p>
+              <span className="text-xs">
+                {profile.createdAt?.split('T')[0]}
+              </span>
+            </CardContent>
+            <CardFooter className="flex gap-5">
+              <Button
+                variant="destructive"
+                onClick={() => handleDelete(profile)}
+                className="flex-1">
+                삭제
+              </Button>
+              <Button
+                onClick={() => openEditDialog(profile)}
+                className="flex-1">
+                수정
+              </Button>
+            </CardFooter>
+          </Card>
+        );
+      })}
+
+      <Sheet
+        open={!!editingProfile}
+        onOpenChange={open => !open && closeEditDialog()}>
+        <SheetContent side="bottom" className="h-[90vh] overflow-auto">
+          <SheetHeader>
+            <SheetTitle>룸메이트 프로필 수정</SheetTitle>
+            <SheetDescription>
+              프로필 정보를 수정한 후 저장 버튼을 눌러주세요.
+            </SheetDescription>
+          </SheetHeader>
+
+          {tempProfile && (
+            <RmContent
+              profile={tempProfile}
+              showMessageField
+              isEdit
+              handleChange={handleTempChange}
+              label=""
+            />
+          )}
+
+          <SheetFooter className="flex justify-end mt-4 gap-2">
+            <Button variant="outline" onClick={closeEditDialog}>
+              취소
             </Button>
             <Button
-              onClick={() => handleUpdate(profile)}
-              className="flex-1"
+              onClick={handleUpdate}
               disabled={
-                !profile.dormitory ||
-                !profile.roomType ||
-                !profile.sleepHabit ||
-                !profile.sleepPattern ||
-                !profile.noise ||
-                !profile.kakaoOpenLink
+                !tempProfile?.dormitory ||
+                !tempProfile?.roomType ||
+                !tempProfile?.sleepHabit ||
+                !tempProfile?.sleepPattern ||
+                !tempProfile?.noise ||
+                !tempProfile?.kakaoOpenLink
               }>
-              수정
+              저장
             </Button>
-          </div>
-        </Card>
-      ))}
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };

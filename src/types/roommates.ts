@@ -3,7 +3,7 @@ export interface RoommateInfo {
   createdAt?: string;
   dormitory: string;
   roomType: string;
-  id?: number;
+  roommateId?: number;
   indoorEating: boolean;
   kakaoOpenLink: string;
   matchingStatus?: string;
@@ -14,6 +14,7 @@ export interface RoommateInfo {
   smoking: boolean;
   sociability: number;
   userId?: string;
+  isLiked: boolean;
 }
 
 export interface RoommateUserInfo {

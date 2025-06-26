@@ -1,9 +1,9 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { toCamelCase } from '@/utils/to-camel-case';
 import { toSnakeCase } from '@/utils/to-snake-case';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const supabase = await createServerSupabaseClient();
 
@@ -19,11 +19,18 @@ export async function GET() {
       );
     }
 
-    const { data: roommateProfile, error } = await supabase
+    const { searchParams } = req.nextUrl;
+    const page = parseInt(searchParams.get('page') ?? '1', 10);
+    const pageSize = 10;
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize - 1;
+
+    const { data, count, error } = await supabase
       .from('roommates')
-      .select('*')
+      .select('*', { count: 'exact' })
       .eq('user_id', user.id)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })
+      .range(from, to);
 
     if (error) {
       return NextResponse.json(
@@ -36,9 +43,18 @@ export async function GET() {
       );
     }
 
-    const roommateProfileData = toCamelCase(roommateProfile);
+    const roommateProfileData = toCamelCase(data).map(
+      ({ id, ...rest }: any) => ({
+        ...rest,
+        roommateId: id,
+      })
+    );
 
-    return NextResponse.json(roommateProfileData);
+    return NextResponse.json({
+      data: roommateProfileData,
+      total: count,
+      pageSize,
+    });
   } catch (e) {
     console.error('룸메이트 프로필 조회 서버 오류 : ', e);
     return NextResponse.json(
