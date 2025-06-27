@@ -15,17 +15,17 @@ const DescriptionPage = () => {
           <TabsTrigger
             value="profile-description"
             className="py-2 md:py-1.5 cursor-pointer">
-            프로필 이용안내
+            프로필
           </TabsTrigger>
           <TabsTrigger
             value="roommate-description"
             className="py-2 md:py-1.5 cursor-pointer">
-            룸메이트 이용안내
+            룸메이트
           </TabsTrigger>
           <TabsTrigger
             value="mobile-description"
             className="py-2 md:py-1.5 cursor-pointer">
-            모바일 이용안내
+            모바일
           </TabsTrigger>
         </TabsList>
         <TabsContent value="profile-description">
