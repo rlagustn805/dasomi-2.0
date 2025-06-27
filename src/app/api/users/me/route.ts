@@ -230,6 +230,23 @@ export async function DELETE() {
       }
     }
 
+    const { data, error } = await supabase
+      .from('admin')
+      .select('withdraw_count')
+      .eq('id', 1)
+      .single();
+
+    if (error || !data) {
+      // 레코드 없으면 새로 생성
+      await supabase.from('admin').insert({ id: 1, withdraw_count: 1 });
+    } else {
+      // 있으면 증가시켜 업데이트
+      await supabase
+        .from('admin')
+        .update({ withdraw_count: data.withdraw_count + 1 })
+        .eq('id', 1);
+    }
+
     // 사용자 관련 데이터 삭제
     const tables = ['profiles']; // 실제 사용하는 테이블명들로 변경
 
