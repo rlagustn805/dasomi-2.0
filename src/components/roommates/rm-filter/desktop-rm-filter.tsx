@@ -71,12 +71,11 @@ const DesktopRmFilter = ({
         searchParams.append(key, String(value));
       }
     });
-
     router.push(`/roommates?${searchParams.toString()}`);
   };
 
   return (
-    <Card className="col-span-1  h-fit hidden lg:block">
+    <Card className="col-span-1 h-fit hidden lg:block mt-8">
       <RmFilterContent
         label="맞춤 룸메이트 찾기"
         {...filterItem}

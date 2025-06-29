@@ -33,8 +33,6 @@ export interface RoommateCardData extends RoommateInfo {
 export interface RoommateListProps {
   page: number;
   searchParams: { [key: string]: string | undefined };
-  roommates: RoommateCardData[];
-  total: number;
 }
 
 type RangeValue = string | null;

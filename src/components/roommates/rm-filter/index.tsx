@@ -5,6 +5,7 @@ import { RoommateFilterProps } from '@/types/roommates';
 const RmFilter = ({ ...filters }: RoommateFilterProps) => (
   <>
     <DesktopRmFilter {...filters} />
+
     <MobileRmFilter {...filters} />
   </>
 );

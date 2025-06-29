@@ -139,20 +139,6 @@ export async function GET(req: NextRequest) {
       total: count,
       page,
       pageSize,
-      filters: {
-        dormitory,
-        gender,
-        mbti,
-        noise,
-        roomType,
-        smoking,
-        indoorEating,
-        sleepHabit,
-        sleepPattern,
-        matchingStatus,
-        sociabilityRange: { min: sociabilityMin, max: sociabilityMax },
-        cleanlinessRange: { min: cleanlinessMin, max: cleanlinessMax },
-      },
     });
   } catch (e) {
     console.error(e);

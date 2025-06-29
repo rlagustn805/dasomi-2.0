@@ -1,6 +1,11 @@
+import { fetchRoommateList } from '@/services/api-roommates/api-roommates-server';
 import RmCard from './rm-card';
 import RmPagination from './rm-pagination';
 import { RoommateListProps } from '@/types/roommates';
+import { RoommateCardData } from '@/types/roommates';
+import { Button } from '../ui/button';
+import Link from 'next/link';
+import { Card } from '../ui/card';
 
 type isUser = {
   currentUserId: string | null;
@@ -10,16 +15,21 @@ type isUser = {
 const RmList = async ({
   page,
   searchParams,
-  roommates,
-  total,
   currentUserId,
   currentUserGender,
 }: RoommateListProps & isUser) => {
-  if (!roommates || roommates.length === 0) {
+  const { data, total } = await fetchRoommateList(searchParams);
+
+  if (!data || data.length === 0) {
     return (
-      <div className="col-span-1 lg:col-span-3 flex flex-col items-center justify-center py-10 text-gray-500">
-        해당 페이지에 룸메이트가 없습니다.
-      </div>
+      <Card className="col-span-1 lg:col-span-3 flex flex-col items-center mt-8 text-gray-500">
+        <div className="flex flex-col items-center justify-center gap-5">
+          <p className="">등록된 룸메이트가 아직 존재하지 않아요.</p>
+          <Link href="/roommates/dashboard">
+            <Button size="sm">내 룸메이트 정보 등록하기</Button>
+          </Link>
+        </div>
+      </Card>
     );
   }
 
@@ -30,22 +40,30 @@ const RmList = async ({
     }
   });
   const basePath = `/roommates?${currentSearchParams.toString()}`;
+
   return (
-    <div className="flex flex-col gap-5 col-span-1 lg:col-span-3 justify-between">
-      {roommates.map(roommate => (
-        <RmCard
-          key={roommate.roommateId}
-          {...roommate}
-          currentUserId={currentUserId}
-          currentUserGender={currentUserGender}
+    <div className="col-span-1 lg:col-span-3">
+      <div className="flex lg:justify-end mb-2">
+        <span>총 {total}개</span>
+      </div>
+      <div className="flex flex-col h-full justify-between">
+        <div className="flex flex-col gap-5">
+          {data.map((roommate: RoommateCardData) => (
+            <RmCard
+              key={roommate.roommateId}
+              {...roommate}
+              currentUserId={currentUserId}
+              currentUserGender={currentUserGender}
+            />
+          ))}
+        </div>
+        <RmPagination
+          total={total}
+          pageSize={10}
+          currentPage={page}
+          basePath={basePath}
         />
-      ))}
-      <RmPagination
-        total={total}
-        pageSize={10}
-        currentPage={page}
-        basePath={basePath}
-      />
+      </div>
     </div>
   );
 };
