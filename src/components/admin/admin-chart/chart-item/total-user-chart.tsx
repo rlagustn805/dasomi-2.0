@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/chart';
 import { useEffect, useState } from 'react';
 import { fetchUserRate } from '@/services/api-admin/api-admin';
+import { LoaderCircle } from 'lucide-react';
 
 const chartConfig = {
   signUp: {
@@ -30,16 +31,35 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const TotalUserChart = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [userRate, setUserRate] = useState([]);
 
   const fetchTotalUser = async () => {
-    const res = await fetchUserRate();
-    setUserRate(res ?? []);
+    try {
+      const res = await fetchUserRate();
+      setUserRate(res ?? []);
+    } catch (e) {
+      console.error('유저 가입, 탈퇴율 로드 실패', e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchTotalUser();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-[300px] flex items-center justify-center">
+        <LoaderCircle
+          className="w-8 h-8 animate-spin text-gray-500"
+          color="green"
+        />
+      </div>
+    );
+  }
 
   return (
     <ChartContainer config={chartConfig} className="w-full h-[300px]">

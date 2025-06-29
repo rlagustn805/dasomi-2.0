@@ -1,12 +1,14 @@
 'use client';
 
 import { fetchMatchingRate } from '@/services/api-admin/api-admin';
+import { LoaderCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 const COLORS = ['#38a169', '#ecc94b', '#f56565'];
 
 const MatchingStatusChart = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [matchingRate, setMatchingRate] = useState<
     { name: string; value: number }[]
   >([]);
@@ -27,12 +29,25 @@ const MatchingStatusChart = () => {
     } catch (error) {
       console.error('매칭률 데이터 로드 실패', error);
       setMatchingRate([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     fetchTotalMatchingStatus();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-[300px] flex items-center justify-center">
+        <LoaderCircle
+          className="w-8 h-8 animate-spin text-gray-500"
+          color="green"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-[300px] text-sm space-y-4">
