@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import RmContent from '..';
 
 const RmRegisterForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [profile, setProfile] = useState<RoommateInfo>({
     dormitory: '',
     roomType: '',
@@ -34,13 +35,41 @@ const RmRegisterForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!isValidKakaoLink(profile.kakaoOpenLink)) {
-      alert('올바른 카카오 오픈채팅 링크를 입력해주세요.');
-      return;
-    }
+    setIsSubmitting(true);
 
-    await registerRoommateProfile(profile);
+    try {
+      await registerRoommateProfile(profile);
+      setProfile({
+        dormitory: '',
+        roomType: '',
+        sociability: 3,
+        cleanliness: 3,
+        smoking: false,
+        indoorEating: false,
+        sleepPattern: '',
+        sleepHabit: '',
+        noise: '',
+        kakaoOpenLink: '',
+        message: '',
+      });
+      alert('등록 되었습니다.');
+    } catch (e) {
+      console.error('프로필 등록 실패:', e);
+      alert('등록에 실패했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const isFormValid =
+    profile.dormitory &&
+    profile.roomType &&
+    profile.sleepHabit &&
+    profile.sleepPattern &&
+    profile.noise &&
+    profile.kakaoOpenLink &&
+    isValidKakaoLink(profile.kakaoOpenLink);
+
   return (
     <>
       <RmContent
@@ -49,17 +78,8 @@ const RmRegisterForm = () => {
         handleChange={handleChange}
       />
       <div className="text-right px-6">
-        <Button
-          onClick={handleSubmit}
-          disabled={
-            !profile.dormitory ||
-            !profile.roomType ||
-            !profile.sleepHabit ||
-            !profile.sleepPattern ||
-            !profile.noise ||
-            !profile.kakaoOpenLink
-          }>
-          등록
+        <Button onClick={handleSubmit} disabled={!isFormValid || isSubmitting}>
+          {isSubmitting ? '등록중...' : '등록'}
         </Button>
       </div>
     </>

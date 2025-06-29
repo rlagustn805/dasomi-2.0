@@ -31,6 +31,7 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
     null
   );
   const [tempProfile, setTempProfile] = useState<RoommateInfo | null>(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const isValidKakaoLink = (url: string): boolean => {
     const kakaoRegex = /^https:\/\/open\.kakao\.com\/o\/[A-Za-z0-9]+$/;
@@ -56,17 +57,26 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
     if (!tempProfile) return;
 
     if (!isValidKakaoLink(tempProfile.kakaoOpenLink)) {
-      alert('올바른 카카오 오픈채팅 링크를 입력해주세요.');
       return;
     }
 
-    await updateRoommateProfile(tempProfile);
+    setIsUpdating(true);
+    try {
+      await updateRoommateProfile(tempProfile);
 
-    setLocalProfiles(prev =>
-      prev.map(p => (p.roommateId === tempProfile.roommateId ? tempProfile : p))
-    );
-
-    closeEditDialog();
+      setLocalProfiles(prev =>
+        prev.map(p =>
+          p.roommateId === tempProfile.roommateId ? tempProfile : p
+        )
+      );
+      alert('수정되었습니다.');
+      closeEditDialog();
+    } catch (e) {
+      console.error('프로필 수정 실패:', e);
+      alert('수정에 실패했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsUpdating(false);
+    }
   };
 
   const handleDelete = async (profile: RoommateInfo) => {
@@ -149,9 +159,11 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
                 !tempProfile?.sleepHabit ||
                 !tempProfile?.sleepPattern ||
                 !tempProfile?.noise ||
-                !tempProfile?.kakaoOpenLink
+                !tempProfile?.kakaoOpenLink ||
+                !isValidKakaoLink(tempProfile.kakaoOpenLink) ||
+                isUpdating
               }>
-              저장
+              {isUpdating ? '수정중...' : '수정'}
             </Button>
           </SheetFooter>
         </SheetContent>

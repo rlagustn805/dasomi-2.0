@@ -23,7 +23,7 @@ const RmList = async ({
   if (!data || data.length === 0) {
     return (
       <Card className="col-span-1 lg:col-span-3 flex flex-col items-center mt-8 text-gray-500">
-        <div className="flex flex-col items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center gap-5 h-full">
           <p className="">등록된 룸메이트가 아직 존재하지 않아요.</p>
           <Link href="/roommates/dashboard">
             <Button size="sm">내 룸메이트 정보 등록하기</Button>

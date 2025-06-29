@@ -16,6 +16,19 @@ const RmDashboardBookmark = async ({ page }: { page: number }) => {
 
   const totalPages = Math.ceil(total / pageSize);
 
+  if (!data || data.length === 0) {
+    return (
+      <Card className="min-h-32">
+        <CardContent>
+          <div className="text-center">
+            <p>아직 등록한 찜한 룸메이트가 없어요!</p>
+            <p>룸메이트 리스트에서 하트를 클릭하면 추가할 수 있어요.</p>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card>
       <CardHeader>

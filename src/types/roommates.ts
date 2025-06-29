@@ -14,7 +14,7 @@ export interface RoommateInfo {
   smoking: boolean;
   sociability: number;
   userId?: string;
-  isLiked: boolean;
+  isLiked?: boolean;
 }
 
 export interface RoommateUserInfo {
