@@ -18,6 +18,7 @@ import {
   SheetDescription,
 } from '@/components/ui/sheet';
 import { dormitorys } from '@/components/main/dormitory/dormitorys';
+import { toast } from 'sonner';
 
 const MatchingLabels: Record<string, string> = {
   available: '매칭 가능',
@@ -73,11 +74,11 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
           p.roommateId === tempProfile.roommateId ? tempProfile : p
         )
       );
-      alert('수정되었습니다.');
+      toast.success('수정되었습니다.');
       closeEditDialog();
     } catch (e) {
       console.error('프로필 수정 실패:', e);
-      alert('수정에 실패했습니다. 다시 시도해주세요.');
+      toast.error('수정에 실패하였습니다. 다시 시도해주세요.');
     } finally {
       setIsUpdating(false);
     }

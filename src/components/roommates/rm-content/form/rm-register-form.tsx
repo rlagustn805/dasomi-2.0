@@ -6,6 +6,7 @@ import { registerRoommateProfile } from '@/services/api-roommates/api-roommates-
 import { Button } from '@/components/ui/button';
 import RmContent from '..';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const RmRegisterForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -55,11 +56,12 @@ const RmRegisterForm = () => {
         kakaoOpenLink: '',
         message: '',
       });
-      alert('등록 되었습니다.');
+
+      toast.success('등록 되었습니다.');
       router.refresh();
     } catch (e) {
       console.error('프로필 등록 실패:', e);
-      alert('등록에 실패했습니다. 다시 시도해주세요.');
+      toast.error('등록에 실패했습니다. 다시 시도해주세요.');
     } finally {
       setIsSubmitting(false);
     }

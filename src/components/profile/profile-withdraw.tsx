@@ -12,6 +12,7 @@ import { createClient } from '@/lib/supabase/client';
 import { deleteUserProfile } from '@/services/api-users/api-users-client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const ProfileWithdraw = () => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -36,11 +37,11 @@ const ProfileWithdraw = () => {
 
     if (success) {
       await supabase.auth.signOut();
-      alert(message);
+      toast.success(message);
       router.push('/');
       router.refresh();
     } else {
-      alert(`탈퇴 실패: ${message}`);
+      toast(`탈퇴 실패: ${message}`);
     }
 
     setIsDeleting(false);

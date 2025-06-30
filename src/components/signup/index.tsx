@@ -19,6 +19,7 @@ import SignUpMbti from './signup-mbti';
 import SignUpGender from './signup-gender';
 import { insertUserProfile } from '@/services/api-users/api-users-client';
 import { SignUpForm } from '@/types/sign-up';
+import { toast } from 'sonner';
 
 const SignUp = () => {
   const supabase = createClient();
@@ -55,12 +56,12 @@ const SignUp = () => {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      alert('인증되지 않은 사용자입니다.');
+      toast.error('인증되지 않은 사용자입니다.');
       return;
     }
     const kakaoId = user.user_metadata?.provider_id;
     if (!kakaoId) {
-      alert('Kakao ID가 존재하지 않습니다.');
+      toast.error('Kakao ID가 존재하지 않습니다.');
       return;
     }
 
@@ -72,10 +73,12 @@ const SignUp = () => {
       mbti: signUp.mbti,
     });
 
-    alert(message);
     if (success) {
+      toast.success(message);
       router.push('/');
       router.refresh();
+    } else {
+      toast.error(message);
     }
   };
 
