@@ -2,10 +2,16 @@
 
 import { Button } from '@/components/ui/button';
 import { useCallback, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { RoommateFilterProps, RoommateFilterState } from '@/types/roommates';
 import RmFilterContent from '../rm-content/rm-filter-content';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from '@/components/ui/sheet';
 
 const MobileRmFilter = ({
   dormitory,
@@ -21,8 +27,7 @@ const MobileRmFilter = ({
   sociabilityRange,
   cleanlinessRange,
 }: RoommateFilterProps) => {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [filterItem, setFilterItem] = useState<RoommateFilterState>({
+  const initialFilterState: RoommateFilterState = {
     matchingStatus: matchingStatus === 'true' || true,
     dormitory: dormitory || '',
     gender: gender || '',
@@ -41,7 +46,11 @@ const MobileRmFilter = ({
       min: parseInt(cleanlinessRange?.min || '0', 10) || 0,
       max: parseInt(cleanlinessRange?.max || '5', 10) || 5,
     },
-  });
+  };
+
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [filterItem, setFilterItem] =
+    useState<RoommateFilterState>(initialFilterState);
 
   const router = useRouter();
 
@@ -57,6 +66,29 @@ const MobileRmFilter = ({
     },
     []
   );
+
+  const handleReset = () => {
+    setFilterItem({
+      matchingStatus: true,
+      dormitory: '',
+      gender: '',
+      mbti: '',
+      noise: '',
+      roomType: '',
+      smoking: false,
+      indoorEating: false,
+      sleepHabit: false,
+      sleepPattern: '',
+      sociabilityRange: {
+        min: 0,
+        max: 5,
+      },
+      cleanlinessRange: {
+        min: 0,
+        max: 5,
+      },
+    });
+  };
 
   const handleApply = () => {
     const { sociabilityRange, cleanlinessRange, ...restProfile } = filterItem;
@@ -88,26 +120,22 @@ const MobileRmFilter = ({
       <Button variant="outline" className="w-full" onClick={handleFilterOpen}>
         맞춤 룸메이트 찾기
       </Button>
-      <AnimatePresence>
-        {isFilterOpen && (
-          <motion.div
-            className="fixed inset-0 bg-black/50 z-50 lg:hidden"
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}>
-            <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-lg p-4 max-h-[80vh] overflow-y-auto">
-              <RmFilterContent
-                label="맞춤 룸메이트 찾기"
-                {...filterItem}
-                handleChange={handleChange}
-                handleFilterOpen={handleFilterOpen}
-                handleApply={handleApply}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Sheet open={isFilterOpen} onOpenChange={handleFilterOpen}>
+        <SheetContent side="bottom" className="h-[90vh] overflow-auto p-4">
+          <SheetHeader>
+            <SheetTitle>맞춤 룸메이트 찾기</SheetTitle>
+            <SheetDescription>필요한 부분만 적용할 수 있어요!</SheetDescription>
+          </SheetHeader>
+          <RmFilterContent
+            label="맞춤 룸메이트 찾기"
+            {...filterItem}
+            handleChange={handleChange}
+            handleReset={handleReset}
+            handleApply={handleApply}
+            isMobile
+          />
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };

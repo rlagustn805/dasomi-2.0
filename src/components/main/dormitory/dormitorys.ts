@@ -6,21 +6,9 @@ export const dormitorys = [
     link: '/',
   },
   {
-    id: 'amare',
-    src: '/images/dormitorys/amare.jpg',
-    title: '아마레관',
-    link: '/',
-  },
-  {
-    id: 'precognition',
-    src: '/images/dormitorys/precognition.jpg',
-    title: '예지관',
-    link: '/',
-  },
-  {
-    id: 'servire',
-    src: '/images/dormitorys/servire.jpg',
-    title: '세르비레관',
+    id: 'dasom',
+    src: '/images/dormitorys/dasom.jpg',
+    title: '다솜관',
     link: '/',
   },
   {
@@ -36,9 +24,22 @@ export const dormitorys = [
     link: '/',
   },
   {
-    id: 'dasom',
-    src: '/images/dormitorys/dasom.jpg',
-    title: '다솜관',
+    id: 'amare',
+    src: '/images/dormitorys/amare.jpg',
+    title: '아마레관',
+    link: '/',
+  },
+  {
+    id: 'precognition',
+    src: '/images/dormitorys/precognition.jpg',
+    title: '예지관',
+    link: '/',
+  },
+
+  {
+    id: 'servire',
+    src: '/images/dormitorys/servire.jpg',
+    title: '세르비레관',
     link: '/',
   },
 ];

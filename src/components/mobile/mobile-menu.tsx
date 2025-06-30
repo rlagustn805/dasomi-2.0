@@ -43,24 +43,28 @@ const MobileMenu = ({
             )}
 
             <nav className="flex flex-col text-lg gap-3">
-              <Link
-                href="/profile"
-                className="py-2 border-b border-gray-200"
-                onClick={handleMenuOnClick}>
-                내 정보
-              </Link>
-              <Link
-                href="/roommates/dashboard"
-                className="py-2 border-b border-gray-200"
-                onClick={handleMenuOnClick}>
-                룸메이트 정보
-              </Link>
+              {nickname && (
+                <>
+                  <Link
+                    href="/profile"
+                    className="py-2 border-b border-gray-200"
+                    onClick={handleMenuOnClick}>
+                    내 정보
+                  </Link>
+                  <Link
+                    href="/roommates/dashboard"
+                    className="py-2 border-b border-gray-200"
+                    onClick={handleMenuOnClick}>
+                    룸메이트 정보
+                  </Link>
+                </>
+              )}
 
               <Link
-                href="/roommate"
+                href="/roommates"
                 className="py-2 border-b border-gray-200"
                 onClick={handleMenuOnClick}>
-                룸메이트
+                룸메이트 찾기
               </Link>
               <Link
                 href="https://dormitory.cu.ac.kr/board_Qgpk79"
@@ -75,9 +79,11 @@ const MobileMenu = ({
                 로그아웃
               </Button>
             ) : (
-              <Button className="mt-auto mb-8" onClick={handleMenuOnClick}>
-                <Link href="/login">로그인</Link>
-              </Button>
+              <Link href="/login" className="mt-auto mb-8">
+                <Button className="w-full" onClick={handleMenuOnClick}>
+                  로그인
+                </Button>
+              </Link>
             )}
           </div>
         </div>

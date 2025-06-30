@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import CmField from '../common/cm-field';
 import CmMbti from '../common/cm-mbti';
 import { SignUpFieldProps } from '@/types/sign-up';
@@ -10,4 +11,4 @@ const SignUpMbti = ({ value, onChange }: SignUpFieldProps) => {
   );
 };
 
-export default SignUpMbti;
+export default memo(SignUpMbti);

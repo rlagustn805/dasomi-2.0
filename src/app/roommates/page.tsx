@@ -6,6 +6,14 @@ import { fetchRoommateFilters } from '@/services/api-roommates/api-roommates-ser
 import { fetchUserProfile } from '@/services/api-users/api-users-server';
 import { Suspense } from 'react';
 
+export const metadata = {
+  title: '다솜이 룸메이트 서비스 | 리스트',
+  description: '룸메이트 리스트 안내',
+  icons: {
+    icon: '/images/favicon.ico',
+  },
+};
+
 type SearchParamsProps = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 };

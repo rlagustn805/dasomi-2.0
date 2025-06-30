@@ -22,12 +22,12 @@ const ProfileWithdraw = () => {
   const handleAccountWithdrawOnclick = async () => {
     // 확인 대화상자
     const confirmed = window.confirm(
-      '정말로 계정을 탈퇴하시겠습니까?\n\n' +
-        '이 작업은 되돌릴 수 없습니다:\n' +
-        '• 모든 개인 정보가 영구적으로 삭제됩니다\n' +
-        '• 작성한 게시글과 댓글이 모두 삭제됩니다\n' +
-        '• 카카오 연동 정보가 해제됩니다\n' +
-        '• 동일한 계정으로 재가입하더라도 기존 데이터는 복구되지 않습니다'
+      '정말로 계정 탈퇴를 진행할까요?\n\n' +
+        '이 작업은 되돌릴 수 없어요:\n' +
+        '• 모든 개인 정보가 영구적으로 삭제되요.\n' +
+        '• 작성한 게시글과 댓글이 모두 삭제되요.\n' +
+        '• 카카오 연동 정보가 해제되요.\n' +
+        '• 동일한 계정으로 재가입하더라도 기존 데이터는 복구되지 않아요.'
     );
 
     if (!confirmed) return;
@@ -48,22 +48,14 @@ const ProfileWithdraw = () => {
   };
 
   return (
-    <Card className="w-full mt-5">
-      <CardHeader>
-        <CardTitle className="text-red-600">계정 탈퇴</CardTitle>
-        <CardDescription>
-          계정을 탈퇴하면 모든 데이터가 삭제되며 복구할 수 없습니다.
-        </CardDescription>
-      </CardHeader>
-      <CardFooter>
-        <Button
-          size="sm"
-          variant="destructive"
-          onClick={handleAccountWithdrawOnclick}>
-          {isDeleting ? '탈퇴중...' : '계정 탈퇴'}
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="w-full flex justify-end mt-10">
+      <Button
+        size="sm"
+        variant="destructive"
+        onClick={handleAccountWithdrawOnclick}>
+        {isDeleting ? '탈퇴중...' : '계정 탈퇴'}
+      </Button>
+    </div>
   );
 };
 

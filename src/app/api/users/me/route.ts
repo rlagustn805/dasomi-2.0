@@ -82,7 +82,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: insertError.message }, { status: 500 });
     }
 
-    return NextResponse.json({ message: '회원가입 성공' }, { status: 200 });
+    return NextResponse.json(
+      { message: '회원가입 되었습니다.' },
+      { status: 200 }
+    );
   } catch (e) {
     console.error('회원가입 API 오류:', e);
     return NextResponse.json(

@@ -28,8 +28,9 @@ interface RmFilterContentProps extends RoommateFilterState {
     key: K,
     value: RoommateFilterState[K]
   ) => void;
-  handleFilterOpen?: () => void;
   handleApply: () => void;
+  handleReset: () => void;
+  isMobile?: boolean;
 }
 
 const RmFilterContent = ({
@@ -47,21 +48,24 @@ const RmFilterContent = ({
   sociabilityRange,
   cleanlinessRange,
   handleChange,
-  handleFilterOpen,
+  handleReset,
   handleApply,
+  isMobile = false,
 }: RmFilterContentProps) => {
   const handlers = useFilterHandlers<RoommateFilterState>(handleChange);
   return (
     <>
-      <CardHeader>
-        <CardTitle className="text-lg">{label}</CardTitle>
+      {!isMobile && (
+        <CardHeader>
+          <CardTitle className="text-lg">{label}</CardTitle>
 
-        <CardDescription className="text-sm mb-2 ">
-          필요한 부분만 적용할 수 있어요!
-        </CardDescription>
-      </CardHeader>
+          <CardDescription className="text-sm mb-2 ">
+            필요한 부분만 적용할 수 있어요!
+          </CardDescription>
+        </CardHeader>
+      )}
 
-      <CardContent className="flex flex-col gap-5 text-sm">
+      <CardContent className="flex flex-col gap-6 text-sm">
         <MatchingStatusSwitch
           value={matchingStatus}
           onChange={handlers.handleMatchingStatusChange}
@@ -135,20 +139,14 @@ const RmFilterContent = ({
         <Button
           size="sm"
           variant="outline"
-          className="flex-1 block lg:hidden"
-          onClick={handleFilterOpen}>
-          취소
+          className="flex-1 block"
+          onClick={handleReset}>
+          <div className="flex items-center justify-center gap-1">
+            <span>초기화</span>
+          </div>
         </Button>
 
-        <Button
-          size="sm"
-          className="flex-1 block"
-          onClick={() => {
-            if (handleFilterOpen && window.innerWidth < 1024) {
-              handleFilterOpen();
-            }
-            handleApply();
-          }}>
+        <Button size="sm" className="flex-1 block" onClick={handleApply}>
           찾기
         </Button>
       </CardFooter>

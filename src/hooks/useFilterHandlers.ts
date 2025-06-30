@@ -48,6 +48,14 @@ export const useFilterHandlers = <T extends Record<string, any>>(
       handleMessageChange: (value: string) =>
         handleChange('message' as keyof T, value),
 
+      // SignUp 전용 핸들러들 추가
+      handleNicknameChange: (value: string) =>
+        handleChange('nickname' as keyof T, value),
+      handleDepartmentChange: (value: string) =>
+        handleChange('department' as keyof T, value),
+      handleStudentIdChange: (value: string) =>
+        handleChange('studentId' as keyof T, value),
+
       // 이벤트 핸들러들
       handleInputChange:
         (key: keyof T) => (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -55,6 +63,13 @@ export const useFilterHandlers = <T extends Record<string, any>>(
       handleTextareaChange:
         (key: keyof T) => (e: React.ChangeEvent<HTMLTextAreaElement>) =>
           handleChange(key, e.target.value),
+      handleSelectChange:
+        (key: keyof T) => (e: React.ChangeEvent<HTMLSelectElement>) =>
+          handleChange(key, e.target.value),
+
+      // 범용 핸들러 (어떤 필드든 사용 가능)
+      handleFieldChange: (key: keyof T) => (value: any) =>
+        handleChange(key, value),
     }),
     [handleChange]
   );

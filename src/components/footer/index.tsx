@@ -9,15 +9,15 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div>
           <p className="font-semibold mb-3">다솜이</p>
-          <p className="text-sm text-gray-400">
-            기숙사 생활을 더 편리하게 만들어주는 서비스입니다.
+          <p className="text-sm text-muted-foreground">
+            원하는 룸메이트를 쉽게 찾고 구하는 서비스에요.
           </p>
         </div>
 
         {footerLinks.map(section => (
           <div key={section.title}>
             <p className="font-semibold mb-3">{section.title}</p>
-            <div className="flex flex-col gap-3 text-sm text-gray-400">
+            <div className="flex flex-col gap-3 text-sm text-muted-foreground">
               {section.links.map(link => (
                 <Link key={link.name} href={link.href}>
                   {link.name}
@@ -35,7 +35,7 @@ const Footer = () => {
               variant: 'outline',
             })} bg-yellow-400 rounded-xl`}>
             <KakaoIcon />
-            문의하기
+            개발자 문의
           </Link>
         </div>
       </div>

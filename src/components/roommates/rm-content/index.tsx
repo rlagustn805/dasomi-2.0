@@ -39,7 +39,7 @@ const RmContent = ({
         <CardTitle className="text-lg">{label}</CardTitle>
       </CardHeader>
 
-      <CardContent className="flex flex-col gap-5 text-sm">
+      <CardContent className="flex flex-col gap-6 text-sm">
         {isEdit && (
           <CmField label="매칭 상태 변경">
             <MatchingStatusSelect
@@ -111,7 +111,7 @@ const RmContent = ({
         <CmField label="하고 싶은 말">
           <Textarea
             className="min-h-[100px] resize-none text-sm"
-            placeholder="예시) 안녕하세요! 깔끔하고 활발한 성격입니다. 함께 즐겁게 생활할 룸메이트를 찾고 있어요 😊"
+            placeholder="예시) 안녕하세요! 깔끔하고 활발한 성격이에요. 함께 즐겁게 생활할 룸메이트를 찾고 있어요 😊"
             maxLength={80}
             value={profile.message}
             onChange={handlers.handleTextareaChange('message')}

@@ -19,7 +19,7 @@ const CleanlinessSliderRange = ({
         minStepsBetweenThumbs={1} // 겹치지 않게
         onValueChange={(val: [number, number]) => onChange(val)}
       />
-      <div className="text-xs flex justify-between items-center">
+      <div className="mt-1.5 text-xs flex justify-between items-center">
         <span>자유로워요</span>
         <span>신경쓰는 편이에요</span>
       </div>

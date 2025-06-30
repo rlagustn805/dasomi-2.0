@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import CmDepartment from '../common/cm-department';
 import CmField from '../common/cm-field';
 import { SignUpFieldProps } from '@/types/sign-up';
@@ -12,4 +13,4 @@ const SignUpDepartment = ({ value, onChange }: SignUpFieldProps) => {
   );
 };
 
-export default SignUpDepartment;
+export default memo(SignUpDepartment);

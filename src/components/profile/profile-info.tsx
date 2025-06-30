@@ -21,7 +21,7 @@ const ProfileInfo = async () => {
         <CardHeader>
           <CardTitle>내 정보</CardTitle>
           <CardDescription>
-            내 프로필 정보를 확인하고 수정할 수 있습니다.
+            내 프로필 정보를 확인하고 수정할 수 있어요.
           </CardDescription>
         </CardHeader>
 

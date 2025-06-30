@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/client';
 import CmField from '../common/cm-field';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { SignUpNicknameFieldProps } from '@/types/sign-up';
 
 const SignUpNickname = ({
@@ -67,6 +67,7 @@ const SignUpNickname = ({
   return (
     <CmField label="닉네임">
       <Input
+        className="text-sm"
         placeholder="특수문자 제외 2~8자"
         value={value}
         onChange={e => handleChange(e.target.value)}
@@ -88,4 +89,4 @@ const SignUpNickname = ({
   );
 };
 
-export default SignUpNickname;
+export default memo(SignUpNickname);

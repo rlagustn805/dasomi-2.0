@@ -15,7 +15,7 @@ const TendencySliderRange = ({ value, onChange }: TendencyRangeSliderProps) => {
         minStepsBetweenThumbs={1}
         onValueChange={(val: [number, number]) => onChange(val)}
       />
-      <div className="text-xs flex justify-between items-center">
+      <div className="mt-1.5 text-xs flex justify-between items-center">
         <span>갠플해요</span>
         <span>친해져요</span>
       </div>

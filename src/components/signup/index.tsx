@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import SignUpNickname from './signup-nickname';
 import SignUpDepartment from './signup-department';
 import SignUpStudentId from './signup-studentId';
@@ -20,6 +20,7 @@ import SignUpGender from './signup-gender';
 import { insertUserProfile } from '@/services/api-users/api-users-client';
 import { SignUpForm } from '@/types/sign-up';
 import { toast } from 'sonner';
+import { useFilterHandlers } from '@/hooks/useFilterHandlers';
 
 const SignUp = () => {
   const supabase = createClient();
@@ -35,20 +36,31 @@ const SignUp = () => {
 
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(false);
 
-  const handleChange = (field: keyof typeof signUp, value: string) => {
-    setSignUp(prev => ({
-      ...prev,
-      [field]: value,
-    }));
+  const handleChange = useCallback(
+    (field: keyof typeof signUp, value: string) => {
+      setSignUp(prev => ({
+        ...prev,
+        [field]: value,
+      }));
 
-    if (field === 'nickname') {
-      setIsNicknameAvailable(false);
-    }
-  };
+      if (field === 'nickname') {
+        setIsNicknameAvailable(false);
+      }
+    },
+    []
+  );
 
-  const handleIsNicknameAvailable = (value: boolean) => {
+  const {
+    handleNicknameChange,
+    handleDepartmentChange,
+    handleStudentIdChange,
+    handleMbtiChange,
+    handleGenderChange,
+  } = useFilterHandlers<SignUpForm>(handleChange);
+
+  const handleIsNicknameAvailable = useCallback((value: boolean) => {
     setIsNicknameAvailable(value);
-  };
+  }, []);
 
   const handleSignUp = async () => {
     const {
@@ -82,59 +94,48 @@ const SignUp = () => {
     }
   };
 
+  const isFormValid =
+    signUp.nickname !== '' &&
+    signUp.department !== '' &&
+    signUp.gender !== '' &&
+    signUp.mbti !== '' &&
+    signUp.studentId !== '' &&
+    isNicknameAvailable;
+
   return (
     <div className="h-[90vh] flex items-center justify-center">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>회원가입</CardTitle>
-          <CardDescription>
-            간단한 입력 후 회원가입이 진행됩니다.
-          </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-5">
           <SignUpNickname
             value={signUp.nickname}
             isNicknameAvailable
             handleIsNicknameAvailable={handleIsNicknameAvailable}
-            onChange={value => handleChange('nickname', value)}
+            onChange={handleNicknameChange}
           />
           <SignUpDepartment
             value={signUp.department ?? ''}
-            onChange={value => handleChange('department', value)}
+            onChange={handleDepartmentChange}
           />
           <SignUpStudentId
             value={signUp.studentId ?? ''}
-            onChange={value => handleChange('studentId', value)}
+            onChange={handleStudentIdChange}
           />
-          <SignUpMbti
-            value={signUp.mbti ?? ''}
-            onChange={value => handleChange('mbti', value)}
-          />
+          <SignUpMbti value={signUp.mbti ?? ''} onChange={handleMbtiChange} />
           <SignUpGender
             value={signUp.gender ?? ''}
-            onChange={value => handleChange('gender', value)}
+            onChange={handleGenderChange}
           />
           <Button
             className="w-full"
             size="sm"
-            disabled={
-              signUp.nickname === '' ||
-              signUp.department === '' ||
-              signUp.gender === '' ||
-              signUp.mbti === '' ||
-              signUp.studentId === '' ||
-              !isNicknameAvailable
-            }
+            disabled={!isFormValid}
             onClick={handleSignUp}>
             회원가입
           </Button>
         </CardContent>
-        <CardFooter className="text-muted-foreground text-xs">
-          <p>
-            다솜이 서비스는 어떠한 경우에도 회원의 정보를 타 플랫폼 등 악용하지
-            않습니다.
-          </p>
-        </CardFooter>
       </Card>
     </div>
   );

@@ -1,4 +1,5 @@
 import { SignUpFieldProps } from '@/types/sign-up';
+import { memo } from 'react';
 
 const SignUpGender = ({ value, onChange }: SignUpFieldProps) => {
   return (
@@ -39,4 +40,4 @@ const SignUpGender = ({ value, onChange }: SignUpFieldProps) => {
   );
 };
 
-export default SignUpGender;
+export default memo(SignUpGender);

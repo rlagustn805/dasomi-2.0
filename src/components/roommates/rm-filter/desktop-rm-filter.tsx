@@ -20,7 +20,7 @@ const DesktopRmFilter = ({
   sociabilityRange,
   cleanlinessRange,
 }: RoommateFilterProps) => {
-  const [filterItem, setFilterItem] = useState<RoommateFilterState>({
+  const initialFilterState: RoommateFilterState = {
     matchingStatus: matchingStatus === 'true' || true,
     dormitory: dormitory || '',
     gender: gender || '',
@@ -39,7 +39,10 @@ const DesktopRmFilter = ({
       min: parseInt(cleanlinessRange?.min || '0', 10) || 0,
       max: parseInt(cleanlinessRange?.max || '5', 10) || 5,
     },
-  });
+  };
+
+  const [filterItem, setFilterItem] =
+    useState<RoommateFilterState>(initialFilterState);
 
   const router = useRouter();
 
@@ -51,6 +54,29 @@ const DesktopRmFilter = ({
       ...prev,
       [key]: value,
     }));
+  };
+
+  const handleReset = () => {
+    setFilterItem({
+      matchingStatus: true,
+      dormitory: '',
+      gender: '',
+      mbti: '',
+      noise: '',
+      roomType: '',
+      smoking: false,
+      indoorEating: false,
+      sleepHabit: false,
+      sleepPattern: '',
+      sociabilityRange: {
+        min: 0,
+        max: 5,
+      },
+      cleanlinessRange: {
+        min: 0,
+        max: 5,
+      },
+    });
   };
 
   const handleApply = () => {
@@ -81,6 +107,7 @@ const DesktopRmFilter = ({
         {...filterItem}
         handleChange={handleChange}
         handleApply={handleApply}
+        handleReset={handleReset}
       />
     </Card>
   );
