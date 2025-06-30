@@ -85,11 +85,6 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
   };
 
   const handleDelete = async (profile: RoommateInfo) => {
-    const confirm = window.confirm(
-      '정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.'
-    );
-    if (!confirm) return;
-
     await deleteRoommateProfile(profile);
 
     setLocalProfiles(prev =>

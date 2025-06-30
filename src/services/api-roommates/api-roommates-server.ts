@@ -1,17 +1,15 @@
 import { RoommateFilterProps } from '@/types/roommates';
 import { headers } from 'next/headers';
+import { API_URL } from '@/lib/config';
 
 export const fetchRoommateProfile = async ({ page }: { page: number }) => {
   const cookieHeader = (await headers()).get('cookie') ?? '';
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_KEY}/api/roommates/me?page=${page},`,
-      {
-        headers: {
-          cookie: cookieHeader,
-        },
-      }
-    );
+    const res = await fetch(`${API_URL}/api/roommates/me?page=${page},`, {
+      headers: {
+        cookie: cookieHeader,
+      },
+    });
 
     const data = await res.json();
     if (!res.ok) {
@@ -85,7 +83,7 @@ export const fetchRoommateList = async (filters: RoommateFilterProps = {}) => {
 
     const res = await fetch(
       `${
-        process.env.NEXT_PUBLIC_API_KEY
+        process.env.NEXT_PUBLIC_BASE_URL
       }/api/roommates?${searchParams.toString()}`,
       {
         headers: {
@@ -116,14 +114,11 @@ export const fetchLikedRoommateList = async ({
 }) => {
   const cookieHeader = (await headers()).get('cookie') ?? '';
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_KEY}/api/roommates/likes?page=${page}`,
-    {
-      headers: {
-        cookie: cookieHeader,
-      },
-    }
-  );
+  const res = await fetch(`${API_URL}/api/roommates/likes?page=${page}`, {
+    headers: {
+      cookie: cookieHeader,
+    },
+  });
 
   if (!res.ok) throw new Error('찜한 룸메이트 목록 불러오기 실패');
   return res.json();
@@ -185,7 +180,7 @@ export const fetchRoommateFilters = async (
 
   const res = await fetch(
     `${
-      process.env.NEXT_PUBLIC_API_KEY
+      process.env.NEXT_PUBLIC_BASE_URL
     }/api/roommates/filters?${searchParams.toString()}`,
     {
       headers: {

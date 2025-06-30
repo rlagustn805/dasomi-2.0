@@ -1,11 +1,10 @@
+import { API_URL } from '@/lib/config';
+
 export const fetchUserRate = async () => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_KEY}/api/admin/user`,
-      {
-        credentials: 'include',
-      }
-    );
+    const res = await fetch(`${API_URL}/api/admin/user`, {
+      credentials: 'include',
+    });
 
     const data = await res.json();
 
@@ -21,12 +20,9 @@ export const fetchUserRate = async () => {
 
 export const fetchMatchingRate = async () => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_KEY}/api/admin/match`,
-      {
-        credentials: 'include',
-      }
-    );
+    const res = await fetch(`${API_URL}/api/admin/match`, {
+      credentials: 'include',
+    });
 
     const data = await res.json();
 

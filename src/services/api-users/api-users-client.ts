@@ -1,9 +1,10 @@
 import { SignUpForm } from '@/types/sign-up';
 import { Users } from '@/types/users';
+import { API_URL } from '@/lib/config';
 
 export const updateUserProfile = async (fieldName: Partial<Users>) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/users/me`, {
+    const res = await fetch(`${API_URL}/api/users/me`, {
       method: 'PATCH',
       body: JSON.stringify(fieldName),
     });
@@ -67,7 +68,7 @@ export const insertUserProfile = async (
   profile: SignUpForm
 ) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/users/me`, {
+    const res = await fetch(`${API_URL}/api/users/me`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

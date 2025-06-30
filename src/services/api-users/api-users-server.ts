@@ -1,9 +1,10 @@
 import { headers } from 'next/headers';
+import { API_URL } from '@/lib/config';
 
 export const fetchUserProfile = async () => {
   try {
     const cookieHeader = (await headers()).get('cookie') ?? '';
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/users/me`, {
+    const res = await fetch(`${API_URL}/api/users/me`, {
       headers: {
         cookie: cookieHeader,
       },

@@ -26,6 +26,9 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
     'hover:text-green-700 font-semibold text-sm transition-colors duration-100';
   return (
     <div className="hidden md:flex items-center gap-3">
+      <Link href="/description" className={hoverStyle}>
+        이용안내
+      </Link>
       <Link href="/roommates" className={hoverStyle}>
         룸메이트 찾기
       </Link>

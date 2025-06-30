@@ -59,6 +59,12 @@ const MobileMenu = ({
                   </Link>
                 </>
               )}
+              <Link
+                href="/description"
+                className="py-2 border-b border-gray-200"
+                onClick={handleMenuOnClick}>
+                이용안내
+              </Link>
 
               <Link
                 href="/roommates"
