@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { memo } from 'react';
 
 interface MatchingStatusSelectProps {
   value: string;
@@ -32,4 +33,4 @@ const MatchingStatusSelect = ({
   );
 };
 
-export default MatchingStatusSelect;
+export default memo(MatchingStatusSelect);

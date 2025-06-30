@@ -1,4 +1,5 @@
 import { Switch } from '@/components/ui/switch';
+import { memo } from 'react';
 
 interface SleepHabitSwitchProps {
   value: boolean;
@@ -16,4 +17,4 @@ const SleepHabitSwitch = ({ value, onChange }: SleepHabitSwitchProps) => {
   );
 };
 
-export default SleepHabitSwitch;
+export default memo(SleepHabitSwitch);

@@ -33,7 +33,7 @@ const RmCardHeader = ({
       </div>
       {id !== currentUserId && (
         <CmToggleHeart
-          currentIsLiked={isLiked}
+          currentIsLiked={isLiked as boolean}
           currentUserId={currentUserId ?? null}
           roommateId={roommateId}
         />

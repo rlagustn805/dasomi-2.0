@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { memo } from 'react';
 
 interface NoiseSelectProps {
   value: string;
@@ -29,4 +30,4 @@ const NoiseSelect = ({ value, onChange }: NoiseSelectProps) => {
   );
 };
 
-export default NoiseSelect;
+export default memo(NoiseSelect);

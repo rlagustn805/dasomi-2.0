@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { LoaderCircle } from 'lucide-react';
 
 const AuthCallbackPage = () => {
   const router = useRouter();
@@ -14,8 +15,6 @@ const AuthCallbackPage = () => {
         data: { session },
       } = await supabase.auth.getSession();
       const user = session?.user;
-      // getUser가 더 안정된 방법?
-      // zustand 도입?
 
       if (!user) {
         router.push('/login');
@@ -39,7 +38,11 @@ const AuthCallbackPage = () => {
     checkUser();
   }, [router, supabase]);
 
-  return <p>로그인 처리 중...</p>;
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <LoaderCircle className="animate-spin" color="green" />
+    </div>
+  );
 };
 
 export default AuthCallbackPage;

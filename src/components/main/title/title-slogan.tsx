@@ -55,9 +55,6 @@ const TitleSlogan = () => {
           </motion.span>
         </div>
       </LayoutGroup>
-      <div className="text-sm text-gray-400 font-semibold md:text-center">
-        다솜이가 여러분과 함께 할 룸메이트를 찾아 드릴게요.
-      </div>
     </>
   );
 };

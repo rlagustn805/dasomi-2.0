@@ -1,5 +1,5 @@
 import { Slider } from '@/components/ui/slider';
-
+import { memo } from 'react';
 interface TendencyRangeSliderProps {
   value: [number, number];
   onChange: (value: [number, number]) => void;
@@ -23,4 +23,4 @@ const TendencySliderRange = ({ value, onChange }: TendencyRangeSliderProps) => {
   );
 };
 
-export default TendencySliderRange;
+export default memo(TendencySliderRange);

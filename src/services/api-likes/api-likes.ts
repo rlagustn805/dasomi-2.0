@@ -1,4 +1,4 @@
-export const insertIsLike = async likerId => {
+export const insertIsLike = async (likerId: any) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/likes`, {
       method: 'POST',
@@ -20,7 +20,7 @@ export const insertIsLike = async likerId => {
   }
 };
 
-export const deleteIsLike = async likerId => {
+export const deleteIsLike = async (likerId: any) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/likes`, {
       method: 'DELETE',

@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { memo } from 'react';
 
 interface GenderSelectProps {
   value: string;
@@ -28,4 +29,4 @@ const GenderSelect = ({ value, onChange }: GenderSelectProps) => {
   );
 };
 
-export default GenderSelect;
+export default memo(GenderSelect);

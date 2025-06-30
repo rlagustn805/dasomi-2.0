@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { RoommateInfo } from '@/types/roommates';
 import { registerRoommateProfile } from '@/services/api-roommates/api-roommates-client';
 import { Button } from '@/components/ui/button';
 import RmContent from '..';
+import { useRouter } from 'next/navigation';
 
 const RmRegisterForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,17 +23,19 @@ const RmRegisterForm = () => {
     message: '',
   });
 
+  const router = useRouter();
+
   const isValidKakaoLink = (url: string): boolean => {
     const kakaoRegex = /^https:\/\/open\.kakao\.com\/o\/[A-Za-z0-9]+$/;
     return kakaoRegex.test(url);
   };
 
-  const handleChange = (key: keyof RoommateInfo, value: any) => {
+  const handleChange = useCallback((key: keyof RoommateInfo, value: any) => {
     setProfile(prev => ({
       ...prev,
       [key]: value,
     }));
-  };
+  }, []);
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -53,6 +56,7 @@ const RmRegisterForm = () => {
         message: '',
       });
       alert('등록 되었습니다.');
+      router.refresh();
     } catch (e) {
       console.error('프로필 등록 실패:', e);
       alert('등록에 실패했습니다. 다시 시도해주세요.');

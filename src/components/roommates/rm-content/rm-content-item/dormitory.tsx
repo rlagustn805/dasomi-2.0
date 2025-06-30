@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { memo } from 'react';
 
 interface DormitorySelectProps {
   value: string;
@@ -33,4 +34,4 @@ const DormitorySelect = ({ value, onChange }: DormitorySelectProps) => {
   );
 };
 
-export default DormitorySelect;
+export default memo(DormitorySelect);

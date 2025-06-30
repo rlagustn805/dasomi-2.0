@@ -1,7 +1,7 @@
 'use client';
 
 import { RoommateInfo } from '@/types/roommates';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   deleteRoommateProfile,
   updateRoommateProfile,
@@ -48,11 +48,15 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
     setTempProfile(null);
   };
 
-  const handleTempChange = (key: keyof RoommateInfo, value: any) => {
-    if (!tempProfile) return;
-    setTempProfile(prev => prev && { ...prev, [key]: value });
-  };
-
+  const handleTempChange = useCallback(
+    (key: keyof RoommateInfo, value: any) => {
+      setTempProfile(prev => {
+        if (!prev) return prev;
+        return { ...prev, [key]: value };
+      });
+    },
+    []
+  );
   const handleUpdate = async () => {
     if (!tempProfile) return;
 
@@ -148,10 +152,14 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
           )}
 
           <SheetFooter className="flex justify-end mt-4 gap-2">
-            <Button variant="outline" onClick={closeEditDialog}>
+            <Button
+              variant="outline"
+              onClick={closeEditDialog}
+              className="flex-1">
               취소
             </Button>
             <Button
+              className="flex-1"
               onClick={handleUpdate}
               disabled={
                 !tempProfile?.dormitory ||

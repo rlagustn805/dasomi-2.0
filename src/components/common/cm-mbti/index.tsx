@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   Select,
   SelectContent,
@@ -32,4 +33,4 @@ const CmMbti = ({ value, onChange }: Props) => {
   );
 };
 
-export default CmMbti;
+export default memo(CmMbti);

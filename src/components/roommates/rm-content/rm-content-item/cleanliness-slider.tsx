@@ -1,4 +1,5 @@
 import { Slider } from '@/components/ui/slider';
+import { memo } from 'react';
 
 interface CleanlinessSliderProps {
   value: number | undefined;
@@ -22,4 +23,4 @@ const CleanlinessSlider = ({ value, onChange }: CleanlinessSliderProps) => {
   );
 };
 
-export default CleanlinessSlider;
+export default memo(CleanlinessSlider);

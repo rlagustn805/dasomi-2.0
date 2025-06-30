@@ -2,6 +2,9 @@ import MobileDescription from '@/components/description/mobile-description';
 import ProfileDescription from '@/components/description/profile-description';
 import RoommateDescription from '@/components/description/roommate-description';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+export const dynamic = 'force-static';
+
 const DescriptionPage = () => {
   return (
     <div className="px-4 md:px-36 lg:px-44 mt-15">

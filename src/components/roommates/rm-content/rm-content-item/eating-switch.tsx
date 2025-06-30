@@ -1,4 +1,5 @@
 import { Switch } from '@/components/ui/switch';
+import { memo } from 'react';
 
 interface EatingSwitchProps {
   value: boolean;
@@ -14,4 +15,4 @@ const EatingSwitch = ({ value, onChange }: EatingSwitchProps) => {
   );
 };
 
-export default EatingSwitch;
+export default memo(EatingSwitch);

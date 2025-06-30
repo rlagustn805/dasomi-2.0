@@ -20,6 +20,7 @@ import MatchingStatusSwitch from '../rm-content-item/matching-status-switch';
 import SleepHabitSwitch from '../rm-content-item/sleep-habit-switch';
 import CmMbti from '@/components/common/cm-mbti';
 import { RoommateFilterState } from '@/types/roommates';
+import { useFilterHandlers } from '@/hooks/useFilterHandlers';
 
 interface RmFilterContentProps extends RoommateFilterState {
   label: string;
@@ -49,6 +50,7 @@ const RmFilterContent = ({
   handleFilterOpen,
   handleApply,
 }: RmFilterContentProps) => {
+  const handlers = useFilterHandlers<RoommateFilterState>(handleChange);
   return (
     <>
       <CardHeader>
@@ -62,40 +64,34 @@ const RmFilterContent = ({
       <CardContent className="flex flex-col gap-5 text-sm">
         <MatchingStatusSwitch
           value={matchingStatus}
-          onChange={value => handleChange('matchingStatus', value)}
+          onChange={handlers.handleMatchingStatusChange}
         />
 
         <CmField label="성별 선택">
-          <GenderSelect
-            value={gender}
-            onChange={value => handleChange('gender', value)}
-          />
+          <GenderSelect value={gender} onChange={handlers.handleGenderChange} />
         </CmField>
 
         <CmField label="MBTI 선택">
-          <CmMbti
-            value={mbti}
-            onChange={value => handleChange('mbti', value)}
-          />
+          <CmMbti value={mbti} onChange={handlers.handleMbtiChange} />
         </CmField>
 
         <CmField label="기숙사 선택">
           <DormitorySelect
             value={dormitory}
-            onChange={value => handleChange('dormitory', value)}
+            onChange={handlers.handleDormitoryChange}
           />
         </CmField>
         <CmField label="인실 선택">
           <RoomTypeSelect
             value={roomType}
-            onChange={value => handleChange('roomType', value)}
+            onChange={handlers.handleRoomTypeChange}
           />
         </CmField>
         <CmField label="친목">
           <TendencySliderRange
             value={[sociabilityRange.min, sociabilityRange.max]}
             onChange={([min, max]) =>
-              handleChange('sociabilityRange', { min, max })
+              handlers.handleSociabilityRangeChange({ min, max })
             }
           />
         </CmField>
@@ -104,37 +100,34 @@ const RmFilterContent = ({
           <CleanlinessSliderRange
             value={[cleanlinessRange.min, cleanlinessRange.max]}
             onChange={([min, max]) =>
-              handleChange('cleanlinessRange', { min, max })
+              handlers.handleCleanlinessRangeChange({ min, max })
             }
           />
         </CmField>
 
         <EatingSwitch
           value={indoorEating}
-          onChange={value => handleChange('indoorEating', value)}
+          onChange={handlers.handleIndoorEatingChange}
         />
 
         <SmokingSwitch
           value={smoking}
-          onChange={value => handleChange('smoking', value)}
+          onChange={handlers.handleSmokingChange}
         />
 
         <SleepHabitSwitch
           value={sleepHabit}
-          onChange={value => handleChange('sleepHabit', value)}
+          onChange={handlers.handleSleepHabitChange}
         />
 
         <CmField label="수면패턴">
           <SleepPatternSelect
             value={sleepPattern}
-            onChange={value => handleChange('sleepPattern', value)}
+            onChange={handlers.handleSleepPatternChange}
           />
         </CmField>
         <CmField label="소음">
-          <NoiseSelect
-            value={noise}
-            onChange={value => handleChange('noise', value)}
-          />
+          <NoiseSelect value={noise} onChange={handlers.handleNoiseChange} />
         </CmField>
       </CardContent>
 

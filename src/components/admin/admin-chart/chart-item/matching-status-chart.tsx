@@ -49,6 +49,16 @@ const MatchingStatusChart = () => {
     );
   }
 
+  const totalValue = matchingRate.reduce((acc, cur) => acc + cur.value, 0);
+
+  if (totalValue === 0) {
+    return (
+      <div className="w-full h-[300px] flex items-center justify-center text-gray-500 text-sm">
+        데이터 없음
+      </div>
+    );
+  }
+
   return (
     <div className="w-full h-[300px] text-sm space-y-4">
       <ResponsiveContainer width="100%" height="80%">

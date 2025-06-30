@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { memo } from 'react';
 
 interface SleepPatternSelectProps {
   value: string;
@@ -33,4 +34,4 @@ const SleepPatternSelect = ({ value, onChange }: SleepPatternSelectProps) => {
   );
 };
 
-export default SleepPatternSelect;
+export default memo(SleepPatternSelect);

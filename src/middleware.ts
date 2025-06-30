@@ -37,7 +37,8 @@ export async function middleware(request: NextRequest) {
   if (
     !user &&
     (request.nextUrl.pathname.startsWith('/profile') ||
-      request.nextUrl.pathname.startsWith('/roommates/dashboard'))
+      request.nextUrl.pathname.startsWith('/roommates/dashboard') ||
+      request.nextUrl.pathname.startsWith('/admin'))
   ) {
     // 로그인되지 않은 사용자를 로그인 페이지로 리다이렉트
     const url = request.nextUrl.clone();

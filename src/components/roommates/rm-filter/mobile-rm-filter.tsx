@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { RoommateFilterProps, RoommateFilterState } from '@/types/roommates';
@@ -45,15 +45,18 @@ const MobileRmFilter = ({
 
   const router = useRouter();
 
-  const handleChange = <T extends keyof typeof filterItem>(
-    key: T,
-    value: (typeof filterItem)[T]
-  ) => {
-    setFilterItem(prev => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
+  const handleChange = useCallback(
+    <T extends keyof typeof filterItem>(
+      key: T,
+      value: (typeof filterItem)[T]
+    ) => {
+      setFilterItem(prev => ({
+        ...prev,
+        [key]: value,
+      }));
+    },
+    []
+  );
 
   const handleApply = () => {
     const { sociabilityRange, cleanlinessRange, ...restProfile } = filterItem;

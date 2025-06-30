@@ -2,6 +2,8 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 const NotFound = () => {
   return (
     <div className="relative w-full h-screen">

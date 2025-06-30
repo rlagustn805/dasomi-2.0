@@ -1,4 +1,5 @@
 import { Slider } from '@/components/ui/slider';
+import { memo } from 'react';
 
 interface CleanlinessRangeSliderProps {
   value: [number, number];

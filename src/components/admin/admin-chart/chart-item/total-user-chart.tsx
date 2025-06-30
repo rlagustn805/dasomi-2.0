@@ -78,7 +78,7 @@ const TotalUserChart = () => {
             }
           />
           <ChartTooltip content={<ChartTooltipContent />} />
-          <ChartLegend content={<ChartLegendContent payload />} />
+          <ChartLegend content={<ChartLegendContent />} />
           <Bar
             dataKey="signUp"
             fill="var(--color-signUp)"

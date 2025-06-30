@@ -1,4 +1,5 @@
 import { Switch } from '@/components/ui/switch';
+import { memo } from 'react';
 
 interface MatchingStatusSwitchProps {
   value: boolean;
@@ -17,4 +18,4 @@ const MatchingStatusSwitch = ({
   );
 };
 
-export default MatchingStatusSwitch;
+export default memo(MatchingStatusSwitch);

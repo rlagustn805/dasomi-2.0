@@ -1,4 +1,5 @@
 import { Switch } from '@/components/ui/switch';
+import { memo } from 'react';
 
 interface SmokingSwitchProps {
   value: boolean;
@@ -14,4 +15,4 @@ const SmokingSwitch = ({ value, onChange }: SmokingSwitchProps) => {
   );
 };
 
-export default SmokingSwitch;
+export default memo(SmokingSwitch);

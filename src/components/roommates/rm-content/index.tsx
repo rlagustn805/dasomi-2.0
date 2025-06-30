@@ -13,6 +13,7 @@ import DormitorySelect from './rm-content-item/dormitory';
 import { Input } from '@/components/ui/input';
 import { RoommateInfo } from '@/types/roommates';
 import MatchingStatusSelect from './rm-content-item/matching-status-select';
+import { useFilterHandlers } from '@/hooks/useFilterHandlers';
 
 const RmContent = ({
   label,
@@ -30,6 +31,8 @@ const RmContent = ({
   isEdit?: boolean;
   handleFilterOpen?: () => void;
 }) => {
+  const handlers = useFilterHandlers<RoommateInfo>(handleChange);
+
   return (
     <>
       <CardHeader>
@@ -41,7 +44,7 @@ const RmContent = ({
           <CmField label="매칭 상태 변경">
             <MatchingStatusSelect
               value={profile.matchingStatus as string}
-              onChange={value => handleChange('matchingStatus', value)}
+              onChange={handlers.handleMatchingStatusChange}
             />
           </CmField>
         )}
@@ -49,30 +52,30 @@ const RmContent = ({
         <CmField label="기숙사 선택">
           <DormitorySelect
             value={profile.dormitory}
-            onChange={value => handleChange('dormitory', value)}
+            onChange={handlers.handleDormitoryChange}
           />
         </CmField>
         <CmField label="인실 선택">
           <RoomTypeSelect
             value={profile.roomType}
-            onChange={value => handleChange('roomType', value)}
+            onChange={handlers.handleRoomTypeChange}
           />
         </CmField>
         <CmField label="친목">
           <TendencySlider
             value={profile.sociability}
-            onChange={value => handleChange('sociability', value)}
+            onChange={handlers.handleSociabilityChange}
           />
         </CmField>
         <CmField label="깔끔">
           <CleanlinessSlider
             value={profile.cleanliness}
-            onChange={value => handleChange('cleanliness', value)}
+            onChange={handlers.handleCleanlinessChange}
           />
         </CmField>
         <EatingSwitch
           value={profile.indoorEating}
-          onChange={value => handleChange('indoorEating', value)}
+          onChange={handlers.handleIndoorEatingChange}
         />
         <SmokingSwitch
           value={profile.smoking}
@@ -82,19 +85,19 @@ const RmContent = ({
         <CmField label="잠버릇">
           <SleepHabitSelect
             value={profile.sleepHabit as string}
-            onChange={value => handleChange('sleepHabit', value)}
+            onChange={handlers.handleSleepHabitChange}
           />
         </CmField>
         <CmField label="수면패턴">
           <SleepPatternSelect
             value={profile.sleepPattern}
-            onChange={value => handleChange('sleepPattern', value)}
+            onChange={handlers.handleSleepPatternChange}
           />
         </CmField>
         <CmField label="소음">
           <NoiseSelect
             value={profile.noise as string}
-            onChange={value => handleChange('noise', value)}
+            onChange={handlers.handleNoiseChange}
           />
         </CmField>
         <CmField label="카카오 오픈 채팅 링크">
@@ -111,7 +114,7 @@ const RmContent = ({
             placeholder="예시) 안녕하세요! 깔끔하고 활발한 성격입니다. 함께 즐겁게 생활할 룸메이트를 찾고 있어요 😊"
             maxLength={80}
             value={profile.message}
-            onChange={e => handleChange('message', e.target.value)}
+            onChange={handlers.handleTextareaChange('message')}
           />
           <p className="text-xs text-muted-foreground text-right">
             {profile.message?.length}/80

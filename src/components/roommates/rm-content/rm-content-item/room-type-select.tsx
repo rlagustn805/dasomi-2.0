@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { memo } from 'react';
 
 interface RoomTypeSelectProps {
   value: string;
@@ -28,4 +29,4 @@ const RoomTypeSelect = ({ value, onChange }: RoomTypeSelectProps) => {
   );
 };
 
-export default RoomTypeSelect;
+export default memo(RoomTypeSelect);
