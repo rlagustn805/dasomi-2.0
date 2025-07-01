@@ -1,15 +1,18 @@
-import { API_URL } from '@/lib/config';
-
 export const fetchUserRate = async () => {
   try {
-    const res = await fetch(`${API_URL}/api/admin/user`, {
-      credentials: 'include',
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/user`,
+      {
+        credentials: 'include',
+      }
+    );
 
     const data = await res.json();
 
     if (!res.ok) {
-      return { message: data.error ?? '가입 / 탈퇴율 조회에 실패하였습니다.' };
+      return {
+        messqwage: data.error ?? '가입 / 탈퇴율 조회에 실패하였습니다.',
+      };
     }
 
     return data;
@@ -20,9 +23,12 @@ export const fetchUserRate = async () => {
 
 export const fetchMatchingRate = async () => {
   try {
-    const res = await fetch(`${API_URL}/api/admin/match`, {
-      credentials: 'include',
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/match`,
+      {
+        credentials: 'include',
+      }
+    );
 
     const data = await res.json();
 

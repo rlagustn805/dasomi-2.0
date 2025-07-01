@@ -1,8 +1,6 @@
-import { API_URL } from '@/lib/config';
-
 export const insertIsLike = async (likerId: any) => {
   try {
-    const res = await fetch(`${API_URL}/api/likes`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`, {
       method: 'POST',
       body: JSON.stringify(likerId),
       credentials: 'include',
@@ -24,7 +22,7 @@ export const insertIsLike = async (likerId: any) => {
 
 export const deleteIsLike = async (likerId: any) => {
   try {
-    const res = await fetch(`${API_URL}/api/likes`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/likes`, {
       method: 'DELETE',
       body: JSON.stringify(likerId),
       credentials: 'include',

@@ -1,13 +1,15 @@
 import { SignUpForm } from '@/types/sign-up';
 import { Users } from '@/types/users';
-import { API_URL } from '@/lib/config';
 
 export const updateUserProfile = async (fieldName: Partial<Users>) => {
   try {
-    const res = await fetch(`${API_URL}/api/users/me`, {
-      method: 'PATCH',
-      body: JSON.stringify(fieldName),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(fieldName),
+      }
+    );
 
     const data = await res.json();
 
@@ -68,17 +70,20 @@ export const insertUserProfile = async (
   profile: SignUpForm
 ) => {
   try {
-    const res = await fetch(`${API_URL}/api/users/me`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: userId,
-        kakao_id: kakaoId,
-        ...profile,
-      }),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: userId,
+          kakao_id: kakaoId,
+          ...profile,
+        }),
+      }
+    );
 
     const data = await res.json();
 

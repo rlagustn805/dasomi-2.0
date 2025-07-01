@@ -1,15 +1,17 @@
 import { RoommateInfo } from '@/types/roommates';
-import { API_URL } from '@/lib/config';
 
 export const registerRoommateProfile = async (profile: RoommateInfo) => {
   try {
-    const res = await fetch(`${API_URL}/api/roommates/me`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(profile),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/roommates/me`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
+      }
+    );
 
     const data = await res.json();
 
@@ -25,14 +27,17 @@ export const registerRoommateProfile = async (profile: RoommateInfo) => {
 
 export const updateRoommateProfile = async (profile: RoommateInfo) => {
   try {
-    const res = await fetch(`${API_URL}/api/roommates/${profile.roommateId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify(profile),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/roommates/${profile.roommateId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(profile),
+      }
+    );
 
     const data = await res.json();
 
@@ -51,9 +56,12 @@ export const deleteRoommateProfile = async (profile: RoommateInfo) => {
   if (!confirmed) return;
 
   try {
-    const res = await fetch(`${API_URL}/api/roommates/${profile.roommateId}`, {
-      method: 'DELETE',
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/roommates/${profile.roommateId}`,
+      {
+        method: 'DELETE',
+      }
+    );
 
     const data = await res.json();
 
