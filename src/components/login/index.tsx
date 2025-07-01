@@ -34,6 +34,7 @@ const KakaoLogin = () => {
           width={300}
           height={45}
           onClick={handleLogin}
+          priority
         />
       </CardContent>
       <CardFooter className="text-xs text-gray-400">

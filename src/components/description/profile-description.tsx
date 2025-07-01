@@ -34,6 +34,7 @@ const ProfileDescription = () => {
           width={500}
           height={500}
           alt="profile-description1"
+          priority
         />
       ))}
     </div>

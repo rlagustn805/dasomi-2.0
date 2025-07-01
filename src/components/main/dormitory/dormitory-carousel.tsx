@@ -46,6 +46,7 @@ const DormitoryCarousel = () => {
                 className="w-full h-40 md:h-52 lg:h-60 object-cover rounded-xl"
                 width={300}
                 height={300}
+                priority
               />
               <div className="flex flex-col gap-2 px-2 py-3">
                 <span className="text-sm">{dormitory.title}</span>

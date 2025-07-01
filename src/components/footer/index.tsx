@@ -30,7 +30,7 @@ const Footer = () => {
         <div>
           <p className="font-semibold mb-3">문의</p>
           <Link
-            href="/"
+            href="https://open.kakao.com/o/skUO4i5g"
             className={`${buttonVariants({
               variant: 'outline',
             })} bg-yellow-400 rounded-xl`}>

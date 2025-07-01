@@ -30,6 +30,7 @@ const ProfileDescription = () => {
           width={500}
           height={500}
           alt="roommate-description1"
+          priority
         />
       ))}
     </div>
