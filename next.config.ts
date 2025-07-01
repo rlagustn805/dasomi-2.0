@@ -5,7 +5,10 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
-  // 여기는 webpack 관련 설정만!
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

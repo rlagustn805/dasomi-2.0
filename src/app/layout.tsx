@@ -10,12 +10,6 @@ export const metadata = {
   title: '다솜이 룸메이트 서비스',
   description: '맞춤형 기숙사 룸메이트를 손쉽게 구하다.',
   manifest: '/manifest.json',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    viewportFit: 'cover',
-    themeColor: '#ffffff',
-  },
   icons: [
     {
       rel: 'icon',
@@ -39,6 +33,13 @@ export const metadata = {
     statusBarStyle: 'default',
   },
   applicationName: '다솜이',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#ffffff',
 };
 
 const pretendard = localFont({

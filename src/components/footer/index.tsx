@@ -5,7 +5,7 @@ import { buttonVariants } from '../ui/button';
 
 const Footer = () => {
   return (
-    <footer className="py-8 border-t border-gray-200 bg-gray-100 px-4 md:px-36 lg:px-44 mt-15">
+    <footer className="py-8 border-t border-gray-200 bg-gray-200 px-4 md:px-36 lg:px-44 mt-15">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div>
           <p className="font-semibold mb-3">다솜이</p>

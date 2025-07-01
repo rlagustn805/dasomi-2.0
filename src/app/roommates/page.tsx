@@ -9,9 +9,6 @@ import { Suspense } from 'react';
 export const metadata = {
   title: '다솜이 룸메이트 서비스 | 리스트',
   description: '룸메이트 리스트 안내',
-  icons: {
-    icon: '/images/favicon.ico',
-  },
 };
 
 type SearchParamsProps = {

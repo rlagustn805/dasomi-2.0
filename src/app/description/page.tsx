@@ -6,9 +6,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 export const metadata = {
   title: '다솜이 룸메이트 서비스 | 이용안내',
   description: '프로필 등록, 룸메이트 등록 등 전반적인 이용 안내',
-  icons: {
-    icon: '/images/favicon.ico',
-  },
 };
 
 const DescriptionPage = () => {

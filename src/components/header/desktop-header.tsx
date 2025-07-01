@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useState } from 'react';
-import MenuIcon from '@/assets/icon/menu-icon';
+import { Menu } from 'lucide-react';
 
 const DesktopHeader = ({ nickname }: { nickname: string }) => {
   const router = useRouter();
@@ -43,7 +43,7 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
         <div className="relative">
           <Button size="sm" variant="outline" onClick={handleIsMenuOpen}>
             {nickname}님
-            <MenuIcon />
+            <Menu />
           </Button>
           {isMenuOpen && (
             <div className="absolute right-0 flex flex-col gap-2 bg-white border text-sm p-2 w-28 font-semibold">
