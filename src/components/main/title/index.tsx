@@ -15,6 +15,13 @@ const Title = () => {
           <Link href="/roommates/">룸메이트 찾기</Link>
         </Button>
       </div>
+
+      <div className="flex-row justify-start flex lg:hidden">
+        <Button size="sm">
+          <Link href="/start">앱으로 시작하기</Link>
+        </Button>
+      </div>
+
       <MobileRmFilter />
     </section>
   );

@@ -107,7 +107,7 @@ const eslintConfig = [
       '@typescript-eslint/no-unused-vars': ['off', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/prefer-as-const': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-non-null-assertion': 'off',
 
       // React 관련 (Next.js용)
       'react/jsx-filename-extension': [

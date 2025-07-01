@@ -117,7 +117,11 @@ const MobileRmFilter = ({
 
   return (
     <div className="block lg:hidden mt-2 w-full">
-      <Button variant="outline" className="w-full" onClick={handleFilterOpen}>
+      <Button
+        variant="outline"
+        className="w-full"
+        size="lg"
+        onClick={handleFilterOpen}>
         맞춤 룸메이트 찾기
       </Button>
       <Sheet open={isFilterOpen} onOpenChange={handleFilterOpen}>
