@@ -64,6 +64,13 @@ const MobileMenu = ({
                 </>
               )}
               <Link
+                href="/start"
+                className="py-2 border-b border-gray-200"
+                onClick={handleMenuOnClick}>
+                앱으로 시작하기
+              </Link>
+
+              <Link
                 href="/description"
                 className="py-2 border-b border-gray-200"
                 onClick={handleMenuOnClick}>

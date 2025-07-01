@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ImgWithPlaceholder from '../img-with-placeholder';
 
 const roommateDescriptionArr = [
   {
@@ -23,15 +24,17 @@ const ProfileDescription = () => {
   return (
     <div className="grid grid-cols-1 gap-3">
       {roommateDescriptionArr.map(p => (
-        <Image
-          key={p.src}
-          className="border border-muted-foreground/30 rounded-2xl p-2"
-          src={p.src}
-          width={500}
-          height={500}
-          alt="roommate-description1"
-          priority
-        />
+        <div key={p.src}>
+          <ImgWithPlaceholder
+            key={p.src}
+            className="border border-muted-foreground/30 rounded-2xl p-2"
+            src={p.src}
+            width={500}
+            height={500}
+            alt="roommate-description1"
+            priority
+          />
+        </div>
       ))}
     </div>
   );

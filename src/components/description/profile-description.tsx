@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ImgWithPlaceholder from '../img-with-placeholder';
 
 const profileDescriptionArr = [
   {
@@ -27,15 +28,15 @@ const ProfileDescription = () => {
   return (
     <div className="grid grid-cols-1 gap-3">
       {profileDescriptionArr.map(p => (
-        <Image
-          key={p.src}
-          className="border border-muted-foreground/30 rounded-2xl p-2"
-          src={p.src}
-          width={500}
-          height={500}
-          alt="profile-description1"
-          priority
-        />
+        <div key={p.src}>
+          <ImgWithPlaceholder
+            className="border border-muted-foreground/30 rounded-2xl p-2"
+            src={p.src}
+            width={500}
+            height={500}
+            alt="profile-description1"
+          />
+        </div>
       ))}
     </div>
   );

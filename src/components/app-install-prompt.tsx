@@ -110,9 +110,7 @@ export default function AppInstallPrompt() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => setIsIosPromptVisible(false)}>
+            <Button variant="outline">
               <Link href="/start">자세히 보기</Link>
             </Button>
           </DialogFooter>
