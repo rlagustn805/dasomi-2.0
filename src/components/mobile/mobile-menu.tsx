@@ -4,6 +4,7 @@ import TitleIcon from '@/assets/icon/title-icon';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 const MobileMenu = ({
   isMenuOpen,
@@ -17,9 +18,12 @@ const MobileMenu = ({
   const router = useRouter();
   const supabase = createClient();
 
+  const clearUser = useAuthStore(s => s.clearUser);
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     handleMenuOnClick();
+    clearUser();
     router.push('/');
     router.refresh();
   };
@@ -49,13 +53,13 @@ const MobileMenu = ({
                     href="/profile"
                     className="py-2 border-b border-gray-200"
                     onClick={handleMenuOnClick}>
-                    내 정보
+                    내 프로필
                   </Link>
                   <Link
                     href="/roommates/dashboard"
                     className="py-2 border-b border-gray-200"
                     onClick={handleMenuOnClick}>
-                    룸메이트 정보
+                    룸메이트 대시보드
                   </Link>
                 </>
               )}

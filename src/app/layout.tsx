@@ -5,6 +5,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { Toaster } from 'sonner';
+import AppInit from '@/components/app-init';
 
 export const metadata = {
   title: '다솜이 룸메이트 서비스',
@@ -49,37 +50,38 @@ const pretendard = localFont({
   variable: '--font-CSS-pretendard',
 });
 
-const RootLayout = async ({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // const supabase = await createServerSupabaseClient();
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser();
 
-  let loginUser = null;
+  // let loginUser = null;
 
-  if (user) {
-    const { data: userProfile, error } = await supabase
-      .from('users')
-      .select('id, nickname, gender')
-      .eq('id', user.id)
-      .maybeSingle();
+  // if (user) {
+  //   const { data: userProfile, error } = await supabase
+  //     .from('users')
+  //     .select('id, nickname, gender')
+  //     .eq('id', user.id)
+  //     .maybeSingle();
 
-    if (error) {
-      console.error(error.message);
-    }
-    loginUser = userProfile ?? null;
-  }
+  //   if (error) {
+  //     console.error(error.message);
+  //   }
+  //   loginUser = userProfile ?? null;
+  // }
 
   return (
     <html
       lang="kr"
       className={`${pretendard.variable} font-pretendard overscroll-none`}>
       <body className="flex flex-col min-h-screen ">
-        <Header nickname={loginUser?.nickname} />
+        <AppInit />
+        <Header />
         <Toaster richColors position="top-center" />
         <main className="flex-1 mt-16">{children}</main>
         <Footer />

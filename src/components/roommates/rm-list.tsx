@@ -3,9 +3,8 @@ import RmCard from './rm-card';
 import RmPagination from './rm-pagination';
 import { RoommateListProps } from '@/types/roommates';
 import { RoommateCardData } from '@/types/roommates';
-import { Button } from '../ui/button';
-import Link from 'next/link';
 import { Card } from '../ui/card';
+import { BookText } from 'lucide-react';
 
 type isUser = {
   currentUserId: string | null;
@@ -24,6 +23,9 @@ const RmList = async ({
     return (
       <Card className="col-span-1 lg:col-span-3 flex flex-col items-center mt-8 text-gray-500">
         <div className="flex flex-col items-center justify-center gap-5 h-full leading-7">
+          <div className="inline-block mb-2">
+            <BookText size={60} color="#dee2e6" />
+          </div>
           등록된 룸메이트가 존재하지 않아요. <br />
           상단에 룸메이트 정보 등록하기를 통해 <br />
           프로필을 만들 수 있어요.

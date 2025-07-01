@@ -5,15 +5,18 @@ import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useState } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, User } from 'lucide-react';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 const DesktopHeader = ({ nickname }: { nickname: string }) => {
   const router = useRouter();
   const supabase = createClient();
   const [isMenuOpen, setIsMenuOepn] = useState(false);
+  const clearUser = useAuthStore(s => s.clearUser);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    clearUser();
     router.push('/');
     router.refresh();
   };
@@ -41,29 +44,32 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
 
       {nickname ? (
         <div className="relative">
-          <Button size="sm" variant="outline" onClick={handleIsMenuOpen}>
-            {nickname}님
-            <Menu />
+          <Button variant="outline" onClick={handleIsMenuOpen}>
+            <User />
           </Button>
+
           {isMenuOpen && (
-            <div className="absolute right-0 flex flex-col gap-2 bg-white border text-sm p-2 w-28 font-semibold">
+            <div className="absolute right-0 flex flex-col gap-2 bg-white border text-sm p-2 w-36 font-semibold">
+              <div className="border-b border-gray-200 cursor-pointer p-1">
+                {nickname}님
+              </div>
+
               <Link
                 href="/profile"
                 className="border-b border-gray-200 cursor-pointer hover:bg-gray-300/30 p-1">
-                내 정보
+                내 프로필
               </Link>
               <Link
                 href="/roommates/dashboard"
                 className="border-b border-gray-200 cursor-pointer hover:bg-gray-300/30 p-1">
-                룸메이트 정보
+                룸메이트 대시보드
               </Link>
 
-              <Button
-                className="cursor-pointer"
-                onClick={handleLogout}
-                size="sm">
+              <div
+                className="border-b border-gray-200 cursor-pointer hover:bg-gray-300/30 p-1"
+                onClick={handleLogout}>
                 로그아웃
-              </Button>
+              </div>
             </div>
           )}
         </div>

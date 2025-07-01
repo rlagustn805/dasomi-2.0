@@ -68,6 +68,8 @@ export const deleteRoommateProfile = async (profile: RoommateInfo) => {
     if (!res.ok) {
       throw new Error(data.error ?? '삭제에 실패했습니다.');
     }
+
+    return { success: true };
   } catch (e) {
     console.error('룸메이트 프로필 삭제 에러 : ', e);
   }

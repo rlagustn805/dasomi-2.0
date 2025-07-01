@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/sheet';
 import { dormitorys } from '@/components/main/dormitory/dormitorys';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const MatchingLabels: Record<string, string> = {
   available: '매칭 가능',
@@ -33,6 +34,8 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
   );
   const [tempProfile, setTempProfile] = useState<RoommateInfo | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
+
+  const router = useRouter();
 
   const isValidKakaoLink = (url: string): boolean => {
     const kakaoRegex = /^https:\/\/open\.kakao\.com\/o\/[A-Za-z0-9]+$/;
@@ -85,11 +88,15 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
   };
 
   const handleDelete = async (profile: RoommateInfo) => {
-    await deleteRoommateProfile(profile);
+    const res = await deleteRoommateProfile(profile);
 
-    setLocalProfiles(prev =>
-      prev.filter(p => p.roommateId !== profile.roommateId)
-    );
+    // setLocalProfiles(prev =>
+    //   prev.filter(p => p.roommateId !== profile.roommateId)
+    // );
+
+    if (res) toast.success('삭제되었습니다.');
+
+    router.refresh();
   };
 
   return (
