@@ -78,7 +78,14 @@ export default function AppInstallPrompt() {
 
   return (
     <>
-      <Dialog open={showInstallPrompt} onOpenChange={setShowInstallPrompt}>
+      <Dialog
+        open={showInstallPrompt}
+        onOpenChange={open => {
+          setShowInstallPrompt(open);
+          if (!open) {
+            localStorage.setItem(PROMPT_KEY, new Date().toISOString());
+          }
+        }}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="mb-3">앱으로 시작하기</DialogTitle>
@@ -97,7 +104,14 @@ export default function AppInstallPrompt() {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isIosPromptVisible} onOpenChange={setIsIosPromptVisible}>
+      <Dialog
+        open={isIosPromptVisible}
+        onOpenChange={open => {
+          setIsIosPromptVisible(open);
+          if (!open) {
+            localStorage.setItem(PROMPT_KEY, new Date().toISOString());
+          }
+        }}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="mb-3">앱으로 시작하기</DialogTitle>

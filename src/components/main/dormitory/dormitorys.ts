@@ -1,44 +1,51 @@
+import chaminjaeImg from '@/components/main/dormitory/imgs/chaminjae.jpg';
+import dasomImg from '@/components/main/dormitory/imgs/dasom.jpg';
+import hyosungImg from '@/components/main/dormitory/imgs/hyosung.jpg';
+import kimdaegunImg from '@/components/main/dormitory/imgs/kimdaegun.jpg';
+import amareImg from '@/components/main/dormitory/imgs/amare.jpg';
+import precognitionImg from '@/components/main/dormitory/imgs/precognition.jpg';
+import servireImg from '@/components/main/dormitory/imgs/servire.jpg';
+
 export const dormitorys = [
   {
     id: 'chaminjae',
-    src: '/images/dormitorys/chaminjae.jpg',
+    src: chaminjaeImg,
     title: '참인재관',
     link: '/',
   },
   {
     id: 'dasom',
-    src: '/images/dormitorys/dasom.jpg',
+    src: dasomImg,
     title: '다솜관',
     link: '/',
   },
   {
     id: 'hyosung',
-    src: '/images/dormitorys/hyosung.jpg',
+    src: hyosungImg,
     title: '효성관',
     link: '/',
   },
   {
     id: 'kimdaegun',
-    src: '/images/dormitorys/kimdaegun.jpg',
+    src: kimdaegunImg,
     title: '성김대건관',
     link: '/',
   },
   {
     id: 'amare',
-    src: '/images/dormitorys/amare.jpg',
+    src: amareImg,
     title: '아마레관',
     link: '/',
   },
   {
     id: 'precognition',
-    src: '/images/dormitorys/precognition.jpg',
+    src: precognitionImg,
     title: '예지관',
     link: '/',
   },
-
   {
     id: 'servire',
-    src: '/images/dormitorys/servire.jpg',
+    src: servireImg,
     title: '세르비레관',
     link: '/',
   },

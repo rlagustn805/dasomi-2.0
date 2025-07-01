@@ -26,9 +26,11 @@ const RmList = async ({
           <div className="inline-block mb-2">
             <BookText size={60} color="#dee2e6" />
           </div>
-          등록된 룸메이트가 존재하지 않아요. <br />
-          상단에 룸메이트 정보 등록하기를 통해 <br />
-          프로필을 만들 수 있어요.
+          <div className="text-center">
+            등록된 룸메이트가 존재하지 않아요. <br />
+            상단에 룸메이트 정보 등록하기를 통해 <br />
+            프로필을 만들 수 있어요.
+          </div>
         </div>
       </Card>
     );

@@ -1,12 +1,13 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import precognitionImg from '@/components/main/dormitory/imgs/precognition.jpg';
 
 const NotFound = () => {
   return (
     <div className="relative w-full h-screen">
       <Image
-        src="/images/dormitorys/precognition.jpg"
+        src={precognitionImg}
         alt="404"
         fill
         className="object-cover"
