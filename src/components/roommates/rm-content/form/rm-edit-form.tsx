@@ -141,7 +141,7 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
                   label="내 모집글 보여주기"
                 />
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  더 이상 모집하지 않을 땐 비활성화해 주세요.
+                  더 이상 모집하지 않을 땐 비활성화 할 수 있어요.
                 </p>
               </div>
 
