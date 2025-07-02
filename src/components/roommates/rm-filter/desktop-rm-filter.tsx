@@ -103,7 +103,7 @@ const DesktopRmFilter = ({
   return (
     <Card className="col-span-1 h-fit hidden lg:block mt-8">
       <RmFilterContent
-        label="맞춤 룸메이트 찾기"
+        label="나와 맞는 룸메이트 구하기"
         {...filterItem}
         handleChange={handleChange}
         handleApply={handleApply}

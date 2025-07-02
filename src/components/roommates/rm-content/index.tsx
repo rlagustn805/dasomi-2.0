@@ -105,7 +105,7 @@ const RmContent = ({
             className="text-sm"
             value={profile.kakaoOpenLink}
             onChange={e => handleChange('kakaoOpenLink', e.target.value)}
-            placeholder="오픈 채팅 생성 후 복사 붙여넣기 해주세요 !"
+            placeholder="오픈 채팅 생성 후 링크를 붙여 넣어 주세요 !"
           />
         </CmField>
         <CmField label="하고 싶은 말">

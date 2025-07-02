@@ -37,7 +37,7 @@ const KakaoLogin = () => {
           priority
         />
       </CardContent>
-      <CardFooter className="text-xs text-gray-400">
+      <CardFooter className="text-xs text-muted-foreground">
         처음 방문하시나요? 카카오톡으로 로그인하시면 자동으로 회원가입이
         진행되요.
       </CardFooter>

@@ -27,4 +27,4 @@ const CleanlinessSliderRange = ({
   );
 };
 
-export default CleanlinessSliderRange;
+export default memo(CleanlinessSliderRange);

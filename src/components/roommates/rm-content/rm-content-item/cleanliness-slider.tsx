@@ -14,8 +14,9 @@ const CleanlinessSlider = ({ value, onChange }: CleanlinessSliderProps) => {
         max={5}
         step={1}
         onValueChange={([val]) => onChange(val)}
+        mode="single"
       />
-      <div className="text-xs flex justify-between items-center">
+      <div className="mt-1.5 text-xs flex justify-between items-center">
         <span>자유로워요</span>
         <span>신경쓰는 편이에요</span>
       </div>

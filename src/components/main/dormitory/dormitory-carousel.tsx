@@ -43,7 +43,7 @@ const DormitoryCarousel = () => {
               <Image
                 src={dormitory.src}
                 alt={dormitory.id}
-                className="w-full h-40 md:h-52 lg:h-60 object-cover rounded-xl"
+                className="w-full h-40 md:h-52 lg:h-60 object-cover  rounded-xl"
                 width={300}
                 height={300}
                 priority

@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import MobileMenu from '../mobile/mobile-menu';
-import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 
 const MobileHeader = ({ nickname }: { nickname: string }) => {
@@ -13,14 +12,12 @@ const MobileHeader = ({ nickname }: { nickname: string }) => {
 
   return (
     <div className="z-20">
-      <Button
+      <Menu
+        size={20}
         className="block md:hidden"
-        variant="ghost"
-        size="sm"
         aria-label="메뉴 열기"
-        onClick={handleMenuOnClick}>
-        <Menu />
-      </Button>
+        onClick={handleMenuOnClick}
+      />
       <MobileMenu
         isMenuOpen={isMenuOpen}
         handleMenuOnClick={handleMenuOnClick}

@@ -9,7 +9,7 @@ import AppInstallPrompt from '@/components/app-install-prompt';
 
 export const metadata = {
   title: '다솜이 룸메이트 서비스',
-  description: '맞춤형 기숙사 룸메이트를 손쉽게 구하다.',
+  description: '나와 맞는 기숙사 룸메이트를 손쉽게 구하다.',
   manifest: '/manifest.json',
   icons: [
     {

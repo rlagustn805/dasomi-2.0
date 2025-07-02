@@ -14,8 +14,9 @@ const TendencySlider = ({ value, onChange }: TendencySliderProps) => {
         max={5}
         step={1}
         onValueChange={([val]) => onChange(val)}
+        mode="single"
       />
-      <div className="text-xs flex justify-between items-center">
+      <div className="mt-1.5 text-xs flex justify-between items-center">
         <span>갠플해요 </span>
         <span>친해져요</span>
       </div>

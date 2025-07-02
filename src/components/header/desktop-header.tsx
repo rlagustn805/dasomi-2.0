@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useState } from 'react';
-import { Menu, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import { useAuthStore } from '@/stores/useAuthStore';
 
 const DesktopHeader = ({ nickname }: { nickname: string }) => {
@@ -33,7 +33,7 @@ const DesktopHeader = ({ nickname }: { nickname: string }) => {
         이용안내
       </Link>
       <Link href="/roommates" className={hoverStyle}>
-        룸메이트 찾기
+        룸메이트 구하기
       </Link>
       <Link
         href="https://dormitory.cu.ac.kr/board_Qgpk79"

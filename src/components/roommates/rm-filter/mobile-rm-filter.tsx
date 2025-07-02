@@ -117,21 +117,30 @@ const MobileRmFilter = ({
 
   return (
     <div className="block lg:hidden mt-2 w-full">
-      <Button
-        variant="outline"
-        className="w-full"
-        size="lg"
-        onClick={handleFilterOpen}>
-        맞춤 룸메이트 찾기
-      </Button>
+      <div className="relative group">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-green-600 rounded-lg blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+        <Button
+          className="relative w-full bg-green-600 shadow-lg"
+          size="lg"
+          onClick={handleFilterOpen}>
+          <div className="flex items-baseline gap-1">
+            <span className="text-lg">🏠</span>
+            룸메이트 구하기
+          </div>
+          <span className="text-3xl absolute -bottom-4 right-0 rotate-[-45deg]">
+            👆
+          </span>
+        </Button>
+      </div>
+
       <Sheet open={isFilterOpen} onOpenChange={handleFilterOpen}>
         <SheetContent side="bottom" className="h-[90vh] overflow-auto p-4">
           <SheetHeader>
-            <SheetTitle>맞춤 룸메이트 찾기</SheetTitle>
+            <SheetTitle>나와 맞는 룸메이트 구하기</SheetTitle>
             <SheetDescription>필요한 부분만 적용할 수 있어요!</SheetDescription>
           </SheetHeader>
           <RmFilterContent
-            label="맞춤 룸메이트 찾기"
+            label="나와 맞는 룸메이트 구하기"
             {...filterItem}
             handleChange={handleChange}
             handleReset={handleReset}

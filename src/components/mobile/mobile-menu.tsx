@@ -1,10 +1,10 @@
-import CloseIcon from '@/assets/icon/close-icon';
 import { Button } from '@/components/ui/button';
 import TitleIcon from '@/assets/icon/title-icon';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { useAuthStore } from '@/stores/useAuthStore';
+import { X } from 'lucide-react';
 
 const MobileMenu = ({
   isMenuOpen,
@@ -35,9 +35,8 @@ const MobileMenu = ({
           <div className="px-4 py-3 flex flex-col h-full">
             <div className="flex justify-between items-center mb-14">
               <TitleIcon />
-              <Button variant="ghost" size="sm" onClick={handleMenuOnClick}>
-                <CloseIcon />
-              </Button>
+
+              <X size={20} onClick={handleMenuOnClick} />
             </div>
             {nickname && (
               <div className="mb-5">
@@ -64,6 +63,21 @@ const MobileMenu = ({
                 </>
               )}
               <Link
+                href="/roommates"
+                className="py-2 border-b border-gray-200"
+                onClick={handleMenuOnClick}>
+                룸메이트 구하기
+              </Link>
+
+              <Link
+                href="https://dormitory.cu.ac.kr/board_Qgpk79"
+                target="_blank"
+                className="py-2 border-b border-gray-200"
+                onClick={handleMenuOnClick}>
+                기숙사 공지사항
+              </Link>
+
+              <Link
                 href="/start"
                 className="py-2 border-b border-gray-200"
                 onClick={handleMenuOnClick}>
@@ -75,20 +89,6 @@ const MobileMenu = ({
                 className="py-2 border-b border-gray-200"
                 onClick={handleMenuOnClick}>
                 이용안내
-              </Link>
-
-              <Link
-                href="/roommates"
-                className="py-2 border-b border-gray-200"
-                onClick={handleMenuOnClick}>
-                룸메이트 찾기
-              </Link>
-              <Link
-                href="https://dormitory.cu.ac.kr/board_Qgpk79"
-                target="_blank"
-                className="py-2 border-b border-gray-200"
-                onClick={handleMenuOnClick}>
-                기숙사 공지사항
               </Link>
             </nav>
             {nickname ? (
