@@ -138,9 +138,9 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
         onOpenChange={open => !open && closeEditDialog()}>
         <SheetContent side="bottom" className="h-[90vh] overflow-auto">
           <SheetHeader>
-            <SheetTitle>룸메이트 프로필 수정</SheetTitle>
+            <SheetTitle>룸메이트 모집 글 수정</SheetTitle>
             <SheetDescription>
-              프로필 정보를 수정한 후 저장 버튼을 눌러주세요.
+              모집 글 정보를 수정한 후 수정 버튼을 눌러주세요.
             </SheetDescription>
           </SheetHeader>
 

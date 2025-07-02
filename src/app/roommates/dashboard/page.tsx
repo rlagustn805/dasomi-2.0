@@ -17,19 +17,19 @@ const RoommateDashBoardPage = async ({ searchParams }: SearchParamsProps) => {
     <div className="px-4 md:px-36 lg:px-44 mt-15">
       <h2 className="text-lg font-semibold">룸메이트 대시보드</h2>
       <p className="text-sm text-muted-foreground">
-        룸메이트를 등록, 관리하고 찜한 룸메이트를 확인할 수 있어요.
+        룸메이트를 모집하는 게시글을 등록하고, 찜한 룸메이트를 확인할 수 있어요.
       </p>
       <Tabs defaultValue={currentTab} className="mt-5 space-y-6">
         <TabsList className="grid grid-cols-3 w-full h-auto">
           <TabsTrigger
             value="create-roommate"
             className="py-2 md:py-1.5 cursor-pointer">
-            프로필 등록
+            룸메 모집 글 등록
           </TabsTrigger>
           <TabsTrigger
             value="profile-roommate"
             className="py-2 md:py-1.5 cursor-pointer">
-            등록한 프로필
+            등록한 모집 글
           </TabsTrigger>
           <TabsTrigger
             value="bookmark-roommate"

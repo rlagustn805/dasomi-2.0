@@ -100,7 +100,7 @@ const RmContent = ({
             onChange={handlers.handleNoiseChange}
           />
         </CmField>
-        <CmField label="카카오 오픈 채팅 링크">
+        <CmField label="카카오톡 오픈 채팅 링크">
           <Input
             className="text-sm"
             value={profile.kakaoOpenLink}

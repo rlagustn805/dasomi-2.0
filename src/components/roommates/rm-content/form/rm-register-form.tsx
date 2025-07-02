@@ -79,7 +79,7 @@ const RmRegisterForm = () => {
   return (
     <>
       <RmContent
-        label="프로필 등록"
+        label="름메이트 모집 글 올리기"
         profile={profile}
         handleChange={handleChange}
       />
