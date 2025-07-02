@@ -31,12 +31,24 @@ const RmRegisterForm = () => {
     return kakaoRegex.test(url);
   };
 
-  const handleChange = useCallback((key: keyof RoommateInfo, value: any) => {
-    setProfile(prev => ({
-      ...prev,
-      [key]: value,
-    }));
-  }, []);
+  const handleChange = useCallback(
+    (key: keyof RoommateInfo, inputValue: any) => {
+      let value = inputValue; // 파라미터 복사
+
+      if (key === 'kakaoOpenLink') {
+        const matched = value.match(
+          /https:\/\/open\.kakao\.com\/o\/[A-Za-z0-9]+/
+        );
+        value = matched ? matched[0] : '';
+      }
+
+      setProfile(prev => ({
+        ...prev,
+        [key]: value,
+      }));
+    },
+    []
+  );
 
   const handleSubmit = async () => {
     setIsSubmitting(true);

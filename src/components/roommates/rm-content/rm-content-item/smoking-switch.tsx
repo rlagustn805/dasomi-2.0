@@ -9,7 +9,7 @@ interface SmokingSwitchProps {
 const SmokingSwitch = ({ value, onChange }: SmokingSwitchProps) => {
   return (
     <div className="flex justify-between items-center">
-      <p>흡연</p>
+      <p>흡연 가능해요</p>
       <Switch checked={value} onCheckedChange={onChange} />
     </div>
   );

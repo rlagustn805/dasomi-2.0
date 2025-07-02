@@ -9,7 +9,7 @@ interface EatingSwitchProps {
 const EatingSwitch = ({ value, onChange }: EatingSwitchProps) => {
   return (
     <div className="flex justify-between items-center">
-      <p>실내 취식</p>
+      <p>실내 취식 가능해요</p>
       <Switch checked={value} onCheckedChange={onChange} />
     </div>
   );

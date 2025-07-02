@@ -9,7 +9,7 @@ interface SleepHabitSwitchProps {
 const SleepHabitSwitch = ({ value, onChange }: SleepHabitSwitchProps) => {
   return (
     <div className="flex justify-between items-center">
-      <p>잠버릇</p>
+      <p>잠버릇 있어요</p>
       {typeof value === 'boolean' && (
         <Switch checked={value} onCheckedChange={onChange} />
       )}

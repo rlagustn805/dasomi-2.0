@@ -4,6 +4,7 @@ import { RoommateInfo } from '@/types/roommates';
 import { useCallback, useState } from 'react';
 import {
   deleteRoommateProfile,
+  toggleMatchingStatus,
   updateRoommateProfile,
 } from '@/services/api-roommates/api-roommates-client';
 import RmContent from '..';
@@ -20,12 +21,8 @@ import {
 import { dormitorys } from '@/components/main/dormitory/dormitorys';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-
-const MatchingLabels: Record<string, string> = {
-  available: '매칭 가능',
-  matching: '매칭중',
-  matched: '매칭 완료',
-};
+import RmCardCondition from '../../rm-card/rm-card-condition';
+import MatchingStatusSwitch from '../rm-content-item/matching-status-switch';
 
 const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
   const [localProfiles, setLocalProfiles] = useState(profiles);
@@ -53,7 +50,16 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
   };
 
   const handleTempChange = useCallback(
-    (key: keyof RoommateInfo, value: any) => {
+    (key: keyof RoommateInfo, inputValue: any) => {
+      let value = inputValue;
+
+      if (key === 'kakaoOpenLink') {
+        const matched = value.match(
+          /https:\/\/open\.kakao\.com\/o\/[A-Za-z0-9]+/
+        );
+        value = matched ? matched[0] : '';
+      }
+
       setTempProfile(prev => {
         if (!prev) return prev;
         return { ...prev, [key]: value };
@@ -61,6 +67,7 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
     },
     []
   );
+
   const handleUpdate = async () => {
     if (!tempProfile) return;
 
@@ -87,12 +94,25 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
     }
   };
 
+  const handleMatchingStatusChange = async (
+    roommateId: number,
+    value: boolean
+  ) => {
+    const newStatus = value ? 'available' : 'matched';
+
+    setLocalProfiles(prev =>
+      prev.map(profile =>
+        profile.roommateId === roommateId
+          ? { ...profile, matchingStatus: newStatus }
+          : profile
+      )
+    );
+
+    await toggleMatchingStatus(roommateId, newStatus);
+  };
+
   const handleDelete = async (profile: RoommateInfo) => {
     const res = await deleteRoommateProfile(profile);
-
-    // setLocalProfiles(prev =>
-    //   prev.filter(p => p.roommateId !== profile.roommateId)
-    // );
 
     if (res) toast.success('삭제되었습니다.');
 
@@ -104,17 +124,42 @@ const RmEditForm = ({ profiles }: { profiles: RoommateInfo[] }) => {
       {localProfiles.map(profile => {
         const dorm = dormitorys.find(dorm => dorm.id === profile.dormitory);
         const dormTitle = dorm ? dorm.title : '';
+        const isMatch = profile.matchingStatus === 'available';
 
         return (
           <Card key={profile.roommateId}>
-            <CardContent className="flex justify-between items-center">
-              <p className="text-sm">
-                {dormTitle} {profile.roomType === '2room' ? '2인실' : '4인실'}{' '}
-                {MatchingLabels[profile.matchingStatus as string]}
-              </p>
-              <span className="text-xs">
-                {profile.createdAt?.split('T')[0]}
-              </span>
+            <CardContent className="flex flex-col gap-6">
+              <div>
+                <MatchingStatusSwitch
+                  value={isMatch}
+                  onChange={value =>
+                    handleMatchingStatusChange(
+                      profile.roommateId as number,
+                      value
+                    )
+                  }
+                  label="내 모집글 보여주기"
+                />
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  더 이상 모집하지 않을 땐 비활성화해 주세요.
+                </p>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <p className="text-sm">
+                  {dormTitle} {profile.roomType === '2room' ? '2인실' : '4인실'}{' '}
+                </p>
+                <span className="text-xs">
+                  {profile.createdAt?.split('T')[0]}
+                </span>
+              </div>
+              <RmCardCondition
+                smoking={profile.smoking}
+                indoorEating={profile.indoorEating}
+                sleepHabit={profile.sleepHabit}
+                sleepPattern={profile.sleepPattern}
+                noise={profile.noise}
+              />
             </CardContent>
             <CardFooter className="flex gap-5">
               <Button

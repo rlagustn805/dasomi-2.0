@@ -90,6 +90,66 @@ export async function PUT(
   }
 }
 
+export async function PATCH(req: NextRequest) {
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { roommateId, newMatchingStatus } = await req.json();
+
+    if (!roommateId || !newMatchingStatus) {
+      return NextResponse.json(
+        { error: 'roommateId와 newMatchingStatus이 필요합니다.' },
+        { status: 400 }
+      );
+    }
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: '인증되지 않은 사용자입니다.' },
+        { status: 401 }
+      );
+    }
+
+    const { data: existing, error: fetchError } = await supabase
+      .from('roommates')
+      .select('id')
+      .eq('id', roommateId)
+      .eq('user_id', user.id)
+      .single();
+
+    if (fetchError || !existing) {
+      return NextResponse.json(
+        { error: '해당 룸메이트 프로필을 찾을 수 없습니다.' },
+        { status: 404 }
+      );
+    }
+
+    const { error: updateError } = await supabase
+      .from('roommates')
+      .update({ matching_status: newMatchingStatus })
+      .eq('id', roommateId);
+
+    if (updateError) {
+      return NextResponse.json({ error: updateError.message }, { status: 500 });
+    }
+
+    return NextResponse.json(
+      { message: '매칭 상태가 성공적으로 변경되었습니다.' },
+      { status: 200 }
+    );
+  } catch (e) {
+    console.error('매칭 상태 변경 오류:', e);
+    return NextResponse.json(
+      { error: '서버 오류가 발생했습니다. 관리자에게 문의해주세요.' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }

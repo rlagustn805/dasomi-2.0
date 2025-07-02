@@ -12,7 +12,6 @@ import { Textarea } from '@/components/ui/textarea';
 import DormitorySelect from './rm-content-item/dormitory';
 import { Input } from '@/components/ui/input';
 import { RoommateInfo } from '@/types/roommates';
-import MatchingStatusSelect from './rm-content-item/matching-status-select';
 import { useFilterHandlers } from '@/hooks/useFilterHandlers';
 
 const RmContent = ({
@@ -40,15 +39,6 @@ const RmContent = ({
       </CardHeader>
 
       <CardContent className="flex flex-col gap-6 text-sm">
-        {isEdit && (
-          <CmField label="매칭 상태 변경">
-            <MatchingStatusSelect
-              value={profile.matchingStatus as string}
-              onChange={handlers.handleMatchingStatusChange}
-            />
-          </CmField>
-        )}
-
         <CmField label="기숙사 선택">
           <DormitorySelect
             value={profile.dormitory}

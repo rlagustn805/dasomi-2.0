@@ -74,3 +74,26 @@ export const deleteRoommateProfile = async (profile: RoommateInfo) => {
     console.error('룸메이트 프로필 삭제 에러 : ', e);
   }
 };
+
+export const toggleMatchingStatus = async (
+  roommateId: number,
+  newMatchingStatus: string
+) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/roommates/${roommateId}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify({ roommateId, newMatchingStatus }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || '업데이트에 실패했습니다.');
+    }
+  } catch (e) {
+    console.error('룸메이트 매칭 상태 업데이트 에러 : ', e);
+  }
+};

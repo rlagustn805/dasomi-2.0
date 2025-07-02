@@ -1,3 +1,4 @@
+import CmMultiMbtiSelect from '@/components/common/cm-mbti/cm-multi-mbti-select';
 import RmDashboardBookmark from '@/components/roommates/rm-dashboard/rm-dashboard-bookmark';
 import RmDashboardCreate from '@/components/roommates/rm-dashboard/rm-dashboard-create';
 import RmDashboardProfile from '@/components/roommates/rm-dashboard/rm-dashboard-profile';
