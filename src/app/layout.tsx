@@ -6,6 +6,7 @@ import Footer from '@/components/footer';
 import { Toaster } from 'sonner';
 import AppInit from '@/components/app-init';
 import AppInstallPrompt from '@/components/app-install-prompt';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
   title: '다솜이 룸메이트 서비스',
@@ -62,7 +63,7 @@ const RootLayout = ({
       <body className="flex flex-col min-h-screen ">
         <AppInit />
         <AppInstallPrompt />
-
+        <Analytics />
         <Header />
         <Toaster richColors position="top-center" />
         <main className="flex-1 mt-16">{children}</main>
